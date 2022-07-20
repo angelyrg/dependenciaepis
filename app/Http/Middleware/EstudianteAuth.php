@@ -17,7 +17,7 @@ class EstudianteAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if ( Auth::check() && Auth::user()->rol == "Asesor" ){
+        if ( Auth::check() && Auth::user()->rol == "Estudiante" ){
             return $next($request);
         }
 

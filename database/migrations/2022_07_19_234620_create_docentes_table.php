@@ -20,6 +20,11 @@ class CreateDocentesTable extends Migration
             $table->string('dni', 8);
             $table->string('cargo', 50)->nullable(); //anterior:rol
             $table->string('estado', 20);
+
+
+            $table->unsignedBigInteger("user_id");
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+
             $table->timestamps();
         });
     }

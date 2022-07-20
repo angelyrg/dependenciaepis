@@ -357,10 +357,13 @@
 
   </main><!-- End #main -->
 
+
+
+  
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>Equipo __TeamName__</span></strong>
+      &copy; Copyright <strong><span>Equipo 5</span></strong>
     </div>
     <div class="credits">
         Escuela Profesional de <a href="https://sistemas.unh.edu.pe" target="_blank">Ingeniería de Sistemas</a>

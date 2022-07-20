@@ -11,11 +11,11 @@ class Docente extends Model
 
     protected $table = 'docentes';
 
-    protected $fillable = [
-        'nombres',
-        'apellidos',
-        'dni',
-        'cargo',
-        'estado',
-    ];
+    protected $fillable = [ 'nombres', 'apellidos', 'dni', 'cargo', 'estado', 'user_id' ];
+
+
+    public function usuario(){
+        return $this->hasOne(User::class);
+    }
+    
 }

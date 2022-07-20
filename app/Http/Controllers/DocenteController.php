@@ -29,14 +29,20 @@ class DocenteController extends Controller
 
     public function store(DocenteRequest $request)
     {
-        Docente::create($request->all());
-
         $user = new User();
         $user->name = $request->nombres." ".$request->apellidos;
         $user->username = $request->dni;
         $user->password = Hash::make($request->dni);
         $user->rol = 'Asesor';
         $user->save();
+
+        $docente = new Docente();
+        $docente->nombres = $request->nombres;
+        $docente->apellidos = $request->apellidos;
+        $docente->dni = $request->dni;
+        $docente->estado = $request->estado;
+        $docente->user_id = $user->id;
+        $docente->save();        
 
         return redirect()->route('docentes.index')->with('success', 'Docente '.$request->nombres.' registrado correctamente.');
     }
@@ -62,7 +68,10 @@ class DocenteController extends Controller
 
     public function destroy(Docente $docente)
     {
+        $user = User::findOrFail( $docente->user_id);
+        $user->delete();
         $docente->delete();
+        
         return redirect()->route('docentes.index')->with('success', 'Docente eliminado correctamente.'); 
     }
 }
