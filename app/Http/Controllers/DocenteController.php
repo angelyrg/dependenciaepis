@@ -49,12 +49,7 @@ class DocenteController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Docente  $docente
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Docente $docente)
     {
         $docente->delete();
