@@ -188,156 +188,156 @@
 
       @if (Auth::user()->rol == 'Responsable')
       
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-person"></i><span>Gestión de usuarios</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="components-alerts.html">
-              <i class="bi bi-circle"></i><span>Docentes</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-accordion.html">
-              <i class="bi bi-circle"></i><span>Estudiantes</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Usuarios Nav -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-person"></i><span>Gestión de usuarios</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="{{route('docentes.index')}}">
+                <i class="bi bi-circle"></i><span>Docentes</span>
+              </a>
+            </li>
+            <li>
+              <a href="components-accordion.html">
+                <i class="bi bi-circle"></i><span>Estudiantes</span>
+              </a>
+            </li>
+          </ul>
+        </li><!-- End Usuarios Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Gestión de proyectos</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="forms-elements.html">
-              <i class="bi bi-circle"></i><span>Proyecto</span>
-            </a>
-          </li>
-          <li>
-            <a href="forms-layouts.html">
-              <i class="bi bi-circle"></i><span>Calendario</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Proyectos Nav -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-layout-text-window-reverse"></i><span>Gestión de proyectos</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="forms-elements.html">
+                <i class="bi bi-circle"></i><span>Proyecto</span>
+              </a>
+            </li>
+            <li>
+              <a href="forms-layouts.html">
+                <i class="bi bi-circle"></i><span>Calendario</span>
+              </a>
+            </li>
+          </ul>
+        </li><!-- End Proyectos Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Gestion de informes</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="tables-general.html">
-              <i class="bi bi-circle"></i><span>Informes de los grupos</span>
-            </a>
-          </li>
-          <li>
-            <a href="tables-data.html">
-              <i class="bi bi-circle"></i><span>Informes dinámicos</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Informes Nav -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-journal-text"></i><span>Gestion de informes</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="tables-general.html">
+                <i class="bi bi-circle"></i><span>Informes de los grupos</span>
+              </a>
+            </li>
+            <li>
+              <a href="tables-data.html">
+                <i class="bi bi-circle"></i><span>Informes dinámicos</span>
+              </a>
+            </li>
+          </ul>
+        </li><!-- End Informes Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
-          <i class="bi bi-gem"></i>
-          <span>Modalidades</span>
-        </a>
-      </li><!-- End Modalidades Page Nav -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="users-profile.html">
+            <i class="bi bi-gem"></i>
+            <span>Modalidades</span>
+          </a>
+        </li><!-- End Modalidades Page Nav -->
 
-      <li class="nav-heading">COMPONENTES</li>
+        <li class="nav-heading">COMPONENTES</li>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-blank.html">
-          <i class="bi bi-file-earmark-text-fill"></i>
-          <span>Reglamento</span>
-        </a>
-      </li><!-- End Reglamento Page Nav -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="pages-blank.html">
+            <i class="bi bi-file-earmark-text-fill"></i>
+            <span>Reglamento</span>
+          </a>
+        </li><!-- End Reglamento Page Nav -->
       
 
       @elseif (Auth::user()->rol == "Asesor")
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Gestión de Proyectos</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="forms-elements.html">
-              <i class="bi bi-circle"></i><span>Proyectos</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Proyectos Nav -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-layout-text-window-reverse"></i><span>Gestión de Proyectos</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="forms-elements.html">
+                <i class="bi bi-circle"></i><span>Proyectos</span>
+              </a>
+            </li>
+          </ul>
+        </li><!-- End Proyectos Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-bar-chart-steps"></i><span>Gestion de entregables</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="">
-              <i class="bi bi-circle"></i><span>Grupos</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Entregables Nav -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-bar-chart-steps"></i><span>Gestion de entregables</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="">
+                <i class="bi bi-circle"></i><span>Grupos</span>
+              </a>
+            </li>
+          </ul>
+        </li><!-- End Entregables Nav -->
 
-      <li class="nav-heading">COMPONENTES</li>
+        <li class="nav-heading">COMPONENTES</li>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="">
-          <i class="bi bi-file-earmark-text-fill"></i>
-          <span>Reglamento</span>
-        </a>
-      </li><!-- End Reglamento Nav -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="">
+            <i class="bi bi-file-earmark-text-fill"></i>
+            <span>Reglamento</span>
+          </a>
+        </li><!-- End Reglamento Nav -->
 
 
       @elseif (Auth::user()->rol == "Estudiante")
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Proyecto</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="forms-elements.html">
-              <i class="bi bi-circle"></i><span>Integrantes del grupo</span>
-            </a>
-          </li>
-          <li>
-            <a href="forms-layouts.html">
-              <i class="bi bi-circle"></i><span>Asesores</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Proyecto Nav -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-layout-text-window-reverse"></i><span>Proyecto</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="forms-elements.html">
+                <i class="bi bi-circle"></i><span>Integrantes del grupo</span>
+              </a>
+            </li>
+            <li>
+              <a href="forms-layouts.html">
+                <i class="bi bi-circle"></i><span>Asesores</span>
+              </a>
+            </li>
+          </ul>
+        </li><!-- End Proyecto Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-bar-chart-steps"></i><span>Gestion de entregables</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="tables-general.html">
-              <i class="bi bi-circle"></i><span>Seguimiento de entregables</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Entregables Nav -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-bar-chart-steps"></i><span>Gestion de entregables</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="tables-general.html">
+                <i class="bi bi-circle"></i><span>Seguimiento de entregables</span>
+              </a>
+            </li>
+          </ul>
+        </li><!-- End Entregables Nav -->
 
-      <li class="nav-heading">COMPONENTES</li>
+        <li class="nav-heading">COMPONENTES</li>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="">
-          <i class="bi bi-file-earmark-text-fill"></i>
-          <span>Reglamento</span>
-        </a>
-      </li><!-- End Reglamento Nav -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="">
+            <i class="bi bi-file-earmark-text-fill"></i>
+            <span>Reglamento</span>
+          </a>
+        </li><!-- End Reglamento Nav -->
 
       @endif
 
