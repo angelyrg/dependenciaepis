@@ -10,7 +10,7 @@
   <h1>Gestión de Modalidaes</h1>
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
       <li class="breadcrumb-item active">Lista de modalidades</li>
     </ol>
   </nav>
