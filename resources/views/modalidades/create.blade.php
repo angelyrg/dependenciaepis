@@ -29,11 +29,21 @@
 
             <hr class="dropdown-divider">
 
+            @if ($errors->any())
+              <div class="alert alert-danger">
+                <ul>
+                  @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                  @endforeach
+                </ul>
+              </div>
+            @endif
+
             <div class="col-md-12">
               <label for="validationCustom01" class="form-label">Modalidad</label>
               <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-chat-right-quote-fill"></i></span>
-                <input type="text" class="form-control" name="nombre" id="validationCustom01" required autocomplete="off">
+                <input type="text" class="form-control" name="nombre" value="{{old('nombre')}}" placeholder="Nombre de la modalidad" id="validationCustom01" required autocomplete="off">
                 <div class="invalid-feedback">
                   Por favor ingrese el nombre de la modalidad.
                 </div>
@@ -46,8 +56,13 @@
               <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-toggle-on"></i></span>
                 <select class="form-select" name="estado" id="validationCustom04" required>
-                  <option>Activo</option>
-                  <option>Inactivo</option>
+                  @if (old('estado') == "Activo")
+                    <option selected>Activo</option>
+                    <option>Inactivo</option>
+                  @else
+                    <option>Activo</option>
+                    <option selected>Inactivo</option>
+                  @endif
                 </select>
                 <div class="invalid-feedback">
                   Por favor seleccion un estado.

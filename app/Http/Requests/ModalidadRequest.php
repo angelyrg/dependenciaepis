@@ -28,4 +28,12 @@ class ModalidadRequest extends FormRequest
             'estado' => 'required',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'nombre.required' => 'El campo mombre de la modalidad es obligatorio.',
+            'estado.required' => 'El campo estado es obligatorio.',
+        ];
+    }
 }

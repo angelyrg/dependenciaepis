@@ -31,11 +31,22 @@
 
             <hr class="dropdown-divider">
 
+            @if ($errors->any())
+              <div class="alert alert-danger">
+                <ul>
+                  @foreach ($errors->all() as $error)
+                    <li> {{ $error }}</li>
+                  @endforeach
+                </ul>
+              </div>
+            @endif
+
+
             <div class="col-md-6">
               <label for="validationCustom01" class="form-label">Nombres</label>
               <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person-bounding-box"></i></span>
-                <input type="text" class="form-control" name="nombres" id="validationCustom01" required>
+                <input type="text" class="form-control" name="nombres" value="{{old('nombres')}}" id="validationCustom01" required>
                 <div class="invalid-feedback">
                   Por favor ingrese el nombre.
                 </div>
@@ -46,7 +57,7 @@
               <label for="validationCustom02" class="form-label">Apellidos</label>
               <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person-lines-fill"></i></span>
-                <input type="text" class="form-control" name="apellidos" id="validationCustom02"  required>
+                <input type="text" class="form-control" name="apellidos" value="{{old('apellidos')}}" id="validationCustom02" required >
                 <div class="invalid-feedback">
                   Por favor ingrese el apellido.
                 </div>
@@ -57,7 +68,7 @@
               <label for="validationCustom03" class="form-label">DNI</label>
               <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-credit-card-2-front-fill"></i></span>
-                <input type="text" name="dni" minlength="8" maxlength="8" class="form-control" required aria-describedby="inputGroupPrepend" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">  
+                <input type="text" name="dni" minlength="8" maxlength="8" value="{{old('dni')}}" required class="form-control" required aria-describedby="inputGroupPrepend" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">  
                 <div class="invalid-feedback">
                   Por favor ingrese un DNI válido.
                 </div>
@@ -69,9 +80,17 @@
               <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-toggle-on"></i></span>
                 <select class="form-select" name="estado" id="validationCustom04" required>
-                  <option selected disabled value="">Selecione...</option>
-                  <option>Activo</option>
-                  <option>Inactivo</option>
+                  <option selected disabled value="">Seleccione...</option>                  
+                  @if (old('estado') == "Activo")
+                    <option selected>Activo</option>
+                    <option>Inactivo</option>
+                  @elseif (old('estado') == "Inactivo")
+                    <option>Activo</option>
+                    <option selected>Inactivo</option>
+                  @else
+                    <option>Activo</option>
+                    <option>Inactivo</option>
+                  @endif
                 </select>
                 <div class="invalid-feedback">
                   Por favor seleccion un estado válido.

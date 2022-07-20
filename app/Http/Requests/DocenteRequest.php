@@ -30,4 +30,5 @@ class DocenteRequest extends FormRequest
             'estado' => 'required',
         ];
     }
+
 }
