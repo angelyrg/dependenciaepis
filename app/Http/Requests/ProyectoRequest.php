@@ -25,10 +25,10 @@ class ProyectoRequest extends FormRequest
     {
         return [
             'codigo' => 'required',
+            'nombre_grupo' => 'required',
             'nombre_proyecto' => 'required',
             'descripcion' => 'required',
             'modalidad_id' => 'required|exists:modalidads,id',
-            'estado' => 'required',
         ];
     }
 }

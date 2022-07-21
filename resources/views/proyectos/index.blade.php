@@ -47,10 +47,11 @@
                   <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Código</th>
+                    <th scope="col">Grupo</th>
                     <th scope="col">Nombre del proyecto</th>
                     <th scope="col">Descripción</th>
                     <th scope="col">Modalidad</th>
-                    <th scope="col">Estado</th>
+                    {{-- <th scope="col">Estado</th> --}}
                     <th scope="col">Opciones</th>
                   </tr>
                 </thead>
@@ -62,21 +63,22 @@
                       <tr>
                         <th scope="row">{{$proyecto->id}}</th>
                         <td>{{$proyecto->codigo}}</td>
+                        <td>{{$proyecto->nombre_grupo}}</td>
                         <td>{{$proyecto->nombre_proyecto}}</td>
                         <td>{{$proyecto->descripcion}}</td>
                         <td>{{$proyecto->modalidad->nombre}}</td>
-                        <td>
+                        {{-- <td>
                           @if ($proyecto->estado == 'Activo')
                             <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Activo</span>
                           @else
                             <span class="badge bg-danger"><i class="bi bi-x-circle me-1"></i> Inactivo</span>
                           @endif
-                        </td>
+                        </td> --}}
                         
                         <td>
-                          <a href="{{route('proyectos.edit', $proyecto->id)}}" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                          <a href="{{route('proyectos.edit', $proyecto->id)}}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
       
-                          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$proyecto->id}}">
+                          <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$proyecto->id}}">
                             <i class="bi bi-trash"></i>
                           </button>
                       </td>
@@ -98,10 +100,11 @@
                   <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Código</th>
+                    <th scope="col">Grupo</th>
                     <th scope="col">Nombre del proyecto</th>
                     <th scope="col">Descripción</th>
                     <th scope="col">Modalidad</th>
-                    <th scope="col">Estado</th>
+                    {{-- <th scope="col">Estado</th> --}}
                     <th scope="col">Opciones</th>
                   </tr>
                 </thead>
@@ -113,21 +116,22 @@
                       <tr>
                         <th scope="row">{{$proyecto->id}}</th>
                         <td>{{$proyecto->codigo}}</td>
+                        <td>{{$proyecto->nombre_grupo}}</td>
                         <td>{{$proyecto->nombre_proyecto}}</td>
                         <td>{{$proyecto->descripcion}}</td>
                         <td>{{$proyecto->modalidad->nombre}}</td>
-                        <td>
+                        {{-- <td>
                           @if ($proyecto->estado == 'Activo')
                             <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Activo</span>
                           @else
                             <span class="badge bg-danger"><i class="bi bi-x-circle me-1"></i> Inactivo</span>
                           @endif
-                        </td>
+                        </td> --}}
                         
                         <td>
-                          <a href="{{route('proyectos.edit', $proyecto->id)}}" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                          <a href="{{route('proyectos.edit', $proyecto->id)}}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
       
-                          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$proyecto->id}}">
+                          <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$proyecto->id}}">
                             <i class="bi bi-trash"></i>
                           </button>
                       </td>
@@ -149,10 +153,11 @@
                   <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Código</th>
+                    <th scope="col">Grupo</th>
                     <th scope="col">Nombre del proyecto</th>
                     <th scope="col">Descripción</th>
                     <th scope="col">Modalidad</th>
-                    <th scope="col">Estado</th>
+                    {{-- <th scope="col">Estado</th> --}}
                     <th scope="col">Opciones</th>
                   </tr>
                 </thead>
@@ -164,21 +169,22 @@
                       <tr>
                         <th scope="row">{{$proyecto->id}}</th>
                         <td>{{$proyecto->codigo}}</td>
+                        <td>{{$proyecto->nombre_grupo}}</td>
                         <td>{{$proyecto->nombre_proyecto}}</td>
                         <td>{{$proyecto->descripcion}}</td>
                         <td>{{$proyecto->modalidad->nombre}}</td>
-                        <td>
+                        {{-- <td>
                           @if ($proyecto->estado == 'Activo')
                             <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Activo</span>
                           @else
                             <span class="badge bg-danger"><i class="bi bi-x-circle me-1"></i> Inactivo</span>
                           @endif
-                        </td>
+                        </td> --}}
                         
                         <td>
-                          <a href="{{route('proyectos.edit', $proyecto->id)}}" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                          <a href="{{route('proyectos.edit', $proyecto->id)}}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
       
-                          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$proyecto->id}}">
+                          <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$proyecto->id}}">
                             <i class="bi bi-trash"></i>
                           </button>
                       </td>

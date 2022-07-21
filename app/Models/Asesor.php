@@ -5,17 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Docente extends Model
+class Asesor extends Model
 {
     use HasFactory;
 
-    protected $table = 'docentes';
 
-    protected $fillable = [ 'nombres', 'apellidos', 'dni', 'cargo', 'estado', 'user_id' ];
+    protected $table = 'asesors';
+
+    protected $fillable = [ 'nombres', 'apellidos', 'dni', 'estado', 'user_id' ];
 
 
     public function usuario(){
         return $this->hasOne(User::class);
     }
-    
+
 }

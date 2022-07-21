@@ -194,8 +194,8 @@
           </a>
           <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="{{route('docentes.index')}}">
-                <i class="bi bi-circle"></i><span>Docentes</span>
+              <a href="{{route('asesors.index')}}">
+                <i class="bi bi-circle"></i><span>Asesores</span>
               </a>
             </li>
             <li>
@@ -384,6 +384,8 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('assets/js/main.j') }}s"></script>
+
+  @yield('js')
 
 </body>
 

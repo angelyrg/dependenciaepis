@@ -19,7 +19,7 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">{{ Auth::user()->name }}</h5>
-            <p>This user has role <b>{{ Auth::user()->rol }}</b></p>
+            <p>Este usuario tiene el rol de <b>{{ Auth::user()->rol }}</b></p>
           </div>
         </div>
       </div>

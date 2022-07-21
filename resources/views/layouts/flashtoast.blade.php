@@ -9,7 +9,7 @@
                 <strong class="me-auto"> ¡Correcto!</strong>
             </div>
             <div>
-                <small>Alerta de aviso</small>
+                <small> </small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Cerrar"></button>
             </div>
         </div>
@@ -30,7 +30,7 @@
                 <strong class="me-auto"> ¡Ocurrió un error!</strong>
             </div>
             <div>
-                <small>Alerta de aviso</small>
+                <small> </small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Cerrar"></button>
             </div>
         </div>
