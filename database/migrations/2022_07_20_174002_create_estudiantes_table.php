@@ -23,6 +23,10 @@ class CreateEstudiantesTable extends Migration
             $table->unsignedBigInteger("user_id");
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
 
+            $table->unsignedBigInteger("proyecto_id");
+            $table->foreign('proyecto_id')->references('id')->on('proyectos')->cascadeOnDelete();
+
+
             $table->timestamps();
         });
     }

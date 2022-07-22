@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProyectoRequest;
 use App\Models\Asesor;
+use App\Models\Estudiante;
 use App\Models\Modalidad;
 use App\Models\Proyecto;
+use App\Models\User;
+use App\Traits\UserTrait;
 use Illuminate\Http\Request;
 
 class ProyectoController extends Controller
 {
+    use UserTrait;
+
     public function __construct(){
         $this->middleware(['auth', 'auth.responsable']);
     }
@@ -17,7 +22,8 @@ class ProyectoController extends Controller
     public function index()
     {
         $proyectos = Proyecto::all();
-        return view("proyectos.index", compact('proyectos'));
+        $modalidades = Modalidad::select('id', 'nombre')->where('estado', 'Activo')->get();
+        return view("proyectos.index", compact('proyectos', 'modalidades'));
     }
 
 
@@ -31,10 +37,32 @@ class ProyectoController extends Controller
 
     public function store(Request $request)
     {
-        //return $request;
+        $proyecto = Proyecto::create($request->all());
+
         
-        Proyecto::create($request->all());
-        return redirect()->route('proyectos.index')->with('success', 'Proyecto '.$request->codigo.' registrado correctamente.');
+        $asesor = Asesor::findOrFail($proyecto->asesor_id);
+        if ($proyecto->coasesor_id != null){
+            $coasesor = Asesor::findOrFail($proyecto->coasesor_id);
+        }else{
+            $coasesor = null;
+        }
+
+        $estudiantes = Estudiante::where('proyecto_id', $proyecto->id)->orderBy('codigo_matricula')->get();
+
+        return view('proyectos.show', compact('proyecto', 'estudiantes', 'asesor', 'coasesor'));
+    }
+
+    public function show(Proyecto $proyecto)
+    {
+        $asesor = Asesor::findOrFail($proyecto->asesor_id);
+        if ($proyecto->coasesor_id != null){
+            $coasesor = Asesor::findOrFail($proyecto->coasesor_id);
+        }else{
+            $coasesor = null;
+        }
+
+        $estudiantes = Estudiante::where('proyecto_id', $proyecto->id)->orderBy('codigo_matricula')->get();
+        return view('proyectos.show', compact('proyecto', 'estudiantes', 'asesor', 'coasesor'));
     }
 
 
@@ -64,6 +92,11 @@ class ProyectoController extends Controller
 
     public function destroy(Proyecto $proyecto)
     {
+
+        foreach ($proyecto->miembros as $miembro) {
+            $this->deleteUser($miembro->user_id);
+        }
+
         $proyecto->delete();
         return redirect()->route('proyectos.index')->with('success', 'Proyecto eliminado correctamente.'); 
     }

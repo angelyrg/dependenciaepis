@@ -1,16 +1,16 @@
 
-<div class="modal fade" id="modal-delete-{{$docente->id}}" tabindex="-1">
+<div class="modal fade" id="modal-delete-{{$estudiante->id}}" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Eliminar docente</h5>
+        <h5 class="modal-title">Eliminar</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>¿Está seguro si desea eliminar el docente <b>{{$docente->nombres." ".$docente->apellidos}}</b> ?</p>
+        <p>¿Está seguro que desea eliminar a <b>{{$estudiante->nombres}}</b> ?</p>
       </div>
       <div class="modal-footer">
-        <form method="POST" action="{{route('docentes.destroy', $docente->id)}}">
+        <form method="POST" action="{{route('estudiantes.destroy', $estudiante->id)}}">
           @csrf
           @method('delete')
           

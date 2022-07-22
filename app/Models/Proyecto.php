@@ -15,4 +15,8 @@ class Proyecto extends Model
         return $this->belongsTo(Modalidad::class);
     }
 
+    public function miembros(){
+        return $this->hasMany(Estudiante::class);
+    }
+
 }

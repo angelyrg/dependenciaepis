@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AsesorController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\ModalidadController;
 use App\Http\Controllers\ProyectoController;
 use Illuminate\Support\Facades\Route;
@@ -18,4 +19,4 @@ Route::resource('asesors', AsesorController::class)->names('asesors')->middlewar
 
 Route::resource('modalidads', ModalidadController::class)->names('modalidads')->middleware('auth.responsable');
 Route::resource('proyectos', ProyectoController::class)->names('proyectos')->middleware('auth.responsable');
-Route::resource('estudiantes', ProyectoController::class)->names('estudiantes')->middleware('auth.responsable');
+Route::resource('estudiantes', EstudianteController::class)->names('estudiantes')->middleware('auth.responsable');
