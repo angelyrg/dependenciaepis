@@ -252,7 +252,7 @@
         <li class="nav-heading">COMPONENTES</li>
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-blank.html">
+          <a class="nav-link collapsed" href="{{route('reglamentos.index')}}">
             <i class="bi bi-file-earmark-text-fill"></i>
             <span>Reglamento</span>
           </a>
