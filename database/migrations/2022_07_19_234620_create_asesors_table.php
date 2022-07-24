@@ -18,8 +18,8 @@ class CreateAsesorsTable extends Migration
             $table->string('nombres', 50);
             $table->string('apellidos', 60);
             $table->string('dni', 8);
-            //$table->string('cargo', 50)->nullable(); //anterior:rol
-            $table->boolean('estado')->default(1);
+
+            $table->integer("ctd_asesorados");
 
             $table->unsignedBigInteger("user_id");
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();

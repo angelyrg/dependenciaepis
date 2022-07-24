@@ -16,13 +16,13 @@ class ModalidadController extends Controller
     public function index()
     {
         $modalidades = Modalidad::all();
-        return view("modalidades.index", compact('modalidades'));
+        return view("responsable.modalidades.index", compact('modalidades'));
     }
 
 
     public function create()
     {
-        return view("modalidades.create");
+        return view("responsable.modalidades.create");
     }
 
 
@@ -35,7 +35,7 @@ class ModalidadController extends Controller
 
     public function edit(Modalidad $modalidad)
     {
-        return view("modalidades.edit", compact('modalidad'));
+        return view("responsable.modalidades.edit", compact('modalidad'));
     }
 
     public function update(ModalidadRequest $request, Modalidad $modalidad)

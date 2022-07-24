@@ -56,12 +56,10 @@
             <p class="card-title mt-3">Asesores</p>
             
             <ul>
-              <li><p>{{$asesor->nombres." ".$asesor->apellidos}}</p></li>
-              @if ($coasesor != null)
-                <li><p>{{$coasesor->nombres." ".$coasesor->apellidos}}</p></li>
-
-              @endif
-              
+              @foreach ($proyecto->asesores as $asesor)
+                <li><p>{{$asesor->nombres." ".$asesor->apellidos}}</p></li>
+              @endforeach
+             
             </ul>
             
 
@@ -114,7 +112,7 @@
                             <i class="bi bi-trash"></i>
                           </button>
                         </td>
-                        @include('proyectos.modal-delete-student')
+                        @include('responsable.proyectos.modal-delete-student')
                       </tr>
                           
                     @endforeach
@@ -140,6 +138,7 @@
               </ul>
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
+            <?php //dd($errors) ?>
           @endif
         </div>
 
@@ -210,7 +209,7 @@
         <div class="row mb-2">
           <div class="col-md-6">
             <div class="input-group has-validation">
-              <input type="text" required class="form-control" name="nombres[]"  value="{{old('nombres')}}" id="validationCustom01" placeholder="Nombres" >
+              <input type="text"  class="form-control" name="nombres[]" placeholder="Nombres" >
               <div class="invalid-feedback">
                 Por favor ingrese el nombre.
               </div>
@@ -218,7 +217,7 @@
           </div>
           <div class="col-md-6">
             <div class="input-group has-validation">
-              <input type="text" required class="form-control" name="apellidos[]" value="{{old('apellidos')}}" id="validationCustom02" placeholder="Apellidos"  >
+              <input type="text"  class="form-control" name="apellidos[]" placeholder="Apellidos"  >
               <div class="invalid-feedback">
                 Por favor ingrese el apellido.
               </div>
@@ -228,7 +227,7 @@
         <div class="row mb-2">
           <div class="col-md-6">
             <div class="input-group has-validation">
-              <input type="text" required name="codigo_matricula[]" minlength="10" maxlength="10" value="{{old('codigo_matricula')}}" title="POr favor ingrese un código de matrícula válido." placeholder="Código de matrícula"  class="form-control"  aria-describedby="inputGroupPrepend" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">  
+              <input type="text"  name="codigo_matricula[]"  minlength="10" maxlength="10"  title="POr favor ingrese un código de matrícula válido." placeholder="Código de matrícula"  class="form-control"  aria-describedby="inputGroupPrepend" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">  
               <div class="invalid-feedback">
                 Por favor ingrese un Código de matrícula válido.
               </div>
@@ -238,7 +237,7 @@
             <div class="input-group has-validation">
               <input type="hidden" required class="form-control" value="{{$proyecto->id}}" name="proyecto_id[]" pattern="[0-9]"   >
 
-              <input type="email" required class="form-control" name="email[]" placeholder="correo@unh.edu.pe" value="{{old('email')}}" id="validationCustom02" pattern="[a-zA-Z0-9._%+-]+@+unh.edu.pe"   >
+              <input type="email"  class="form-control" name="email[]"  placeholder="correo@unh.edu.pe"   pattern="[a-zA-Z0-9._%+-]+@+unh.edu.pe"   >
               <div class="invalid-feedback">
                 Por favor ingrese un correo electrónico institucional de la UNH.
               </div>

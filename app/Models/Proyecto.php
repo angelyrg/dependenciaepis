@@ -9,7 +9,7 @@ class Proyecto extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['codigo', 'nombre_grupo', 'nombre_proyecto', 'descripcion', 'modalidad_id','asesor_id', 'coasesor_id', ];
+    protected $fillable = ['codigo', 'nombre_grupo', 'nombre_proyecto', 'descripcion', 'modalidad_id', ];
 
     public function modalidad(){
         return $this->belongsTo(Modalidad::class);
@@ -17,6 +17,10 @@ class Proyecto extends Model
 
     public function miembros(){
         return $this->hasMany(Estudiante::class);
+    }
+
+    public function asesores(){
+        return $this->belongsToMany(Asesor::class);
     }
 
 }

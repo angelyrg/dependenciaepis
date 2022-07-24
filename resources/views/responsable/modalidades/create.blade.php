@@ -59,9 +59,12 @@
                   @if (old('estado') == "Activo")
                     <option selected>Activo</option>
                     <option>Inactivo</option>
-                  @else
+                  @elseif (old('estado') == "Inactivo")
                     <option>Activo</option>
                     <option selected>Inactivo</option>
+                  @else
+                    <option>Activo</option>
+                    <option>Inactivo</option>
                   @endif
                 </select>
                 <div class="invalid-feedback">

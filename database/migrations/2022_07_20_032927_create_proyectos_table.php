@@ -24,11 +24,11 @@ class CreateProyectosTable extends Migration
             $table->unsignedBigInteger("modalidad_id")->nullable();
             $table->foreign('modalidad_id')->references('id')->on('modalidads')->cascadeOnUpdate()->nullOnDelete();;
 
-            $table->unsignedBigInteger("asesor_id");
-            $table->foreign('asesor_id')->references('id')->on('asesors');
+            // $table->unsignedBigInteger("asesor_id");
+            // $table->foreign('asesor_id')->references('id')->on('asesors');
 
-            $table->unsignedBigInteger("coasesor_id")->nullable();
-            $table->foreign('coasesor_id')->references('id')->on('asesors');
+            // $table->unsignedBigInteger("coasesor_id")->nullable();
+            // $table->foreign('coasesor_id')->references('id')->on('asesors');
 
 
             

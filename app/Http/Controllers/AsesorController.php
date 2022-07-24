@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AsesorRequest;
+use App\Http\Requests\AsesorStoreRequest;
+use App\Http\Requests\AsesorUpdateRequest;
 use App\Models\Asesor;
 use App\Traits\UserTrait;
 
@@ -18,17 +19,17 @@ class AsesorController extends Controller
     public function index()
     {
         $asesores = Asesor::all();
-        return view("asesores.index", compact('asesores'));
+        return view("responsable.asesores.index", compact('asesores'));
     }
 
 
     public function create()
     {
-        return view("asesores.create");
+        return view("responsable.asesores.create");
     }
 
 
-    public function store(AsesorRequest $request)
+    public function store(AsesorStoreRequest $request)
     {
         $user_added = $this->createUser($request->nombres." ".$request->apellidos,  $request->dni,  $request->dni,  'Asesor');
 
@@ -36,7 +37,7 @@ class AsesorController extends Controller
         $asesor->nombres = $request->nombres;
         $asesor->apellidos = $request->apellidos;
         $asesor->dni = $request->dni;
-        $asesor->estado = '1'; //Activo
+        $asesor->ctd_asesorados = 0;
         $asesor->user_id = $user_added;
         $asesor->save();        
 
@@ -46,10 +47,10 @@ class AsesorController extends Controller
 
     public function edit(Asesor $asesor)
     {
-        return view("asesores.edit", compact('asesor'));
+        return view("responsable.asesores.edit", compact('asesor'));
     }
 
-    public function update(AsesorRequest $request, Asesor $asesor)
+    public function update(AsesorUpdateRequest $request, Asesor $asesor)
     {
         $this->updateUser($asesor->user_id, $request->nombres." ".$request->apellidos,  $request->dni, $request->dni );
 

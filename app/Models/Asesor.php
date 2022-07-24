@@ -12,11 +12,15 @@ class Asesor extends Model
 
     protected $table = 'asesors';
 
-    protected $fillable = [ 'nombres', 'apellidos', 'dni', 'estado', 'user_id' ];
+    protected $fillable = [ 'nombres', 'apellidos', 'dni',  'user_id' ];
 
 
     public function usuario(){
         return $this->hasOne(User::class);
+    }
+
+    public function asesorados(){
+        return $this->belongsToMany(Proyecto::class);
     }
 
 }

@@ -29,6 +29,14 @@ class ProyectoRequest extends FormRequest
             'nombre_proyecto' => 'required',
             'descripcion' => 'required',
             'modalidad_id' => 'required|exists:modalidads,id',
+            'asesor_id' => 'required|exists:asesors,id',
+            'coasesor_id' => 'exists:asesors,id|different:asesor_id',
+        ];
+    }
+
+    public function messages(){
+        return [
+            'coasesor_id.different' => 'El asesor y co asesor deben ser diferentes.',
         ];
     }
 }

@@ -115,7 +115,7 @@
                   </div>
                 </div>
               </div> <!--End Input Descripcion-->
-
+              
               <div class="row">
                 <div class="col-md-6">
                   <label for="validationCustom04" class="form-label">Asesor</label>
@@ -123,17 +123,12 @@
                     <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-toggle-on"></i></span>
                     <select class="form-select" name="asesor_id" id="validationCustom04" required>
                       <option selected disabled value="">Seleccione Asesor...</option>   
-                      
+                      <option value="{{$proyecto->asesores->first()->id}}" selected>{{$proyecto->asesores->first()->nombres." ".$proyecto->asesores->first()->apellidos}}</option>
                       @foreach ($asesores_disponibles as $asesor_disponible)
-
-                        @if ($asesor_disponible->id == $proyecto->asesor_id)
-                          <option value="{{$asesor_disponible->id}}" selected>{{$asesor_disponible->nombres." ".$asesor_disponible->apellidos}}</option>
-                        @else
+                        @if ($asesor_disponible->id != $proyecto->asesores->first()->id)                            
                           <option value="{{$asesor_disponible->id}}">{{$asesor_disponible->nombres." ".$asesor_disponible->apellidos}}</option>
                         @endif
-
                       @endforeach
-                      
                     </select>
                     <div class="invalid-feedback">
                       Por favor seleccione un asesor.
@@ -147,11 +142,12 @@
                     <span class="input-group-text" id="CoAsesor"><i class="bi bi-toggle-on"></i></span>
                     <select class="form-select" name="coasesor_id" id="CoAsesor" >
                       <option selected disabled value="">Seleccione Co Asesor...</option>   
+                      @if (count($proyecto->asesores) == 2)
+                        <option value="{{$proyecto->asesores->get(1)->id}}" selected>{{$proyecto->asesores->get(1)->nombres." ".$proyecto->asesores->get(1)->apellidos}}</option>
+                      @endif
                       @foreach ($asesores_disponibles as $asesor_disponible)
-                        @if ($asesor_disponible->id == $proyecto->coasesor_id)
-                          <option value="{{$asesor_disponible->id}}" selected>{{$asesor_disponible->nombres." ".$asesor_disponible->apellidos}}</option>
-                        @else
-                          <option value="{{$asesor_disponible->id}}">{{$asesor_disponible->nombres." ".$asesor_disponible->apellidos}}</option>
+                        @if ($asesor_disponible->id != $proyecto->asesores->get(1)->id)
+                          <option value="{{$asesor_disponible->id}}">{{$asesor_disponible->nombres." ".$asesor_disponible->apellidos}}</option>                            
                         @endif
                       @endforeach
                     </select>

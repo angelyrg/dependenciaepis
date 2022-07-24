@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EstudianteRequest;
+use App\Http\Requests\EstudianteStoreRequest;
 use App\Models\Estudiante;
 use App\Traits\UserTrait;
 use Illuminate\Http\Request;
@@ -20,23 +20,14 @@ class EstudianteController extends Controller
 
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $estudiantes = Estudiante::all();
+        return view('responsable.estudiantes.index', compact('estudiantes'));
     }
 
 
-    public function store(EstudianteRequest $request)
+
+    public function store(EstudianteStoreRequest $request)
     {
-        //return $request;
 
         $request_data = $request->only('nombres', 'apellidos', 'codigo_matricula', 'email', 'proyecto_id');
 

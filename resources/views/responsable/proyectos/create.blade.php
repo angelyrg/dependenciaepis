@@ -19,14 +19,15 @@
 <section class="section">
 
   <div class="row">
-    <div class="col-12">
+    <div class="col-lg-8 offset-lg-2">
       @if ($errors->any())
-        <div class="alert alert-danger">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
           <ul>
             @foreach ($errors->all() as $error)
               <li> {{ $error }}</li>
             @endforeach
           </ul>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       @endif
     </div>
@@ -66,7 +67,11 @@
                       <option selected disabled value="">Seleccione...</option>  
                       @foreach ($modalidades as $modalidad)
                         @if ($modalidad->estado == "Activo")
-                          <option value="{{$modalidad->id}}">{{$modalidad->nombre}}</option>
+                          @if (old('modalidad_id') == $modalidad->id )
+                            <option value="{{$modalidad->id}}" selected>{{$modalidad->nombre}}</option>
+                          @else                            
+                            <option value="{{$modalidad->id}}">{{$modalidad->nombre}}</option>
+                          @endif
                         @endif
                       @endforeach
                       
@@ -104,7 +109,7 @@
                 <label for="validationCustom02" class="form-label">Descripción</label>
                 <div class="input-group has-validation">
                   <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-list-columns-reverse"></i></span>
-                  <textarea name="descripcion" class="form-control" id="validationCustom02" required cols="30" rows="2">{{old('apellidos')}}</textarea>
+                  <textarea name="descripcion" class="form-control" id="validationCustom02" required cols="30" rows="2">{{old('descripcion')}}</textarea>
                   <div class="invalid-feedback">
                     Por favor ingrese la descripción del proyecto.
                   </div>
@@ -120,8 +125,11 @@
                       <option selected disabled value="">Seleccione Asesor...</option>   
                       
                       @foreach ($asesores_disponibles as $asesor_disponible)
-                        {{$asesor_disponible}}
-                        <option value="{{$asesor_disponible->id}}">{{$asesor_disponible->nombres." ".$asesor_disponible->apellidos}}</option>
+                        @if (old('asesor_id') == $asesor_disponible->id )
+                          <option value="{{$asesor_disponible->id}}" selected>{{$asesor_disponible->nombres." ".$asesor_disponible->apellidos}}</option>
+                          @else                            
+                          <option value="{{$asesor_disponible->id}}">{{$asesor_disponible->nombres." ".$asesor_disponible->apellidos}}</option>
+                        @endif
                       @endforeach
                       
                     </select>
@@ -139,13 +147,16 @@
                       <option selected disabled value="">Seleccione Co Asesor...</option>   
                       
                       @foreach ($asesores_disponibles as $asesor_disponible)
-                        {{$asesor_disponible}}
-                        <option value="{{$asesor_disponible->id}}">{{$asesor_disponible->nombres." ".$asesor_disponible->apellidos}}</option>
+                        @if (old('coasesor_id') == $asesor_disponible->id )
+                          <option value="{{$asesor_disponible->id}}" selected>{{$asesor_disponible->nombres." ".$asesor_disponible->apellidos}}</option>
+                        @else                            
+                          <option value="{{$asesor_disponible->id}}">{{$asesor_disponible->nombres." ".$asesor_disponible->apellidos}}</option>
+                        @endif
                       @endforeach
                       
                     </select>
                     <div class="invalid-feedback">
-                      Por favor seleccione un asesor.
+                      Por favor seleccione un co asesor.
                     </div>
                   </div>
                 </div> <!--End Choose CoAsesor-->

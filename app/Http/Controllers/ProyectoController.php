@@ -8,12 +8,17 @@ use App\Models\Estudiante;
 use App\Models\Modalidad;
 use App\Models\Proyecto;
 use App\Models\User;
+use App\Traits\ProyectoTrait;
 use App\Traits\UserTrait;
+use Exception;
 use Illuminate\Http\Request;
+
+use function PHPUnit\Framework\isEmpty;
 
 class ProyectoController extends Controller
 {
     use UserTrait;
+    use ProyectoTrait;
 
     public function __construct(){
         $this->middleware(['auth', 'auth.responsable']);
@@ -23,54 +28,43 @@ class ProyectoController extends Controller
     {
         $proyectos = Proyecto::all();
         $modalidades = Modalidad::select('id', 'nombre')->where('estado', 'Activo')->get();
-        return view("proyectos.index", compact('proyectos', 'modalidades'));
+        return view("responsable.proyectos.index", compact('proyectos', 'modalidades'));
     }
 
 
     public function create()
     {
         $modalidades = Modalidad::all();
-        $asesores_disponibles = Asesor::select('id', 'nombres', 'apellidos')->where('estado', 1)->get();
-        return view("proyectos.create", compact('modalidades', 'asesores_disponibles'));
+        $asesores_disponibles = Asesor::select('id', 'nombres', 'apellidos')->where('ctd_asesorados', '<', 2)->get();
+
+        return view("responsable.proyectos.create", compact('modalidades', 'asesores_disponibles'));
     }
 
 
-    public function store(Request $request)
+    public function store(ProyectoRequest $request)
     {
         $proyecto = Proyecto::create($request->all());
 
-        
-        $asesor = Asesor::findOrFail($proyecto->asesor_id);
-        if ($proyecto->coasesor_id != null){
-            $coasesor = Asesor::findOrFail($proyecto->coasesor_id);
-        }else{
-            $coasesor = null;
-        }
+        $proyecto->asesores()->attach([$request->asesor_id, $request->coasesor_id]);        
+        $this->addAsesor([$request->asesor_id, $request->coasesor_id]);
 
-        $estudiantes = Estudiante::where('proyecto_id', $proyecto->id)->orderBy('codigo_matricula')->get();
-
-        return view('proyectos.show', compact('proyecto', 'estudiantes', 'asesor', 'coasesor'));
+        return redirect()->route('proyectos.show', $proyecto->id);
     }
 
     public function show(Proyecto $proyecto)
     {
-        $asesor = Asesor::findOrFail($proyecto->asesor_id);
-        if ($proyecto->coasesor_id != null){
-            $coasesor = Asesor::findOrFail($proyecto->coasesor_id);
-        }else{
-            $coasesor = null;
-        }
+        $estudiantes = Estudiante::where('proyecto_id', $proyecto->id)->get();
 
-        $estudiantes = Estudiante::where('proyecto_id', $proyecto->id)->orderBy('codigo_matricula')->get();
-        return view('proyectos.show', compact('proyecto', 'estudiantes', 'asesor', 'coasesor'));
+        return view('responsable.proyectos.show', compact('proyecto', 'estudiantes'));
     }
 
 
     public function edit(Proyecto $proyecto)
     {
         $modalidades = Modalidad::all();
-        $asesores_disponibles = Asesor::select('id', 'nombres', 'apellidos')->where('estado', 1)->get();
-        return view("proyectos.edit", compact('proyecto', 'modalidades', 'asesores_disponibles'));
+        $asesores_disponibles = Asesor::select('id', 'nombres', 'apellidos')->where('ctd_asesorados', '<', 2)->get();
+
+        return view("responsable.proyectos.edit", compact('proyecto', 'modalidades', 'asesores_disponibles'));
     }
 
     public function update(ProyectoRequest $request, Proyecto $proyecto)
@@ -80,10 +74,14 @@ class ProyectoController extends Controller
         $proyecto->nombre_proyecto = $request->nombre_proyecto;
         $proyecto->descripcion = $request->descripcion;
         $proyecto->modalidad_id = $request->modalidad_id;
-        $proyecto->asesor_id = $request->asesor_id;
-        $proyecto->coasesor_id = $request->coasesor_id;
-        
         $proyecto->save();
+
+        foreach ($proyecto->asesores as $asesor) {
+            $this->deleteAsesor($asesor->id);
+        }
+        $this->addAsesor([$request->asesor_id, $request->coasesor_id]);
+
+        $proyecto->asesores()->sync([$request->asesor_id, $request->coasesor_id]);
 
         return redirect()->route('proyectos.index')->with('success', 'Proyecto '.$request->codigo.' actualizado correctamente.');
 
@@ -95,6 +93,10 @@ class ProyectoController extends Controller
 
         foreach ($proyecto->miembros as $miembro) {
             $this->deleteUser($miembro->user_id);
+        }
+
+        foreach ($proyecto->asesores as $asesor) {
+            $this->deleteAsesor($asesor->id);
         }
 
         $proyecto->delete();

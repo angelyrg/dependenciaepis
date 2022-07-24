@@ -29,7 +29,6 @@ trait UserTrait{
     }
 
     public function deleteUser($user_id){
-
         $user = User::findOrFail( $user_id );
         $user->delete();
 

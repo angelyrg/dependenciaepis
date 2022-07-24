@@ -1,0 +1,78 @@
+
+
+@extends('layouts.niceadmin')
+
+@section('content')
+
+@include('layouts.flashtoast')
+
+<div class="pagetitle">
+  <h1>Gestión de estudiantes</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+      <li class="breadcrumb-item active">Lista de estudiantes</li>
+    </ol>
+  </nav>
+</div><!-- End Page Title -->
+
+<section class="section">
+  <div class="row">
+    <div class="col-lg-12">
+
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between  align-items-center">
+            <h5 class="card-title">Asesores</h5>            
+            {{-- <a href="{{route('asesors.create')}}" class="btn btn-outline-primary " ><i class="bi bi-person-plus-fill me-1"></i> Nuevo asesor</a> --}}
+          </div>
+
+          <div class="table-responsive">
+            <!-- Table with stripped rows -->
+            <table class="table datatable">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Nombres</th>
+                  <th scope="col">Apellidos</th>
+                  <th scope="col">Código de Matrícula</th>
+                  <th scope="col">Correo</th>
+                  <th scope="col">Grupo</th>
+                </tr>
+              </thead>
+              <tbody>
+  
+                @foreach ($estudiantes as $estudiante)
+  
+                  <tr>
+                    <th scope="row">{{$estudiante->id}}</th>
+                    <td>{{$estudiante->nombres}}</td>
+                    <td>{{$estudiante->apellidos}}</td>
+                    <td>{{$estudiante->codigo_matricula}}</td>
+                    <td>{{$estudiante->email}}</td>
+                    <td>
+                      <a href="{{route('proyectos.show', $estudiante->proyecto->id)}}" class="fw-bold link-info">{{$estudiante->proyecto->nombre_grupo}}</a>
+                    </td>
+  
+                  </tr>
+                      
+                @endforeach
+  
+              </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+@endsection
