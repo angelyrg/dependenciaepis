@@ -67,10 +67,10 @@
             </div> <!--End Input Descripcion-->
 
             <div class="col-md-12">
-              <label for="validationCustom01" class="form-label">Archivo del reglamento</label>
+              <label for="validationCustom01" class="form-label">Archivo del reglamento <span class="badge border-light border-1 text-info">* .pdf .docx .doc</span></label>
               <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-file-pdf"></i></span>
-                <input type="file" class="form-control" name="archivo" value="{{old('archivo')}}"  id="validationCustom01" required >
+                <input type="file" class="form-control" name="archivo" id="validationCustom01" required >
                 <div class="invalid-feedback">
                   Por favor carga el documento del reglamento.
                 </div>

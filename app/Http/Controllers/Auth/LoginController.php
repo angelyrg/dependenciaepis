@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     public function login(Request $request){
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required'
+        ]);
+
         $credencials = $request->only('username', 'password');
 
         if (Auth::attempt($credencials)) {
@@ -18,7 +23,7 @@ class LoginController extends Controller
             return redirect()->route('home');
 
         }else{
-            return redirect()->route('login');
+            return redirect()->back()->with('danger','Credenciales incorrectas!');
         }
     }
 

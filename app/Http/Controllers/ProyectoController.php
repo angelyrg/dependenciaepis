@@ -27,7 +27,7 @@ class ProyectoController extends Controller
     public function index()
     {
         $proyectos = Proyecto::all();
-        $modalidades = Modalidad::select('id', 'nombre')->where('estado', 'Activo')->get();
+        $modalidades = Modalidad::select('id', 'nombre')->where('estado', 'Activo')->withCount('proyectos')->get();
         return view("responsable.proyectos.index", compact('proyectos', 'modalidades'));
     }
 

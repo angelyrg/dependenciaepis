@@ -267,7 +267,7 @@
           </a>
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="forms-elements.html">
+              <a href="{{route('aproyectos.index')}}">
                 <i class="bi bi-circle"></i><span>Proyectos</span>
               </a>
             </li>
@@ -290,7 +290,7 @@
         <li class="nav-heading">COMPONENTES</li>
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="">
+          <a class="nav-link collapsed" href="{{route('areglamentos')}}">
             <i class="bi bi-file-earmark-text-fill"></i>
             <span>Reglamento</span>
           </a>

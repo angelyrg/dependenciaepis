@@ -32,6 +32,8 @@
 
 <body>
 
+  @include('layouts.flashtoast')
+
   <main>
     <div class="container">
 
@@ -63,7 +65,7 @@
                       <label for="username" class="form-label">Usuario</label>
                       <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person"></i></span>
-                        <input type="text" name="username" class="form-control" id="username" maxlength="8" required>
+                        <input type="text" name="username" class="form-control" id="username" maxlength="10" required>
                         <div class="invalid-feedback">Ingresa tu usuario.</div>
                       </div>
                     </div>
@@ -79,6 +81,23 @@
                     </div>
 
                     <br>
+
+                    
+                    <div class="col-12">
+                      @if ($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                          <ul>
+                            @foreach ($errors->all() as $error)
+                              <li> {{ $error }}</li>
+                            @endforeach
+                          </ul>
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                      @endif
+                    </div>
+                    <!--End Mensajes de error-->
+
+                    
                     <div class="col-12">
                       <button class="btn btn-primary w-100" type="submit">Inciar sesión</button>
                     </div>

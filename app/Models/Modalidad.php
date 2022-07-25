@@ -14,4 +14,8 @@ class Modalidad extends Model
         'estado',
     ];
 
+    public function proyectos(){
+        return $this->hasMany(Proyecto::class);
+    }
+
 }

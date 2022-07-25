@@ -48,10 +48,9 @@
                     <td>{{$reglamento->nombre_reglamento}}</td>
                     <td>{{$reglamento->descripcion}}</td>
                     <td>
-                      {{$reglamento->archivo}}
-                      {{-- <a src="{{public_path()}}/files/reglamentos/{{$reglamento->archivo}}" target="_blank" class="btn btn-sm btn-success">
+                      <a href="{{asset('files/reglamentos/'.$reglamento->archivo)}}" target="_blank" class="btn btn-sm btn-success">
                         <i class="bi bi-box-arrow-up-right"> Ver archivo</i>
-                      </a> --}}
+                      </a>
                     </td>
 
                     

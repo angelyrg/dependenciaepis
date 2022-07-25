@@ -16,6 +16,8 @@
   </nav>
 </div><!-- End Page Title -->
 
+
+
 <section class="section">
   <div class="row">
     <div class="col-lg-12">
@@ -32,7 +34,9 @@
           <ul class="nav nav-tabs nav-tabs-bordered d-flex" id="borderedTabJustified" role="tablist">
             @foreach ($modalidades as $modalidad)
               <li class="nav-item flex-fill" role="presentation">
-                <button class="nav-link w-100 {{$active}} " id="home-tab" data-bs-toggle="tab" data-bs-target="#modalidad-{{$modalidad->id}}" type="button" role="tab" aria-controls="home" aria-selected="true">{{$modalidad->nombre}}</button>
+                <button class="nav-link w-100 {{$active}} " id="home-tab" data-bs-toggle="tab" data-bs-target="#modalidad-{{$modalidad->id}}" type="button" role="tab" aria-controls="home" aria-selected="true">
+                  {{$modalidad->nombre}}  <span class="badge bg-primary badge-number">{{$modalidad->proyectos_count}}</span>
+                </button>
                 <?php $active = ""; ?>
               </li>
             @endforeach
@@ -44,7 +48,6 @@
             @foreach ($modalidades as $modalidad)
               <div class="tab-pane fade  {{$active}} " id="modalidad-{{$modalidad->id}}" role="tabpanel" aria-labelledby="profile-tab">
                 <?php $active = ""; ?>
-
                 {{$modalidad->nombre}}
 
                 <div class="table-responsive">
