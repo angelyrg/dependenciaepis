@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProyectoRequest;
 use App\Models\Asesor;
+use App\Models\Ejecutor;
 use App\Models\Estudiante;
 use App\Models\Modalidad;
 use App\Models\Proyecto;
@@ -24,25 +25,21 @@ class ProyectoController extends Controller
         $this->middleware(['auth', 'auth.responsable']);
     }
 
-    public function index()
-    {
+    public function index(){
         $proyectos = Proyecto::all();
         $modalidades = Modalidad::select('id', 'nombre')->where('estado', 'Activo')->withCount('proyectos')->get();
         return view("responsable.proyectos.index", compact('proyectos', 'modalidades'));
     }
 
 
-    public function create()
-    {
+    public function create(){
         $modalidades = Modalidad::all();
         $asesores_disponibles = Asesor::select('id', 'nombres', 'apellidos')->where('ctd_asesorados', '<', 2)->get();
-
         return view("responsable.proyectos.create", compact('modalidades', 'asesores_disponibles'));
     }
 
 
-    public function store(ProyectoRequest $request)
-    {
+    public function store(ProyectoRequest $request){
         $proyecto = Proyecto::create($request->all());
 
         $proyecto->asesores()->attach([$request->asesor_id, $request->coasesor_id]);        
@@ -51,10 +48,9 @@ class ProyectoController extends Controller
         return redirect()->route('proyectos.show', $proyecto->id);
     }
 
-    public function show(Proyecto $proyecto)
-    {
-        $estudiantes = Estudiante::where('proyecto_id', $proyecto->id)->get();
-        return view('responsable.proyectos.show', compact('proyecto', 'estudiantes'));
+    public function show(Proyecto $proyecto){
+        $ejecutores = Ejecutor::where('proyecto_id', $proyecto->id)->get();
+        return view('responsable.proyectos.show', compact('proyecto', 'ejecutores'));
     }
 
 
@@ -66,8 +62,7 @@ class ProyectoController extends Controller
         return view("responsable.proyectos.edit", compact('proyecto', 'modalidades', 'asesores_disponibles'));
     }
 
-    public function update(ProyectoRequest $request, Proyecto $proyecto)
-    {
+    public function update(ProyectoRequest $request, Proyecto $proyecto){
         $proyecto->codigo = $request->codigo;
         $proyecto->nombre_grupo = $request->nombre_grupo;
         $proyecto->nombre_proyecto = $request->nombre_proyecto;
@@ -79,7 +74,6 @@ class ProyectoController extends Controller
             $this->deleteAsesor($asesor->id);
         }
         $this->addAsesor([$request->asesor_id, $request->coasesor_id]);
-
         $proyecto->asesores()->sync([$request->asesor_id, $request->coasesor_id]);
 
         return redirect()->route('proyectos.index')->with('success', 'Proyecto '.$request->codigo.' actualizado correctamente.');
@@ -87,8 +81,7 @@ class ProyectoController extends Controller
     }
 
 
-    public function destroy(Proyecto $proyecto)
-    {
+    public function destroy(Proyecto $proyecto){
 
         foreach ($proyecto->miembros as $miembro) {
             $this->deleteUser($miembro->user_id);

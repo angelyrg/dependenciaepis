@@ -37,16 +37,16 @@ class DatabaseSeeder extends Seeder
             'nombre' => "Extensión Cultural",
             'estado' => "Activo",]);
 
-        User::create([
-            'name' => "Luis Pacheco",
-            'username' => "12345678",
-            'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
-            'rol' => 'Asesor' ]);
-        Asesor::create([
-            'nombres' => "Luis",
-            'apellidos' => "Pacheco",
-            'dni' => "12345678",
-            'ctd_asesorados' => 1,
-            'user_id' => 2,]);
+        // User::create([
+        //     'name' => "Luis Pacheco",
+        //     'username' => "12345678",
+        //     'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        //     'rol' => 'Asesor' ]);
+        // Asesor::create([
+        //     'nombres' => "Luis",
+        //     'apellidos' => "Pacheco",
+        //     'dni' => "12345678",
+        //     'ctd_asesorados' => 0,
+        //     'user_id' => 2,]);
     }
 }

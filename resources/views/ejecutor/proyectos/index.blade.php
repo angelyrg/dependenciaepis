@@ -39,24 +39,24 @@
                 <i class="bi bi-chat-right-quote-fill"></i>
               </div>
               <div class="col-10 ">
-                <h3 class="p-0 m-0">{{$estudiante->proyecto->nombre_grupo}}</h3>
+                <h3 class="p-0 m-0">{{$ejecutor->proyecto->nombre_grupo}}</h3>
               </div>
 
             </div>
 
             <p class="card-title mt-3">Proyecto</p>
-            <p>{{$estudiante->proyecto->nombre_proyecto}}</p>
+            <p>{{$ejecutor->proyecto->nombre_proyecto}}</p>
 
             <p class="card-title mt-3">Descripción</p>
-            <p>{{ $estudiante->proyecto->descripcion}}</p>
+            <p>{{ $ejecutor->proyecto->descripcion}}</p>
 
             <p class="card-title mt-3">Modalidad</p>
-            <p>{{$estudiante->proyecto->modalidad->nombre}}</p>
+            <p>{{$ejecutor->proyecto->modalidad->nombre}}</p>
 
             <p class="card-title mt-3">Asesores</p>
             
             <ul>
-              @foreach ($estudiante->proyecto->asesores as $asesor)
+              @foreach ($ejecutor->proyecto->asesores as $asesor)
                 <li><p>{{$asesor->nombres." ".$asesor->apellidos}}</p></li>
               @endforeach
              
@@ -91,14 +91,14 @@
                 <tbody>
 
                   <?php $c = 0; ?>
-                  @foreach ($estudiante->proyecto->miembros as $estudiante)
+                  @foreach ($ejecutor->proyecto->miembros as $ejecutor)
                     <?php $c++; ?>
 
                     <tr>
                       <th scope="row">{{$c}}</th>
-                      <td>{{$estudiante->nombres}}</td>
-                      <td>{{$estudiante->apellidos}}</td>
-                      <td>{{$estudiante->codigo_matricula}}</td>
+                      <td>{{$ejecutor->nombres}}</td>
+                      <td>{{$ejecutor->apellidos}}</td>
+                      <td>{{$ejecutor->codigo_matricula}}</td>
                       
                     </tr>
                         

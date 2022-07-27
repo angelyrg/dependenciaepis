@@ -199,7 +199,7 @@
               </a>
             </li>
             <li>
-              <a href="{{route('estudiantes.index')}}">
+              <a href="{{route('ejecutores.index')}}">
                 <i class="bi bi-circle"></i><span>Estudiantes</span>
               </a>
             </li>
@@ -230,12 +230,12 @@
           </a>
           <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="tables-general.html">
+              <a href="#">
                 <i class="bi bi-circle"></i><span>Informes de los grupos</span>
               </a>
             </li>
             <li>
-              <a href="tables-data.html">
+              <a href="#">
                 <i class="bi bi-circle"></i><span>Informes dinámicos</span>
               </a>
             </li>

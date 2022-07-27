@@ -72,7 +72,7 @@
                 <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-informe">
                   <i class="bi bi-trash"></i> Eliminar informe
                 </button> 
-                @include('estudiante.informes.modal')
+                @include('ejecutor.informes.modal')
               </div>
 
 

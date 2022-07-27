@@ -24,8 +24,8 @@ class ProyectoRequest extends FormRequest
     public function rules()
     {
         return [
-            'codigo' => 'required',
             'nombre_grupo' => 'required',
+            'modalidad_grupo' => 'required',
             'nombre_proyecto' => 'required',
             'descripcion' => 'required',
             'modalidad_id' => 'required|exists:modalidads,id',

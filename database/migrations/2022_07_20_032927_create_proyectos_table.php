@@ -15,15 +15,15 @@ class CreateProyectosTable extends Migration
     {
         Schema::create('proyectos', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo', 20);
             $table->string('nombre_grupo');
+            $table->string('modalidad_grupo', 20); //Monovalente, Polivalente, Inter facultativo
             $table->string('nombre_proyecto');
+            $table->unsignedBigInteger("modalidad_id")->nullable();
             $table->text('descripcion');
             $table->string('estado', 20)->default('Inicio'); //Inicio, Parcial, Completado
+            $table->integer('ctd_max_ejecutores')->default(0);
             
-            $table->unsignedBigInteger("modalidad_id")->nullable();
             $table->foreign('modalidad_id')->references('id')->on('modalidads')->cascadeOnUpdate()->nullOnDelete();;
-
             
             $table->timestamps();
         });

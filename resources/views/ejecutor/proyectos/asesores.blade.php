@@ -26,7 +26,7 @@
 
   <div class="row">
 
-    @foreach ($estudiante->proyecto->asesores as $asesor)                
+    @foreach ($ejecutor->proyecto->asesores as $asesor)                
       <div class="col-md-4">
         <div class="card">
           <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">

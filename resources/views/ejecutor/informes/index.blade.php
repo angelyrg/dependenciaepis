@@ -25,21 +25,21 @@
           
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title">Implementación de un Sistema de Rastreo Satelital <span>| Informes</span> </h5>
-            @if ($estudiante->proyecto->estado!="Completado")                
+            @if ($ejecutor->proyecto->estado != "Completado")                
               <a href="{{route('informes.create')}}" class="btn btn-outline-primary " ><i class="bi bi-person-plus-fill me-1"></i> Subir informe</a>
             @endif
           </div>
           <div class="row border d-flex justify-content-center align-items-center">
             <div class="col-lg-3">
                 Estado del proyecto: 
-                <span class="badge bg-@if($estudiante->proyecto->estado=="Inicio"){{'secondary'}}@elseif($estudiante->proyecto->estado=="Parcial"){{'warning'}}@elseif($estudiante->proyecto->estado=="Completado"){{'success'}}@endif">
+                <span class="badge bg-@if($ejecutor->proyecto->estado=="Inicio"){{'secondary'}}@elseif($ejecutor->proyecto->estado=="Parcial"){{'warning'}}@elseif($ejecutor->proyecto->estado=="Completado"){{'success'}}@endif">
                   <i class="bi bi-ui-checks"></i> 
-                  {{$estudiante->proyecto->estado}}
+                  {{$ejecutor->proyecto->estado}}
                 </span>
             </div>
             <div class="col-lg-9  ">
               <div class="progress">
-                <div class="progress-bar bg-@if($estudiante->proyecto->estado=="Inicio"){{'secondary'}}@elseif($estudiante->proyecto->estado=="Parcial"){{'warning'}}@elseif($estudiante->proyecto->estado=="Completado"){{'success'}}@endif" role="progressbar" style="width: {{$porc_proyecto}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$porc_proyecto}}%</div>
+                <div class="progress-bar bg-@if($ejecutor->proyecto->estado=="Inicio"){{'secondary'}}@elseif($ejecutor->proyecto->estado=="Parcial"){{'warning'}}@elseif($ejecutor->proyecto->estado=="Completado"){{'success'}}@endif" role="progressbar" style="width: {{$porc_proyecto}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$porc_proyecto}}%</div>
               </div>
             </div>
           </div>
@@ -58,7 +58,7 @@
             <h5 class="card-title">Informe parcial <span>| Historial</span></h5>
           </div>
           <div class="activity">
-            @foreach ($estudiante->proyecto->informes->reverse() as $informe)
+            @foreach ($ejecutor->proyecto->informes->reverse() as $informe)
               @if ($informe->tipo == "Informe Parcial")
                 <div class="activity-item d-flex">
                   <div class="activite-label">{{$informe->created_at->diffForHumans()}}</div>
@@ -95,7 +95,7 @@
                 <h5 class="card-title">Informe final <span>| Historial</span></h5>
               </div>
               <div class="activity">
-                @foreach ($estudiante->proyecto->informes->reverse() as $informe)
+                @foreach ($ejecutor->proyecto->informes->reverse() as $informe)
                   @if ($informe->tipo == "Informe Final")
                     <div class="activity-item d-flex">
                       <div class="activite-label">{{$informe->created_at->diffForHumans()}}</div>

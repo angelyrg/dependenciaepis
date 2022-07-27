@@ -19,7 +19,7 @@
 <section class="section">
 
   <div class="row">
-    <div class="col-lg-8 offset-lg-2">
+    <div class="col-lg-10 offset-lg-1">
       @if ($errors->any())
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
           <ul>
@@ -34,7 +34,7 @@
   </div> <!--End Mensajes de error-->
 
   <div class="row">
-    <div class="col-lg-8 offset-lg-2">
+    <div class="col-lg-10 offset-lg-1">
 
       <form action="{{route('proyectos.store')}}" method="POST" class="row g-3 needs-validation" novalidate>
         @csrf      
@@ -45,22 +45,61 @@
   
               <hr class="dropdown-divider">
 
+              <div class="row mb-3">
+
+                <div class="col-md-8 ">
+                  <label for="validationCustom03" class="form-label">Nombre del grupo</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-people-fill"></i></span>
+                    <input type="text" name="nombre_grupo"  value="{{old('nombre_grupo')}}" required class="form-control" required aria-describedby="inputGroupPrepend" >  
+                    <div class="invalid-feedback"> 
+                      Por favor ingrese el nombre del grupo.
+                    </div>
+                  </div>
+                </div> <!--End Input Nombre Grupo-->
+
+
+                <div class="col-md-4">
+                  <label for="validationCustom04" class="form-label">Modalidad de grupo</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-toggle-on"></i></span>
+                    <select class="form-select" name="modalidad_grupo" id="validationCustom04" required>
+                      <option selected disabled value="">Seleccione...</option>  
+                      <option>Monovalente</option>
+                      <option>Polivalente</option>
+                      <option>Inter facultativo</option>
+                      
+                      
+                    </select>
+                    <div class="invalid-feedback">
+                      Por favor seleccion una modalidad.
+                    </div>
+                  </div>
+                </div> <!--End Choose Modalidad-->
+
+
+              </div>
+
+                
+
+
+
 
               <div class="row mb-3">
 
-                <div class="col-md-5">
-                  <label for="validationCustom03" class="form-label">Código</label>
+                <div class="col-md-8 mb-3">
+                  <label for="validationCustom01" class="form-label">Nombre del Proyecto</label>
                   <div class="input-group has-validation">
-                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-123"></i></span>
-                    <input type="text" name="codigo"  value="{{old('codigo')}}" required class="form-control" required aria-describedby="inputGroupPrepend" >  
+                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-layout-text-window-reverse"></i></span>
+                    <input type="text" class="form-control" name="nombre_proyecto" value="{{old('nombre_proyecto')}}" id="validationCustom01" required>
                     <div class="invalid-feedback">
-                      Por favor ingrese el código del proyecto.
+                      Por favor ingrese el nombre del proyecto.
                     </div>
                   </div>
-                </div> <!--End Input Codigo-->
-    
-                <div class="col-md-7">
-                  <label for="validationCustom04" class="form-label">Modalidad</label>
+                </div> <!--End Input Nombre Proyecto-->
+
+                <div class="col-md-4">
+                  <label for="validationCustom04" class="form-label">Modalidad del proyecto</label>
                   <div class="input-group has-validation">
                     <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-toggle-on"></i></span>
                     <select class="form-select" name="modalidad_id" id="validationCustom04" required>
@@ -74,36 +113,15 @@
                           @endif
                         @endif
                       @endforeach
-                      
                     </select>
                     <div class="invalid-feedback">
-                      Por favor seleccion un estado.
+                      Por favor seleccion una modalidad.
                     </div>
                   </div>
                 </div> <!--End Choose Modalidad-->
               </div>
 
-              <div class="col-md-12 mb-3">
-                <label for="validationCustom03" class="form-label">Nombre del grupo</label>
-                <div class="input-group has-validation">
-                  <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-people-fill"></i></span>
-                  <input type="text" name="nombre_grupo"  value="{{old('nombre_grupo')}}" required class="form-control" required aria-describedby="inputGroupPrepend" >  
-                  <div class="invalid-feedback"> 
-                    Por favor ingrese el nombre del grupo.
-                  </div>
-                </div>
-              </div> <!--End Input Nombre Grupo-->
-  
-              <div class="col-md-12 mb-3">
-                <label for="validationCustom01" class="form-label">Nombre del Proyecto</label>
-                <div class="input-group has-validation">
-                  <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-layout-text-window-reverse"></i></span>
-                  <input type="text" class="form-control" name="nombre_proyecto" value="{{old('nombre_proyecto')}}" id="validationCustom01" required>
-                  <div class="invalid-feedback">
-                    Por favor ingrese el nombre del proyecto.
-                  </div>
-                </div>
-              </div> <!--End Input Nombre Proyecto-->
+
   
               <div class="col-md-12 mb-3">
                 <label for="validationCustom02" class="form-label">Descripción</label>

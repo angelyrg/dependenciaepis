@@ -9,6 +9,6 @@ class ReglamentoEstController extends Controller
 {
     public function index(){
         $reglamentos = Reglamento::all();
-        return view ('estudiante.reglamentos.index', compact('reglamentos'));
+        return view ('ejecutor.reglamentos.index', compact('reglamentos'));
     }
 }

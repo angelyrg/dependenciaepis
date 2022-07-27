@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\InformeStoreRequest;
-use App\Models\Estudiante;
+use App\Models\Ejecutor;
 use App\Models\Informe;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -15,33 +15,33 @@ class InformeController extends Controller
     }
 
     public function index(){
-        $estudiante = Estudiante::where('user_id', Auth::user()->id)->first();
-        if ($estudiante->proyecto->estado == "Inicio"){
+        $ejecutor = Ejecutor::where('user_id', Auth::user()->id)->first();
+        if ($ejecutor->proyecto->estado == "Inicio"){
             $porc_proyecto = 0;
-        }elseif($estudiante->proyecto->estado == "Parcial"){
+        }elseif($ejecutor->proyecto->estado == "Parcial"){
             $porc_proyecto = 50;
-        }elseif($estudiante->proyecto->estado == "Completado"){
+        }elseif($ejecutor->proyecto->estado == "Completado"){
             $porc_proyecto = 100;
         }else{
             $porc_proyecto = 0;
         }
 
-        return view('estudiante.informes.index', compact('estudiante', 'porc_proyecto'));
+        return view('ejecutor.informes.index', compact('ejecutor', 'porc_proyecto'));
     }
 
 
     public function create(){
-        $estudiante = Estudiante::where('user_id', Auth::user()->id)->first();
-        return view('estudiante.informes.create', compact('estudiante'));
+        $ejecutor = Ejecutor::where('user_id', Auth::user()->id)->first();
+        return view('ejecutor.informes.create', compact('ejecutor'));
     }
 
 
     public function store(InformeStoreRequest $request){
-        $estudiante = Estudiante::where('user_id', Auth::user()->id )->first();
+        $ejecutor = Ejecutor::where('user_id', Auth::user()->id )->first();
 
-        if($estudiante->proyecto->estado == "Inicio"){
+        if($ejecutor->proyecto->estado == "Inicio"){
             $tipo_informe = "Informe Parcial";
-        }elseif($estudiante->proyecto->estado == "Parcial"){
+        }elseif($ejecutor->proyecto->estado == "Parcial"){
             $tipo_informe = "Informe final";
         }else{
             return "Proyecto completado";
@@ -57,7 +57,7 @@ class InformeController extends Controller
         $informe->archivo = $nombre_archivo;
         $informe->estado = 'Pendiente';
         $informe->tipo = $tipo_informe;
-        $informe->proyecto_id = $estudiante->proyecto->id;
+        $informe->proyecto_id = $ejecutor->proyecto->id;
         $informe->save();
 
         return redirect()->route('informes.index')->with('success', '¡Informe subido con éxito!');
@@ -66,7 +66,7 @@ class InformeController extends Controller
 
 
     public function show(Informe $informe){
-        return view('estudiante.informes.show', compact('informe'));
+        return view('ejecutor.informes.show', compact('informe'));
     }
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Asesor;
+use App\Models\Ejecutor;
 use App\Models\Estudiante;
 use App\Models\Proyecto;
 use Illuminate\Http\Request;
@@ -15,13 +16,13 @@ class ProyectoEstController extends Controller
     }
 
     public function index(){
-        $estudiante = Estudiante::where('user_id', Auth::user()->id )->first();
-        return view('estudiante.proyectos.index', compact('estudiante'));
+        $ejecutor = Ejecutor::where('user_id', Auth::user()->id )->first();
+        return view('ejecutor.proyectos.index', compact('ejecutor'));
     }
 
     public function asesor(){
-        $estudiante = Estudiante::where('user_id', Auth::user()->id )->first();
-        return view('estudiante.proyectos.asesores', compact('estudiante'));
+        $ejecutor = Ejecutor::where('user_id', Auth::user()->id )->first();
+        return view('ejecutor.proyectos.asesores', compact('ejecutor'));
     }
 
 

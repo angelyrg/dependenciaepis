@@ -1,5 +1,5 @@
 
-<div class="modal fade" id="modal-delete-{{$estudiante->id}}" tabindex="-1">
+<div class="modal fade" id="modal-delete-{{$ejecutor->id}}" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -7,10 +7,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>¿Está seguro que desea eliminar a <b>{{$estudiante->nombres}}</b> ?</p>
+        <p>¿Está seguro que desea eliminar a <b>{{$ejecutor->nombres}}</b> ?</p>
       </div>
       <div class="modal-footer">
-        <form method="POST" action="{{route('estudiantes.destroy', $estudiante->id)}}">
+        <form method="POST" action="{{route('ejecutores.destroy', $ejecutor->id)}}">
           @csrf
           @method('delete')
           

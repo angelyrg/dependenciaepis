@@ -49,7 +49,7 @@
                     <td>{{$ejecutor->nombres}}</td>
                     <td>{{$ejecutor->apellidos}}</td>
                     <td>{{$ejecutor->codigo_matricula}}</td>
-                    <td>{{$ejecutor->ciclo}}</td>
+                    <td>{{$ejecutor->email}}</td>
                     <td>
                       <a href="{{route('proyectos.show', $ejecutor->proyecto->id)}}" class="fw-bold link-info">{{$ejecutor->proyecto->nombre_grupo}}</a>
                     </td>

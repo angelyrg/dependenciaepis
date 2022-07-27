@@ -79,7 +79,7 @@
           <div class="card">
             <div class="card-body">
 
-              <h5 class="card-title">Estudiantes integrantes del grupo</h5>
+              <h5 class="card-title">Ejecutores del proyecto</h5>
              
 
               <div class="table-responsive">
@@ -92,23 +92,24 @@
                       <th scope="col">Nombres</th>
                       <th scope="col">Apellidos</th>
                       <th scope="col">Código de Matrícula</th>
+                      <th scope="col">Ciclo</th>
                       <th scope="col">Opciones</th>
                     </tr>
                   </thead>
                   <tbody>
   
                     <?php $c = 0; ?>
-                    @foreach ($estudiantes as $estudiante)
+                    @foreach ($ejecutores as $ejecutor)
                       <?php $c++; ?>
   
                       <tr>
                         <th scope="row">{{$c}}</th>
-                        <td>{{$estudiante->nombres}}</td>
-                        <td>{{$estudiante->apellidos}}</td>
-                        <td>{{$estudiante->codigo_matricula}}</td>
-                        
+                        <td>{{$ejecutor->nombres}}</td>
+                        <td>{{$ejecutor->apellidos}}</td>
+                        <td>{{$ejecutor->codigo_matricula}}</td>
+                        <td>{{$ejecutor->ciclo}}</td>
                         <td>
-                          <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$estudiante->id}}">
+                          <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$ejecutor->id}}">
                             <i class="bi bi-trash"></i>
                           </button>
                         </td>
@@ -147,7 +148,7 @@
           <div class="card">
             <div class="card-body">
   
-              <form action="{{route('estudiantes.store')}}" method="POST" class="needs-validation">
+              <form action="{{route('ejecutores.store')}}" method="POST" class="needs-validation">
                 @csrf
 
                 <div class="d-flex justify-content-between align-items-center">
@@ -202,14 +203,14 @@
     var formEstudiante = `
       <div class="border border-2 rounded p-1 mb-3  bg-light" id="inputFormRow">
         <div class="d-flex justify-content-between align-items-end ">
-          <label class="form-label "> <i class="bi bi-person-bounding-box"></i> Datos del estudiante</label>
+          <label class="form-label "> <i class="bi bi-person-bounding-box"></i> Datos del ejecutor</label>
           <button id="removeRow" type="button" class="btn btn-sm btn-danger"><i class="bi bi-x-lg"></i> </button>
         </div>
         <hr class="dropdown-divider">
         <div class="row mb-2">
           <div class="col-md-6">
             <div class="input-group has-validation">
-              <input type="text"  class="form-control" name="nombres[]" placeholder="Nombres" >
+              <input type="text"  class="form-control" name="nombres[]" placeholder="Nombres" required>
               <div class="invalid-feedback">
                 Por favor ingrese el nombre.
               </div>
@@ -217,7 +218,7 @@
           </div>
           <div class="col-md-6">
             <div class="input-group has-validation">
-              <input type="text"  class="form-control" name="apellidos[]" placeholder="Apellidos"  >
+              <input type="text"  class="form-control" name="apellidos[]" placeholder="Apellidos"  required>
               <div class="invalid-feedback">
                 Por favor ingrese el apellido.
               </div>
@@ -227,7 +228,7 @@
         <div class="row mb-2">
           <div class="col-md-6">
             <div class="input-group has-validation">
-              <input type="text"  name="codigo_matricula[]"  minlength="10" maxlength="10"  title="POr favor ingrese un código de matrícula válido." placeholder="Código de matrícula"  class="form-control"  aria-describedby="inputGroupPrepend" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">  
+              <input type="text"  name="codigo_matricula[]" required minlength="10" maxlength="10"  title="POr favor ingrese un código de matrícula válido." placeholder="Código de matrícula"  class="form-control"  aria-describedby="inputGroupPrepend" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">  
               <div class="invalid-feedback">
                 Por favor ingrese un Código de matrícula válido.
               </div>
@@ -237,9 +238,9 @@
             <div class="input-group has-validation">
               <input type="hidden" required class="form-control" value="{{$proyecto->id}}" name="proyecto_id[]" pattern="[0-9]"   >
 
-              <input type="email"  class="form-control" name="email[]"  placeholder="correo@unh.edu.pe"   pattern="[a-zA-Z0-9._%+-]+@+unh.edu.pe"   >
+              <input type="input"  class="form-control" name="ciclo[]"  placeholder="Ciclo"  >
               <div class="invalid-feedback">
-                Por favor ingrese un correo electrónico institucional de la UNH.
+                Por favor ingrese el ciclo del ejecutor.
               </div>
             </div>
           </div>
