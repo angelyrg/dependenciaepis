@@ -26,7 +26,7 @@
         <div class="card-body">
           <div class="d-flex justify-content-between  align-items-center">
             <h5 class="card-title">Asesores</h5>            
-              <a href="{{route('asesors.create')}}" class="btn btn-outline-primary " ><i class="bi bi-person-plus-fill me-1"></i> Nuevo asesor</a>
+            <a href="{{route('asesors.create')}}" class="btn btn-outline-primary " ><i class="bi bi-person-plus-fill me-1"></i> Nuevo asesor</a>
           </div>
 
           <div class="table-responsive">

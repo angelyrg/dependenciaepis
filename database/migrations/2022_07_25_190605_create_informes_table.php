@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProyectoAsesorTable extends Migration
+class CreateInformesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,16 @@ class CreateProyectoAsesorTable extends Migration
      */
     public function up()
     {
-        Schema::create('proyecto_asesor', function (Blueprint $table) {
+        Schema::create('informes', function (Blueprint $table) {
             $table->id();
-
-            $table->unsignedBigInteger("proyecto_id");
+            $table->string('nombre_informe');
+            $table->text('descripcion');
+            $table->string('archivo');
+            $table->string('estado', 20); //Pendiente, Rechazado, Observado, Aceptado, Publicado
+            $table->string('tipo', 15); //Informe Parcial, Informe Final
+            
+            $table->unsignedBigInteger('proyecto_id');
             $table->foreign('proyecto_id')->references('id')->on('proyectos')->cascadeOnDelete();
-
-            $table->unsignedBigInteger("asesor_id");
-            $table->foreign('asesor_id')->references('id')->on('asesors')->cascadeOnDelete();
 
             $table->timestamps();
         });
@@ -33,6 +35,6 @@ class CreateProyectoAsesorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('proyecto_asesor');
+        Schema::dropIfExists('informes');
     }
 }

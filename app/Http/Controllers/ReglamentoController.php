@@ -21,11 +21,7 @@ class ReglamentoController extends Controller
         return view('responsable.reglamentos.index', compact('reglamentos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         return view('responsable.reglamentos.create');
@@ -33,7 +29,6 @@ class ReglamentoController extends Controller
 
     public function store(ReglamentoStoreRequest $request)
     {
-
         $file = $request->file('archivo');
         $nombre_archivo = time().$file->getClientOriginalName();
         $file->move(public_path()."/files/reglamentos/", $nombre_archivo);
@@ -55,16 +50,9 @@ class ReglamentoController extends Controller
         return view('responsable.reglamentos.edit', compact('reglamento'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Reglamento  $reglamento
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(ReglamentoUpdateRequest $request, Reglamento $reglamento)
     {
-        
         $reglamento->nombre_reglamento = $request->nombre_reglamento;
         $reglamento->descripcion = $request->descripcion;
 
@@ -81,7 +69,6 @@ class ReglamentoController extends Controller
             $reglamento->archivo = $nombre_archivo;
         }
         $reglamento->save();
-
         return redirect()->route('reglamentos.index')->with('success', 'Reglamento '.$request->nombre_reglamento.' actualizado correctamente');
 
     }
@@ -89,7 +76,6 @@ class ReglamentoController extends Controller
 
     public function destroy(Reglamento $reglamento)
     {
-
         $file_path = public_path().'/files/reglamentos/'.$reglamento->archivo;
         File::delete($file_path);
         $reglamento->delete();

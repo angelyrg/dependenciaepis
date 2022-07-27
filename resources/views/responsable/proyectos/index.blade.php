@@ -60,6 +60,7 @@
                         <th scope="col">Nombre del proyecto</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Modalidad</th>
+                        <th scope="col">Estado</th>
                         <th scope="col">Opciones</th>
                       </tr>
                     </thead>
@@ -79,6 +80,7 @@
                             </td>
                             <td>{{$proyecto->descripcion}}</td>
                             <td>{{$proyecto->modalidad->nombre}}</td>
+                            <td>{{$proyecto->estado}}</td>
                             
                             <td>
                               <a href="{{route('proyectos.edit', $proyecto->id)}}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>

@@ -54,7 +54,6 @@ class ProyectoController extends Controller
     public function show(Proyecto $proyecto)
     {
         $estudiantes = Estudiante::where('proyecto_id', $proyecto->id)->get();
-
         return view('responsable.proyectos.show', compact('proyecto', 'estudiantes'));
     }
 

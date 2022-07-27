@@ -144,12 +144,21 @@
                       <option selected disabled value="">Seleccione Co Asesor...</option>   
                       @if (count($proyecto->asesores) == 2)
                         <option value="{{$proyecto->asesores->get(1)->id}}" selected>{{$proyecto->asesores->get(1)->nombres." ".$proyecto->asesores->get(1)->apellidos}}</option>
+                        @foreach ($asesores_disponibles as $asesor_disponible)
+                          @if ($asesor_disponible->id != $proyecto->asesores->get(1)->id)
+                            <option value="{{$asesor_disponible->id}}">{{$asesor_disponible->nombres." ".$asesor_disponible->apellidos}}</option>                            
+                          @endif
+                        @endforeach
                       @endif
-                      @foreach ($asesores_disponibles as $asesor_disponible)
-                        @if ($asesor_disponible->id != $proyecto->asesores->get(1)->id)
-                          <option value="{{$asesor_disponible->id}}">{{$asesor_disponible->nombres." ".$asesor_disponible->apellidos}}</option>                            
-                        @endif
-                      @endforeach
+
+                      @if (count($proyecto->asesores) == 1)
+                        @foreach ($asesores_disponibles as $asesor_disponible)
+                          @if ($asesor_disponible->id != $proyecto->asesores->get(0)->id)
+                            <option value="{{$asesor_disponible->id}}">{{$asesor_disponible->nombres." ".$asesor_disponible->apellidos}}</option>                            
+                          @endif
+                        @endforeach
+                      @endif
+
                     </select>
 
                     <div class="invalid-feedback">

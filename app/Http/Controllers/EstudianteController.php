@@ -12,7 +12,6 @@ class EstudianteController extends Controller
     
     use UserTrait;
 
-
     public function __construct(){
         $this->middleware(['auth', 'auth.responsable']);
     }

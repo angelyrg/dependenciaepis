@@ -305,12 +305,12 @@
           </a>
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="forms-elements.html">
+              <a href="{{route('proyecto')}}">
                 <i class="bi bi-circle"></i><span>Integrantes del grupo</span>
               </a>
             </li>
             <li>
-              <a href="forms-layouts.html">
+              <a href="{{route('asesor')}}">
                 <i class="bi bi-circle"></i><span>Asesores</span>
               </a>
             </li>
@@ -319,11 +319,11 @@
 
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-bar-chart-steps"></i><span>Gestion de entregables</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="bi bi-bar-chart-steps"></i><span>Gestion de informes</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="tables-general.html">
+              <a href="{{route('informes.index')}}">
                 <i class="bi bi-circle"></i><span>Seguimiento de entregables</span>
               </a>
             </li>
@@ -333,7 +333,7 @@
         <li class="nav-heading">COMPONENTES</li>
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="">
+          <a class="nav-link collapsed" href="{{route('sreglamentos')}}">
             <i class="bi bi-file-earmark-text-fill"></i>
             <span>Reglamento</span>
           </a>

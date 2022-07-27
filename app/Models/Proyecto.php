@@ -23,4 +23,8 @@ class Proyecto extends Model
         return $this->belongsToMany(Asesor::class);
     }
 
+    public function informes(){
+        return $this->hasMany(Informe::class);
+    }
+
 }

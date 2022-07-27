@@ -1,4 +1,5 @@
 
+
 @if ($message = Session::get('success'))
 
 <div class="position-fixed bottom-0 end-0 p-3 " style="z-index: 11">
@@ -16,6 +17,11 @@
         <div class="toast-body">
             {{ $message }}
             <br><br>
+
+            <div class="d-flex justify-content-end ">
+                <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="toast">Aceptar</button>
+            </div>
+            
         </div>
     </div>
 </div>
@@ -37,6 +43,11 @@
         <div class="toast-body">
             {{ $message }}
             <br><br>
+
+            <div class="d-flex justify-content-end ">
+                <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="toast">Aceptar</button>
+            </div>
+            
         </div>
     </div>
 </div>

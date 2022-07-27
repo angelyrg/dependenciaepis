@@ -27,8 +27,6 @@
           <!-- List group Proyectos -->
           <ol class="list-group list-group-numbered">
             @foreach ($asesor->asesorados as $proyecto) 
-
-            
               <a href="{{route('aproyectos.show', $proyecto->id)}}" class="link-primary">
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                   <div class="ms-2 me-auto">
