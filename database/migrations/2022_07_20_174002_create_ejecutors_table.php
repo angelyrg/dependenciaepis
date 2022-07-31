@@ -18,7 +18,7 @@ class CreateEjecutorsTable extends Migration
             $table->string('nombres', 50);
             $table->string('apellidos', 60);
             $table->string('codigo_matricula', 10);
-            $table->string('ciclo', 10);
+            $table->string('ciclo', 10)->nullable();
             
             $table->unsignedBigInteger("user_id");
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();

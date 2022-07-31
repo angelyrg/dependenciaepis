@@ -13,4 +13,8 @@ class Ejecutor extends Model
         return $this->belongsTo(Proyecto::class);
     }
 
+    public function cargo(){
+        return $this->belongsTo(Cargo::class);
+    }
+
 }

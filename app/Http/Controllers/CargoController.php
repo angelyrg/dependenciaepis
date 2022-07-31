@@ -7,79 +7,37 @@ use Illuminate\Http\Request;
 
 class CargoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function __construct(){
+        $this->middleware(['auth', 'auth.responsable']);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function index(){
+        $cargos = Cargo::all();
+        return view("responsable.cargos.index", compact('cargos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+
+    public function store(Request $request){
+        $request->validate(['cargo' => 'required']);
+
+        $cargo = new Cargo();
+        $cargo->cargo = $request->cargo;
+        $cargo->save();
+        return redirect()->route('cargos.index')->with('success', 'Cargo '.$request->cargo.' registrado correctamente.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Cargo  $cargo
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Cargo $cargo)
-    {
-        //
+
+    public function update(Request $request, Cargo $cargo){
+        $request->validate(['cargo' => 'required']);
+        $cargo->cargo = $request->cargo;
+        $cargo->save();
+
+        return redirect()->route('cargos.index')->with('success', 'Cargo '.$request->cargo.' actualizado correctamente.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Cargo  $cargo
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Cargo $cargo)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cargo  $cargo
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Cargo $cargo)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Cargo  $cargo
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Cargo $cargo)
-    {
-        //
+    public function destroy(Cargo $cargo){
+        $cargo->delete();
+        return redirect()->route('cargos.index')->with('success', 'Cargo eliminado correctamente.'); 
     }
 }

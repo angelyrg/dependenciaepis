@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AsesorController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CargoController;
 use App\Http\Controllers\EjecutorController;
 use App\Http\Controllers\InformeController;
 use App\Http\Controllers\ModalidadController;
@@ -29,6 +30,7 @@ Route::resource('proyectos', ProyectoController::class)->names('proyectos')->mid
 //Route::resource('estudiantes', EstudianteController::class)->names('estudiantes')->middleware('auth.responsable');
 Route::resource('ejecutores', EjecutorController::class)->names('ejecutores')->middleware('auth.responsable');
 Route::resource('reglamentos', ReglamentoController::class)->names('reglamentos')->middleware('auth.responsable');
+Route::resource('cargos', CargoController::class)->names('cargos')->middleware('auth.responsable');
 
 Route::resource('asesor/proyectos', ProyectoAseController::class)->names('aproyectos')->middleware('auth.asesor');
 Route::get('asesor/reglamentos', [ReglamentoAseController::class, 'index'])->name('areglamentos')->middleware('auth.asesor');

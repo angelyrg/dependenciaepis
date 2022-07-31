@@ -23,7 +23,7 @@
       <div class="card">
         <div class="card-body">
           <div class="d-flex justify-content-between  align-items-center">
-            <h5 class="card-title">Asesores</h5>            
+            <h5 class="card-title">Ejecutores</h5>            
             {{-- <a href="{{route('asesors.create')}}" class="btn btn-outline-primary " ><i class="bi bi-person-plus-fill me-1"></i> Nuevo asesor</a> --}}
           </div>
 
@@ -36,7 +36,7 @@
                   <th scope="col">Nombres</th>
                   <th scope="col">Apellidos</th>
                   <th scope="col">Código de Matrícula</th>
-                  <th scope="col">Correo</th>
+                  <th scope="col">Ciclo</th>
                   <th scope="col">Grupo</th>
                 </tr>
               </thead>
@@ -49,7 +49,7 @@
                     <td>{{$ejecutor->nombres}}</td>
                     <td>{{$ejecutor->apellidos}}</td>
                     <td>{{$ejecutor->codigo_matricula}}</td>
-                    <td>{{$ejecutor->email}}</td>
+                    <td>{{$ejecutor->ciclo}}</td>
                     <td>
                       <a href="{{route('proyectos.show', $ejecutor->proyecto->id)}}" class="fw-bold link-info">{{$ejecutor->proyecto->nombre_grupo}}</a>
                     </td>

@@ -19,24 +19,19 @@ class EjecutorStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombres'   => 'required|array|min:1',
-            'apellidos'   => 'required|array|min:1',
-            'codigo_matricula'   => 'required|array|min:1',
-            'ciclo' => 'required|array|min:1',
-            'proyecto_id' => 'required|array|min:1',
-
-            'nombres.*' => 'required|string',
-            'apellidos.*' => 'required|string',
-            'codigo_matricula.*' => 'required|digits:10',
-            'ciclo.*' => 'required',
-            'proyecto_id.*' => 'required|exists:proyectos,id',
+            'nombres'   => 'required|string',
+            'apellidos'   => 'required|string',
+            'codigo_matricula'   => 'required|string|unique:ejecutors',
+            'ciclo' => 'nullable|string',
+            'proyecto_id' => 'required|exists:proyectos,id',
+            'cargo_id' => 'required|exists:cargos,id',
         ];
     }
 
     public function messages()
     {
         return [
-            'proyecto_id.required' => "",
+            'proyecto_id.required' => "El proyecto no existe",
         ];
     }
 

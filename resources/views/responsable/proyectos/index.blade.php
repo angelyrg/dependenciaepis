@@ -54,33 +54,42 @@
                   <table class="table datatable mt-2">
                     <thead>
                       <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Código</th>
+                        {{-- <th scope="col">ID</th> --}}
+                        <th scope="col">Modalidad</th>
                         <th scope="col">Grupo</th>
                         <th scope="col">Nombre del proyecto</th>
-                        <th scope="col">Descripción</th>
-                        <th scope="col">Modalidad</th>
+                        <th scope="col">Inicio</th>
+                        <th scope="col">Finalización</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Opciones</th>
                       </tr>
                     </thead>
                     <tbody>
-        
+
+                      <?php $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); ?>  <!-- Necesario para tener los meses del año en español -->
+
                       @foreach ($proyectos as $proyecto)
   
                         @if ($proyecto->modalidad_id == $modalidad->id)
                           <tr>
-                            <th scope="row">{{$proyecto->id}}</th>
-                            <td>{{$proyecto->codigo}}</td>
+                            {{-- <th >{{$proyecto->id}}</th> --}}
+                            <td>{{$proyecto->modalidad_grupo}}</td>
+                            
                             <td>
                               <a href="{{route('proyectos.show', $proyecto->id)}}" class="fw-bold">{{$proyecto->nombre_grupo}}</a>
                             </td>
                             <td>
                               <a href="{{route('proyectos.show', $proyecto->id)}}" class="fw-bold">{{$proyecto->nombre_proyecto}}</a>
                             </td>
-                            <td>{{$proyecto->descripcion}}</td>
-                            <td>{{$proyecto->modalidad->nombre}}</td>
-                            <td>{{$proyecto->estado}}</td>
+                            <td>{{$meses[date('m', strtotime($proyecto->fecha_inicio))-1]." ".date('Y', strtotime($proyecto->fecha_inicio))}}</td>
+                            <td>{{$meses[date('m', strtotime($proyecto->fecha_fin))-1]." ".date('Y', strtotime($proyecto->fecha_fin))}}</td>
+                            
+                            <td>
+                              <span class="badge bg-@if($proyecto->estado=="Inicio"){{'secondary'}}@elseif($proyecto->estado=="Parcial"){{'warning'}}@elseif($proyecto->estado=="Completado"){{'success'}}@endif">
+                                <i class="bi bi-journal-code"></i> 
+                                {{$proyecto->estado}}
+                              </span>
+                            </td>
                             
                             <td>
                               <a href="{{route('proyectos.edit', $proyecto->id)}}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>

@@ -34,24 +34,30 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="info-box card">
-            <div class="row ">
+
+            <div class="row d-flex align-items-start">
               <div class="col-2 ">
                 <i class="bi bi-chat-right-quote-fill"></i>
               </div>
-              <div class="col-10 ">
+              <div class="col-10 mt-0">
+                <small>Grupo {{$proyecto->modalidad_grupo}}</small>
                 <h3 class="p-0 m-0">{{$proyecto->nombre_grupo}}</h3>
               </div>
-
             </div>
+
+            <?php $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); ?> <!-- Necesario para tener los meses del año en español -->
 
             <p class="card-title mt-3">Proyecto</p>
             <p>{{$proyecto->nombre_proyecto}}</p>
 
-            <p class="card-title mt-3">Descripción</p>
-            <p>{{$proyecto->descripcion}}</p>
-
             <p class="card-title mt-3">Modalidad</p>
             <p>{{$proyecto->modalidad->nombre}}</p>
+            
+            <p class="card-title mt-3">Duración del proyecto</p>
+            <p>{{$meses[date('m', strtotime($proyecto->fecha_inicio))-1]." ".date('Y', strtotime($proyecto->fecha_inicio))." - ".$meses[date('m', strtotime($proyecto->fecha_fin))-1]." ".date('Y', strtotime($proyecto->fecha_fin))}}</p>
+
+            <p class="card-title mt-3">Integrantes</p>
+            <p>{{count($proyecto->miembros)}}</p>
 
             <p class="card-title mt-3">Asesores</p>
             
@@ -73,14 +79,35 @@
 
       <div class="col-lg-12">
 
-        
-
         <div class="row">
           <div class="card">
             <div class="card-body">
 
-              <h5 class="card-title">Ejecutores del proyecto</h5>
-             
+              <div class="d-flex justify-content-between align-items-center">
+                <h5 class="card-title">Ejecutores del proyecto</h5>
+
+                @if ($proyecto->modalidad->nombre == 'Servicio Social Universitario' && count($proyecto->miembros) < 12 )
+                  <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal-add-student">
+                    <i class=" bi bi-person-plus-fill"></i> Agregar
+                  </button>
+                  @include('responsable.proyectos.modal-add-student')
+                
+                @elseif ($proyecto->modalidad->nombre == 'Extensión Cultural' && count($proyecto->miembros) < 40 )
+                  <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal-add-student">
+                    <i class=" bi bi-person-plus-fill"></i> Agregar
+                  </button>
+                  @include('responsable.proyectos.modal-add-student')
+
+                @elseif ($proyecto->modalidad->nombre == 'Proyección Social')
+                  <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal-add-student">
+                    <i class=" bi bi-person-plus-fill"></i> Agregar
+                  </button>
+                  @include('responsable.proyectos.modal-add-student')
+                    
+                @endif
+
+
+              </div>
 
               <div class="table-responsive">
 
@@ -91,9 +118,14 @@
                       <th scope="col">#</th>
                       <th scope="col">Nombres</th>
                       <th scope="col">Apellidos</th>
-                      <th scope="col">Código de Matrícula</th>
-                      <th scope="col">Ciclo</th>
-                      <th scope="col">Opciones</th>
+                      @if (strtolower($proyecto->modalidad->nombre) == 'proyección social')
+                        <th scope="col">DNI</th>
+                      @else
+                        <th scope="col">Código de Matrícula</th>
+                        <th scope="col">Ciclo</th>
+                      @endif
+                      <th scope="col">Cargo</th>
+                      <th>Opt</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -107,14 +139,21 @@
                         <td>{{$ejecutor->nombres}}</td>
                         <td>{{$ejecutor->apellidos}}</td>
                         <td>{{$ejecutor->codigo_matricula}}</td>
-                        <td>{{$ejecutor->ciclo}}</td>
+                        @if (strtolower($proyecto->modalidad->nombre) != 'proyección social')
+                          <td>{{$ejecutor->ciclo}}</td>
+                        @endif
+                        @if ($ejecutor->cargo_id != null)
+                          <td>{{$ejecutor->cargo->cargo}}</td>
+                        @else
+                          <td></td>                            
+                        @endif
                         <td>
                           <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$ejecutor->id}}">
                             <i class="bi bi-trash"></i>
                           </button>
                         </td>
-                        @include('responsable.proyectos.modal-delete-student')
                       </tr>
+                      @include('responsable.proyectos.modal-delete-student')
                           
                     @endforeach
   
@@ -142,33 +181,6 @@
             <?php //dd($errors) ?>
           @endif
         </div>
-
-
-        <div class="row">
-          <div class="card">
-            <div class="card-body">
-  
-              <form action="{{route('ejecutores.store')}}" method="POST" class="needs-validation">
-                @csrf
-
-                <div class="d-flex justify-content-between align-items-center">
-                  <h5 class="card-title">Agregar integrantes</h5>
-                  <button id="addRow" type="button" class="btn btn-sm btn-primary"><i class=" bi bi-person-plus-fill"></i> Agregar</button>
-                </div>
-
-                <div id="newRow"></div>
-    
-                <div class="col-md-12 text-center" id="btnSUbmit">
-                  <button type="submit" id="submitButton" class="btn btn-primary" hidden >Guardar todo</button>
-                </div>
-              </form>
-
-            </div>
-
-          </div> <!--End Card Integrante -->
-
-        </div>
-
       
       </div>
 
@@ -180,86 +192,3 @@
 
 @endsection
 
-
-@section('js')
-  
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-<script type="text/javascript">
-
-  function toggleButton(){
-      if (ctdForms > 0) {
-        $('#submitButton').attr('hidden', false);
-      } else {
-        $('#submitButton').attr('hidden', true);
-      }
-  }
-
-  var ctdForms = 0;
-
-  //Agregar formulario
-  $("#addRow").click(function () {
-
-    var formEstudiante = `
-      <div class="border border-2 rounded p-1 mb-3  bg-light" id="inputFormRow">
-        <div class="d-flex justify-content-between align-items-end ">
-          <label class="form-label "> <i class="bi bi-person-bounding-box"></i> Datos del ejecutor</label>
-          <button id="removeRow" type="button" class="btn btn-sm btn-danger"><i class="bi bi-x-lg"></i> </button>
-        </div>
-        <hr class="dropdown-divider">
-        <div class="row mb-2">
-          <div class="col-md-6">
-            <div class="input-group has-validation">
-              <input type="text"  class="form-control" name="nombres[]" placeholder="Nombres" required>
-              <div class="invalid-feedback">
-                Por favor ingrese el nombre.
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="input-group has-validation">
-              <input type="text"  class="form-control" name="apellidos[]" placeholder="Apellidos"  required>
-              <div class="invalid-feedback">
-                Por favor ingrese el apellido.
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row mb-2">
-          <div class="col-md-6">
-            <div class="input-group has-validation">
-              <input type="text"  name="codigo_matricula[]" required minlength="10" maxlength="10"  title="POr favor ingrese un código de matrícula válido." placeholder="Código de matrícula"  class="form-control"  aria-describedby="inputGroupPrepend" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">  
-              <div class="invalid-feedback">
-                Por favor ingrese un Código de matrícula válido.
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="input-group has-validation">
-              <input type="hidden" required class="form-control" value="{{$proyecto->id}}" name="proyecto_id[]" pattern="[0-9]"   >
-
-              <input type="input"  class="form-control" name="ciclo[]"  placeholder="Ciclo"  >
-              <div class="invalid-feedback">
-                Por favor ingrese el ciclo del ejecutor.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-
-    $('#newRow').append(formEstudiante);
-    ctdForms++;
-    toggleButton()
-  });
-  
-  // borrar formulario
-  $(document).on('click', '#removeRow', function () {
-    $(this).closest('#inputFormRow').remove();
-    ctdForms--;
-    toggleButton()
-  });
-
-</script>
-
-@endsection

@@ -23,38 +23,27 @@ class EjecutorController extends Controller
 
 
     public function store(EjecutorStoreRequest $request){
-        $request_data = $request->only('nombres', 'apellidos', 'codigo_matricula', 'ciclo', 'proyecto_id');
+        //return $request;
+        $user_added = $this->createUser( $request->nombres." ".$request->apellidos,  $request->codigo_matricula,  $request->codigo_matricula, 'Ejecutor' );
 
-        $data_traspuesta = array();
-        if ($request_data) {
-            foreach ($request_data as $row_key => $row) {
-                foreach ($row as $column_key => $element) {
-                    $data_traspuesta[$column_key][$row_key] = $element;
-                    }
-                }
-        }
-
-        $proyecto_id = $data_traspuesta[0]['proyecto_id'];
-
-        foreach ($data_traspuesta as $item) {
-            $user_added = $this->createUser( $item['nombres']." ".$item['apellidos'], $item['codigo_matricula'], $item['codigo_matricula'], 'Estudiante' );
-
-            $ejecutor = new Ejecutor();
-            $ejecutor->nombres = $item['nombres'];
-            $ejecutor->apellidos = $item['apellidos'];
-            $ejecutor->codigo_matricula = $item['codigo_matricula'];
-            $ejecutor->ciclo = $item['ciclo'];
-            $ejecutor->user_id = $user_added;
-            $ejecutor->proyecto_id = $item['proyecto_id'];
-            $ejecutor->save();
-        }
+        $ejecutor = new Ejecutor();
+        $ejecutor->nombres = $request->nombres;
+        $ejecutor->apellidos = $request->apellidos;
+        $ejecutor->codigo_matricula = $request->codigo_matricula;
+        $ejecutor->ciclo = $request->ciclo;
+        $ejecutor->user_id = $user_added;
+        $ejecutor->proyecto_id = $request->proyecto_id;
+        $ejecutor->cargo_id = $request->cargo_id;
+        $ejecutor->save();
 
         return back()->with('success', 'Integrantes agregados correctamente');
-  
     }
 
 
-    public function destroy(Ejecutor $ejecutor){
+    public function destroy(Request $request){
+        
+        $ejecutor = Ejecutor::findOrFail($request->ejecutor_id);
+
         $this->deleteUser($ejecutor->user_id);
         $ejecutor->delete();
 

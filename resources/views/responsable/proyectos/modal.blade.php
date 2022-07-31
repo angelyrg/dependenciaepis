@@ -8,11 +8,13 @@
       </div>
       <div class="modal-body">
         <p>¿Está seguro si desea eliminar el proyecto <b>{{$proyecto->codigo}}</b> ?</p>
+        {{-- {{dd($proyecto)}} --}}
       </div>
       <div class="modal-footer">
         <form method="POST" action="{{route('proyectos.destroy', $proyecto->id)}}">
           @csrf
           @method('delete')
+
           
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
           <button type="submit" class="btn btn-danger"> Eliminar</button>

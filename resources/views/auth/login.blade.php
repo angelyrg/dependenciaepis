@@ -99,7 +99,7 @@
 
                     
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Inciar sesión</button>
+                      <button class="btn btn-primary w-100" type="submit">Iniciar sesión</button>
                     </div>
                   </form> <!-- End Login Form -->
 

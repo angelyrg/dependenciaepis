@@ -200,7 +200,7 @@
             </li>
             <li>
               <a href="{{route('ejecutores.index')}}">
-                <i class="bi bi-circle"></i><span>Estudiantes</span>
+                <i class="bi bi-circle"></i><span>Ejecutores</span>
               </a>
             </li>
           </ul>
@@ -248,6 +248,13 @@
             <span>Modalidades</span>
           </a>
         </li><!-- End Modalidades Page Nav -->
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{route('cargos.index')}}">
+            <i class="bi bi-gear"></i>
+            <span>Cargos</span>
+          </a>
+        </li><!-- End Cargos Page Nav -->
 
         <li class="nav-heading">COMPONENTES</li>
 
@@ -297,7 +304,7 @@
         </li><!-- End Reglamento Nav -->
 
 
-      @elseif (Auth::user()->rol == "Estudiante")
+      @elseif (Auth::user()->rol == "Ejecutor")
 
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">

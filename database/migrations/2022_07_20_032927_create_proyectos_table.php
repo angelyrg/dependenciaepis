@@ -19,9 +19,13 @@ class CreateProyectosTable extends Migration
             $table->string('modalidad_grupo', 20); //Monovalente, Polivalente, Inter facultativo
             $table->string('nombre_proyecto');
             $table->unsignedBigInteger("modalidad_id")->nullable();
-            $table->text('descripcion');
+
+            //$table->text('descripcion');
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
+
             $table->string('estado', 20)->default('Inicio'); //Inicio, Parcial, Completado
-            $table->integer('ctd_max_ejecutores')->default(0);
+            //$table->integer('ctd_max_ejecutores')->default(0);
             
             $table->foreign('modalidad_id')->references('id')->on('modalidads')->cascadeOnUpdate()->nullOnDelete();;
             

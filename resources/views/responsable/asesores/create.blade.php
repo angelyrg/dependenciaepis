@@ -19,17 +19,17 @@
 
 <section class="section">
   <div class="row">
-    <div class="col-lg-6 offset-lg-3">
+    <div class="col-lg-6 offset-lg-3 ">
 
       <div class="card">
-        <div class="card-body">
+        <div class="card-body ">
           <h5 class="card-title">Registrar nuevo asesor</h5>
+          <hr class="dropdown-divider">
 
           <!-- Custom Styled Validation -->
-          <form action="{{route('asesors.store')}}" method="POST" class="row g-3 needs-validation" novalidate>
+          <form action="{{route('asesors.store')}}" method="POST" class="row g-3 needs-validation px-5" novalidate>
             @csrf
 
-            <hr class="dropdown-divider">
 
             <div class="row">
               <div class="col-lg-12">
@@ -47,7 +47,7 @@
             </div> <!--End Mensajes de error-->
           
 
-            <div class="col-md-6">
+            <div class="col-md-12">
               <label for="validationCustom01" class="form-label">Nombres</label>
               <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person-bounding-box"></i></span>
@@ -58,7 +58,7 @@
               </div>
             </div> <!--End Input Nombre-->
 
-            <div class="col-md-6">
+            <div class="col-md-12">
               <label for="validationCustom02" class="form-label">Apellidos</label>
               <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person-lines-fill"></i></span>
@@ -69,7 +69,7 @@
               </div>
             </div> <!--End Input Apellido-->
 
-            <div class="col-md-6">
+            <div class="col-md-12">
               <label for="validationCustom03" class="form-label">DNI</label>
               <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-credit-card-2-front-fill"></i></span>

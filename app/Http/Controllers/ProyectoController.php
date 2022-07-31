@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProyectoRequest;
 use App\Models\Asesor;
+use App\Models\Cargo;
 use App\Models\Ejecutor;
 use App\Models\Estudiante;
 use App\Models\Modalidad;
@@ -40,22 +41,38 @@ class ProyectoController extends Controller
 
 
     public function store(ProyectoRequest $request){
-        $proyecto = Proyecto::create($request->all());
+        //return date("Y-m-t", strtotime($request->fecha_fin));
+        $proyecto = new Proyecto();
+        $proyecto->nombre_grupo = $request->nombre_grupo;
+        $proyecto->modalidad_grupo = $request->modalidad_grupo;
+        $proyecto->nombre_proyecto = $request->nombre_proyecto;
+        $proyecto->fecha_inicio = $request->fecha_inicio."-1";
+        $proyecto->fecha_fin = date("Y-m-t", strtotime($request->fecha_fin));
+        $proyecto->modalidad_id = $request->modalidad_id;
+        $proyecto->save();
 
-        $proyecto->asesores()->attach([$request->asesor_id, $request->coasesor_id]);        
-        $this->addAsesor([$request->asesor_id, $request->coasesor_id]);
+
+        if ($request->coasesor_id == null){
+            $proyecto->asesores()->attach([$request->asesor_id]);   
+            $this->addAsesor([$request->asesor_id]);
+        }else{
+            $proyecto->asesores()->attach([$request->asesor_id, $request->coasesor_id]);   
+            $this->addAsesor([$request->asesor_id, $request->coasesor_id]);
+        }
 
         return redirect()->route('proyectos.show', $proyecto->id);
+
     }
 
     public function show(Proyecto $proyecto){
         $ejecutores = Ejecutor::where('proyecto_id', $proyecto->id)->get();
-        return view('responsable.proyectos.show', compact('proyecto', 'ejecutores'));
+        $cargos = Cargo::all();
+        
+        return view('responsable.proyectos.show', compact('proyecto', 'ejecutores', 'cargos'));
     }
 
 
-    public function edit(Proyecto $proyecto)
-    {
+    public function edit(Proyecto $proyecto){
         $modalidades = Modalidad::all();
         $asesores_disponibles = Asesor::select('id', 'nombres', 'apellidos')->where('ctd_asesorados', '<', 2)->get();
 
@@ -63,10 +80,11 @@ class ProyectoController extends Controller
     }
 
     public function update(ProyectoRequest $request, Proyecto $proyecto){
-        $proyecto->codigo = $request->codigo;
         $proyecto->nombre_grupo = $request->nombre_grupo;
+        $proyecto->modalidad_grupo = $request->modalidad_grupo;
         $proyecto->nombre_proyecto = $request->nombre_proyecto;
-        $proyecto->descripcion = $request->descripcion;
+        $proyecto->fecha_inicio = $request->fecha_inicio."-1";
+        $proyecto->fecha_fin = date("Y-m-t", strtotime($request->fecha_fin));
         $proyecto->modalidad_id = $request->modalidad_id;
         $proyecto->save();
 
@@ -74,7 +92,11 @@ class ProyectoController extends Controller
             $this->deleteAsesor($asesor->id);
         }
         $this->addAsesor([$request->asesor_id, $request->coasesor_id]);
-        $proyecto->asesores()->sync([$request->asesor_id, $request->coasesor_id]);
+        if ($request->coasesor_id == null){
+            $proyecto->asesores()->sync([$request->asesor_id]);
+        }else{
+            $proyecto->asesores()->sync([$request->asesor_id, $request->coasesor_id]);
+        }
 
         return redirect()->route('proyectos.index')->with('success', 'Proyecto '.$request->codigo.' actualizado correctamente.');
 

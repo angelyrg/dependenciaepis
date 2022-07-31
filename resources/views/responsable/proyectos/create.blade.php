@@ -19,7 +19,7 @@
 <section class="section">
 
   <div class="row">
-    <div class="col-lg-10 offset-lg-1">
+    <div class="col-lg-8 offset-lg-2">
       @if ($errors->any())
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
           <ul>
@@ -34,7 +34,7 @@
   </div> <!--End Mensajes de error-->
 
   <div class="row">
-    <div class="col-lg-10 offset-lg-1">
+    <div class="col-lg-8 offset-lg-2">
 
       <form action="{{route('proyectos.store')}}" method="POST" class="row g-3 needs-validation" novalidate>
         @csrf      
@@ -48,7 +48,7 @@
               <div class="row mb-3">
 
                 <div class="col-md-8 ">
-                  <label for="validationCustom03" class="form-label">Nombre del grupo</label>
+                  <label for="validationCustom03" class="form-label">Nombre del Grupo</label>
                   <div class="input-group has-validation">
                     <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-people-fill"></i></span>
                     <input type="text" name="nombre_grupo"  value="{{old('nombre_grupo')}}" required class="form-control" required aria-describedby="inputGroupPrepend" >  
@@ -122,8 +122,34 @@
               </div>
 
 
+              <div class="row mb-3">
+
+                <div class="col-md-6 mb-3">
+                  <label for="validationCustom01" class="form-label">Fecha de inicio</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-layout-text-window-reverse"></i></span>
+                    <input type="month" class="form-control" name="fecha_inicio"  value="{{old('fecha_inicio')}}" min="<?=date('Y-m')?>" id="validationCustom01" required>
+                    <div class="invalid-feedback">
+                      Por favor ingrese la fecha de inicio.
+                    </div>
+                  </div>
+                </div> <!--End Input Fecha inicio -->
+
+                <div class="col-md-6 mb-3">
+                  <label for="validationCustom01" class="form-label">Fecha de finalización</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-layout-text-window-reverse"></i></span>
+                    <input type="month" class="form-control" name="fecha_fin" value="{{old('fecha_fin')}}"  min="<?=date('Y-m')?>" id="validationCustom01" required>
+                    <div class="invalid-feedback">
+                      Por favor ingrese la fecha de finalización.
+                    </div>
+                  </div>
+                </div> <!--End Input Fecha fin -->
+                
+              </div>
+
   
-              <div class="col-md-12 mb-3">
+              {{-- <div class="col-md-12 mb-3">
                 <label for="validationCustom02" class="form-label">Descripción</label>
                 <div class="input-group has-validation">
                   <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-list-columns-reverse"></i></span>
@@ -132,7 +158,9 @@
                     Por favor ingrese la descripción del proyecto.
                   </div>
                 </div>
-              </div> <!--End Input Descripcion-->
+              </div>  --}}
+              <!--End Input Descripcion-->
+
 
               <div class="row">
                 <div class="col-md-6">
@@ -162,7 +190,7 @@
                   <div class="input-group has-validation">
                     <span class="input-group-text" id="CoAsesor"><i class="bi bi-toggle-on"></i></span>
                     <select class="form-select" name="coasesor_id" id="CoAsesor" >
-                      <option selected disabled value="">Seleccione Co Asesor...</option>   
+                      <option selected value="">Seleccione Co Asesor...</option>   
                       
                       @foreach ($asesores_disponibles as $asesor_disponible)
                         @if (old('coasesor_id') == $asesor_disponible->id )
