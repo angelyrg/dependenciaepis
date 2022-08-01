@@ -20,9 +20,9 @@ class DatabaseSeeder extends Seeder
          //\App\Models\User::factory(10)->create();
 
         User::create([
-            'name' => "Gilmer Matos",
-            'username' => "20021234",
-            'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+            'name' => "Gilmer Matos Vila",
+            'username' => "admin",
+            'password' => '$2y$10$79lFQuJfbngvyHBnNGszVeS1TDJq/RqgM2Y0wFvax/i113v2aBsAu', // admin
             'rol' => 'Responsable' ]);
 
 

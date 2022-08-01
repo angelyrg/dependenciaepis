@@ -25,7 +25,7 @@ class ReglamentoStoreRequest extends FormRequest
             'archivo' => 'required'];
 
         if ( $this->hasFile('archivo') ){
-            $rules['archivo'] = ['mimes:pdf,docx,doc'];
+            $rules['archivo'] = ['mimes:pdf'];
         }
 
         return $rules;

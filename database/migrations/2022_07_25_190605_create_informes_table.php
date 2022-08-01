@@ -16,11 +16,12 @@ class CreateInformesTable extends Migration
         Schema::create('informes', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_informe');
-            $table->text('descripcion');
+            //$table->text('descripcion');
             $table->string('archivo');
-            $table->string('estado', 20); //Pendiente, Rechazado, Observado, Aceptado, Publicado
-            $table->string('estado_coasesor', 20)->nullable(); //Pendiente, Rechazado, Observado, Aceptado, Publicado
-            $table->string('estado_responsable', 20)->nullable(); //Pendiente, Rechazado, Observado, Aceptado, Publicado
+            $table->string('estado_asesor', 20)->nullable(); //Pendiente, Rechazado, Observado, Aceptado
+            $table->string('estado_coasesor', 20)->nullable(); //Pendiente, Rechazado, Observado, Aceptado
+            
+            $table->string('estado', 20)->nullable(); //Pendiente, Devuelto, Publicado
 
             $table->string('tipo', 15); //Informe Parcial, Informe Final
             

@@ -13,6 +13,8 @@
   </nav>
 </div><!-- End Page Title -->
 
+
+
 <section class="section">
   <div class="row">
     <div class="col-lg-12 ">
@@ -29,25 +31,23 @@
                   <th scope="col">Grupo</th>
                   <th scope="col">Proyecto</th>
                   <th scope="col">Modalidad</th>
-                  <th scope="col">Informe</th>                  
+                  <th scope="col">Tipo</th>                  
+                  <th scope="col">Estado</th>                  
+                  <th scope="col">Opción</th>                  
                 </tr>
               </thead>
               <tbody>
-                @foreach ($asesor->asesorados as $asesorado) 
+                @foreach ($informes as $informe) 
                 <tr>
-                  <td>{{$asesorado->id}}</td>
+                  <td>{{$informe->proyecto->id}}</td>
+                  <td>{{$informe->proyecto->nombre_grupo}}</td>
+                  <td>{{$informe->proyecto->nombre_proyecto}}</td>
+                  <td>{{$informe->proyecto->modalidad->nombre}}</td>
+                  <td>{{$informe->tipo}}</td>
+                  <td>{{$informe->estado_responsable}}</td>
                   <td>
-                    <a href="{{route('asesorados.proyecto', $asesorado->id)}}">{{$asesorado->nombre_grupo}}</a>
+                    <a href="{{route('responsable.informes.show', $informe->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-check"></i> Revisar</a>
                   </td>
-                  <td><a href="{{route('asesorados.proyecto', $asesorado->id)}}">{{$asesorado->nombre_proyecto}}</a></td>
-                  <td>{{$asesorado->modalidad->nombre}}</td>
-                  <td>{{$asesorado->fecha_inicio}}</td>                  
-                  <td>{{$asesorado->fecha_fin}}</td>                  
-                   
-                  <td>
-                    <span class="badge bg-@if($asesorado->estado=="Inicio"){{'secondary'}}@elseif($asesorado->estado=="Parial"){{'warning'}}@elseif($asesorado->estado=="Completado"){{'success'}}@endif">
-                      {{$asesorado->estado}}
-                    </span></td>                 
                 </tr>
                 @endforeach
 
