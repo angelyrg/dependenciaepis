@@ -12,4 +12,9 @@ class Informe extends Model
     public function proyecto(){
         return $this->belongsTo(Proyecto::class);
     }
+
+    public function comentarios(){
+        return $this->hasMany(Comentario::class);
+    }
+
 }

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\InformeStoreRequest;
+use App\Models\Comentario;
 use App\Models\Ejecutor;
 use App\Models\Informe;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
@@ -39,10 +42,17 @@ class InformeController extends Controller
     public function store(InformeStoreRequest $request){
         $ejecutor = Ejecutor::where('user_id', Auth::user()->id )->first();
 
+        $informes_parciales = count(Informe::where('proyecto_id', $ejecutor->proyecto->id)->where('tipo', 'Informe Parcial')->get());
+        $informes_finales= count(Informe::where('proyecto_id', $ejecutor->proyecto->id)->where('tipo', 'Informe Final')->get());
+
+        
+
         if($ejecutor->proyecto->estado == "Inicio"){
             $tipo_informe = "Informe Parcial";
+            $nombre_informe = "Entregable parcial ".($informes_parciales+1);
         }elseif($ejecutor->proyecto->estado == "Parcial"){
             $tipo_informe = "Informe final";
+            $nombre_informe = "Entregable final ".($informes_finales+1);
         }else{
             return "Proyecto completado";
         }
@@ -52,8 +62,8 @@ class InformeController extends Controller
         $file->move(public_path()."/files/informes/", $nombre_archivo);
 
         $informe = new Informe();
-        $informe->nombre_informe = $request->nombre_informe;
-        $informe->descripcion = $request->descripcion;
+        $informe->nombre_informe = $nombre_informe;
+        $informe->descripcion = ""; //Borrar esae campo
         $informe->archivo = $nombre_archivo;
         $informe->estado = 'Pendiente';
         $informe->tipo = $tipo_informe;
@@ -61,12 +71,25 @@ class InformeController extends Controller
         $informe->save();
 
         return redirect()->route('informes.index')->with('success', '¡Informe subido con éxito!');
-        
     }
 
 
     public function show(Informe $informe){
-        return view('ejecutor.informes.show', compact('informe'));
+        $ejecutor = Ejecutor::where('user_id', Auth::user()->id)->first();
+
+        $comentarios = User::join("comentarios","comentarios.user_id", "=", "users.id")
+        ->where('comentarios.informe_id', '=', $informe->id )
+        ->get();
+
+        return view('ejecutor.informes.show', compact('informe', 'ejecutor', 'comentarios'));
+    }
+
+    public function update(Informe $informe){
+
+        $informe->estado_responsable = "Pendiente";
+        $informe->save();
+
+        return redirect()->route('informes.index')->with('succes', 'Informe enviado');
     }
 
 

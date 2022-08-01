@@ -34,24 +34,29 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="info-box card">
-            <div class="row ">
+            <div class="row d-flex align-items-start">
               <div class="col-2 ">
                 <i class="bi bi-chat-right-quote-fill"></i>
               </div>
-              <div class="col-10 ">
+              <div class="col-10 mt-0">
+                <small>Grupo {{$ejecutor->proyecto->modalidad_grupo}}</small>
                 <h3 class="p-0 m-0">{{$ejecutor->proyecto->nombre_grupo}}</h3>
               </div>
-
             </div>
+
+            <?php $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); ?> <!-- Necesario para tener los meses del año en español -->
 
             <p class="card-title mt-3">Proyecto</p>
             <p>{{$ejecutor->proyecto->nombre_proyecto}}</p>
 
-            <p class="card-title mt-3">Descripción</p>
-            <p>{{ $ejecutor->proyecto->descripcion}}</p>
-
             <p class="card-title mt-3">Modalidad</p>
             <p>{{$ejecutor->proyecto->modalidad->nombre}}</p>
+            
+            <p class="card-title mt-3">Duración del proyecto</p>
+            <p>{{$meses[date('m', strtotime($ejecutor->proyecto->fecha_inicio))-1]." ".date('Y', strtotime($ejecutor->proyecto->fecha_inicio))." - ".$meses[date('m', strtotime($ejecutor->proyecto->fecha_fin))-1]." ".date('Y', strtotime($ejecutor->proyecto->fecha_fin))}}</p>
+
+            <p class="card-title mt-3">Integrantes</p>
+            <p>{{count($ejecutor->proyecto->miembros)}}</p>
 
             <p class="card-title mt-3">Asesores</p>
             
@@ -86,6 +91,7 @@
                     <th scope="col">Nombres</th>
                     <th scope="col">Apellidos</th>
                     <th scope="col">Código de Matrícula</th>
+                    <th scope="col">Cargo</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -99,7 +105,7 @@
                       <td>{{$ejecutor->nombres}}</td>
                       <td>{{$ejecutor->apellidos}}</td>
                       <td>{{$ejecutor->codigo_matricula}}</td>
-                      
+                      <td>{{$ejecutor->cargo->cargo}}</td>                      
                     </tr>
                         
                   @endforeach

@@ -95,7 +95,7 @@
                 <div class="input-group has-validation">
                   <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person-badge"></i></span>
                   <select name="cargo_id" id="cargo_id" class="form-select" required>
-                    @foreach ($cargos as $cargo)
+                    @foreach ($cargos->reverse() as $cargo)
                       <option value="{{$cargo->id}}">{{$cargo->cargo}}</option>                        
                     @endforeach
                   </select>
@@ -106,7 +106,7 @@
             </div>
           @endif
             
-            <input type="hidden" required class="form-control" value="{{$proyecto->id}}" name="proyecto_id" pattern="[0-9]"   >
+          <input type="hidden" required class="form-control" value="{{$proyecto->id}}" name="proyecto_id" pattern="[0-9]"   >
 
           <div class="card-footer">
             <div class="col-12 mt-3  d-flex justify-content-center">

@@ -3,8 +3,11 @@
 use App\Http\Controllers\AsesorController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CargoController;
+use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\EjecutorController;
+use App\Http\Controllers\InformeAseController;
 use App\Http\Controllers\InformeController;
+use App\Http\Controllers\InformeRespController;
 use App\Http\Controllers\ModalidadController;
 use App\Http\Controllers\ProyectoAseController;
 use App\Http\Controllers\ProyectoController;
@@ -27,16 +30,23 @@ Route::resource('asesors', AsesorController::class)->names('asesors')->middlewar
 
 Route::resource('modalidads', ModalidadController::class)->names('modalidads')->middleware('auth.responsable');
 Route::resource('proyectos', ProyectoController::class)->names('proyectos')->middleware('auth.responsable');
-//Route::resource('estudiantes', EstudianteController::class)->names('estudiantes')->middleware('auth.responsable');
 Route::resource('ejecutores', EjecutorController::class)->names('ejecutores')->middleware('auth.responsable');
 Route::resource('reglamentos', ReglamentoController::class)->names('reglamentos')->middleware('auth.responsable');
 Route::resource('cargos', CargoController::class)->names('cargos')->middleware('auth.responsable');
+Route::resource('responsable/informes', InformeRespController::class)->names('responsable.informes')->middleware('auth.responsable');
+
 
 Route::resource('asesor/proyectos', ProyectoAseController::class)->names('aproyectos')->middleware('auth.asesor');
 Route::get('asesor/reglamentos', [ReglamentoAseController::class, 'index'])->name('areglamentos')->middleware('auth.asesor');
+Route::get('asesorados', [InformeAseController::class, 'index'])->name('asesorados')->middleware('auth.asesor');
+Route::get('asesorados/{proyecto}', [InformeAseController::class, 'show'])->name('asesorados.proyecto')->middleware('auth.asesor');
+Route::get('asesorados/{informe}/comments', [InformeAseController::class, 'comments'])->name('asesorado.comments')->middleware('auth.asesor');
+Route::put('asesorados/{informe}', [InformeAseController::class, 'update'])->name('asesorado.informe_update')->middleware('auth.asesor');
 
 
 Route::get('proyecto', [ProyectoEstController::class, 'index'])->name('proyecto')->middleware('auth.estudiante');
 Route::get('asesor', [ProyectoEstController::class, 'asesor'])->name('asesor')->middleware('auth.estudiante');
 Route::get('estudiante/reglamentos', [ReglamentoEstController::class, 'index'])->name('sreglamentos')->middleware('auth.estudiante');
 Route::resource('informes', InformeController::class)->names('informes')->middleware('auth.estudiante');
+
+Route::resource('comentarios', ComentarioController::class)->names('comentarios')->middleware('auth');

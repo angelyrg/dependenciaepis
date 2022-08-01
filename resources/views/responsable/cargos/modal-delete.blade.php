@@ -8,6 +8,9 @@
       </div>
       <div class="modal-body">
         <p>¿Está seguro si desea eliminar la cargo <b>{{$cargo->cargo}}</b> ?</p>
+        <p>
+          <small class="fst-italic text-secondary fw-light">Recomendación: No borrar este cargo</small>
+        </p>
       </div>
       <div class="modal-footer">
         <form method="POST" action="{{route('cargos.destroy', $cargo->id)}}">

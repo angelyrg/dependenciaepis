@@ -34,24 +34,29 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="info-box card">
-            <div class="row ">
+            <div class="row d-flex align-items-start">
               <div class="col-2 ">
                 <i class="bi bi-chat-right-quote-fill"></i>
               </div>
-              <div class="col-10 ">
+              <div class="col-10 mt-0">
+                <small>Grupo {{$proyecto->modalidad_grupo}}</small>
                 <h3 class="p-0 m-0">{{$proyecto->nombre_grupo}}</h3>
               </div>
-
             </div>
+
+            <?php $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); ?> <!-- Necesario para tener los meses del año en español -->
 
             <p class="card-title mt-3">Proyecto</p>
             <p>{{$proyecto->nombre_proyecto}}</p>
 
-            <p class="card-title mt-3">Descripción</p>
-            <p>{{$proyecto->descripcion}}</p>
-
             <p class="card-title mt-3">Modalidad</p>
             <p>{{$proyecto->modalidad->nombre}}</p>
+            
+            <p class="card-title mt-3">Duración del proyecto</p>
+            <p>{{$meses[date('m', strtotime($proyecto->fecha_inicio))-1]." ".date('Y', strtotime($proyecto->fecha_inicio))." - ".$meses[date('m', strtotime($proyecto->fecha_fin))-1]." ".date('Y', strtotime($proyecto->fecha_fin))}}</p>
+
+            <p class="card-title mt-3">Integrantes</p>
+            <p>{{count($proyecto->miembros)}}</p>
 
             <p class="card-title mt-3">Asesores</p>
             
@@ -59,7 +64,6 @@
               @foreach ($proyecto->asesores as $asesor)
                 <li><p>{{$asesor->nombres." ".$asesor->apellidos}}</p></li>
               @endforeach
-             
             </ul>
             
 

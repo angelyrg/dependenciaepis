@@ -35,7 +35,6 @@
                     <div>
                       <span class="badge bg-primary ">{{$proyecto->modalidad->nombre}}</span>
                     </div>
-                   
                   </div>
                   <span class="badge bg-primary rounded-pill">{{count($proyecto->miembros)}} <i class="bi bi-people-fill"></i></span>
                 </li>

@@ -66,8 +66,4 @@
 </section>
 
 
-
-
-
-
 @endsection

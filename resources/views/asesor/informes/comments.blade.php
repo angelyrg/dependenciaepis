@@ -19,7 +19,7 @@
       </nav>
     </div>
     <div class="col-12 col-md-3 d-flex align-items-end justify-content-end">
-      <a href="{{route('informes.index')}}" class="btn btn-outline-primary "><i class="bi bi-arrow-left-circle-fill"></i>  Todos los informes</a>
+      <a href="{{route('asesorados.proyecto', $informe->proyecto->id)}}" class="btn btn-outline-primary "><i class="bi bi-arrow-left-circle-fill"></i>  Todos los informes</a>
     </div>
   </div>
 
@@ -69,41 +69,64 @@
                   Ver/Descargar informe
                 </a>
               </p>
-              <hr>
 
               @if ($informe->estado_responsable == null)
-                <div class=" d-flex justify-content-between mt-4">
-                  
-                  @if ($informe->estado == "Aceptado" && $ejecutor->cargo->cargo == "Presidente(a)" )
-                    <form action="{{route('informes.update', $informe->id)}}" method="post">
-                      @csrf
-                      @method('PUT')
-                      <button type="submit" class="btn btn-sm btn-outline-success">
-                        <i class="bi bi-check"></i> Enviar al responsable
+                <div class="row">
+                  <form action="{{route('asesorado.informe_update', $informe->id)}}" method="post"  class="row g-3 needs-validation mt-2 " >
+                    @csrf
+                    @method('PUT')
+
+                    <p for="validationCustom04" class="form-label">Revisar informe como: </p>
+                    <div class="col-md-8 mt-0">
+                      <div class="input-group has-validation">
+                        <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-toggle-on"></i></span>
+                        <select class="form-select" name="estado" id="validationCustom04" required>
+                          @if ($informe->estado == "Rechazado")
+                          <option selected>Rechazado</option>
+                            <option>Observado</option>
+                            <option>Aceptado</option>
+                          @elseif ($informe->estado == "Observado")
+                            <option >Rechazado</option>
+                            <option selected>Observado</option>
+                            <option>Aceptado</option>
+                          @elseif ($informe->estado == "Aceptado")
+                            <option>Rechazado</option>
+                            <option>Observado</option>
+                            <option selected>Aceptado</option>
+                          @else
+                            <option selected disabled value="">Seleccione...</option>   
+                            <option>Rechazado</option>
+                            <option>Observado</option>
+                            <option>Aceptado</option>
+                          @endif
+
+                        </select>
+                        <div class="invalid-feedback">
+                          Por favor seleccione una opción.
+                        </div>
+                      </div>
+                    </div>
+      
+                    <div class="col-4 mt-0">  
+                      <button type="submit" class="btn  btn-primary">
+                        <i class="bi bi-check-square"></i> Guardar
                       </button>
-
-                    </form>
-                  @else
-                    <div></div>
-                  @endif
-
-
-                  @if ($ejecutor->cargo->cargo == "Presidente(a)")
-
-                    <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-informe">
-                      <i class="bi bi-trash"></i> Eliminar informe
-                    </button> 
-                    @include('ejecutor.informes.modal')
-                  @endif
+                    </div>
+                    
+                  </form>
                 </div>
+                  
               @else
-                <p class="text-dark"> Revisión del Responsable de la dependencia: 
-                  <span class="badge bg-@if($informe->estado_responsable=="Pendiente"){{'secondary'}}@elseif($informe->estado_responsable=="Rechazado"){{'danger'}}@elseif($informe->estado_responsable=="Observado"){{'warning'}}@elseif($informe->estado_responsable=="Aceptado"){{'primary'}}@elseif($informe->estado_responsable=="Publicado"){{'success'}}@endif">
-                    {{$informe->estado_responsable}}
-                  </span>
-                </p>
+              <hr>
+              <p class="text-dark"> Revisión del Responsable de la dependencia: 
+                <span class="badge bg-@if($informe->estado_responsable=="Pendiente"){{'secondary'}}@elseif($informe->estado_responsable=="Rechazado"){{'danger'}}@elseif($informe->estado_responsable=="Observado"){{'warning'}}@elseif($informe->estado_responsable=="Aceptado"){{'primary'}}@elseif($informe->estado_responsable=="Publicado"){{'success'}}@endif">
+                  {{$informe->estado_responsable}}
+                </span>
+              </p>
                   
               @endif
+
+
 
 
 
@@ -119,11 +142,11 @@
 
     <div class="col-lg-7">
       <div class="row">
-        <!-- Comentarios -->
+        <!-- News & Updates Traffic -->
         <div class="card">
 
           <div class="card-body pb-0">
-            <h5 class="card-title">Revisiones de los asesores <span>| Comentarios</span></h5>
+            <h5 class="card-title">Revisiones <span>| Comentarios</span></h5>
 
             <div class="news">
 
@@ -135,9 +158,9 @@
                   <div class="col-10 ">
                     <b >{{$comentario->name}} <span class="badge bg-success ">{{$comentario->rol}}</span> </b> <span class="text-muted">| {{$comentario->created_at->diffForHumans()}}</span> <br>
                     <small class="py-5">{{$comentario->comentario}}</small><br>
-                    @if ($comentario->archivo != null)                        
+                    @if ($comentario->archivo != null)
                       <div class="text-end ">
-                        <a href="{{asset('files/informes/'.$comentario->archivo)}}" class="btn btn-sm btn-outline-success "><i class="bi bi-folder-symlink "></i> Archivo adjunto</a>
+                        <a href="{{asset('files/informes/'.$comentario->archivo)}}" target="_blank" class="btn btn-sm btn-outline-success "><i class="bi bi-folder-symlink "></i> Archivo adjunto</a>
                       </div>
                     @endif
                   </div>
@@ -168,7 +191,7 @@
             </div> <!--End Mensajes de error-->
           
             
-            <form action="{{route('comentarios.store')}}" method="post"  class="row g-3 needs-validation mt-2 " novalidate>
+            <form action="{{route('comentarios.store')}}" method="post"  class="row g-3 needs-validation mt-2 " novalidate enctype="multipart/form-data">
               @csrf
 
               <div class="row">                
@@ -204,7 +227,7 @@
             </form>
 
           </div>
-        </div><!-- End Comentarios -->
+        </div><!-- End News & Updates -->
 
       </div>
     </div>
