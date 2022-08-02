@@ -112,6 +112,11 @@ class ProyectoController extends Controller
         foreach ($proyecto->asesores as $asesor) {
             $this->deleteAsesor($asesor->id);
         }
+        foreach ($proyecto->informes as $informe) {
+            $this->deleteInforme($informe->id);
+        }
+
+        
 
         $proyecto->delete();
         return redirect()->route('proyectos.index')->with('success', 'Proyecto eliminado correctamente.'); 

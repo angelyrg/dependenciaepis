@@ -1,5 +1,3 @@
-
-
 @extends('layouts.niceadmin')
 
 @section('content')
@@ -19,7 +17,7 @@
       </nav>
     </div>
     <div class="col-12 col-md-3 d-flex align-items-end justify-content-end">
-      <a href="{{route('informes.index')}}" class="btn btn-outline-primary "><i class="bi bi-arrow-left-circle-fill"></i>  Todos los informes</a>
+      <a href="{{route('informes.index')}}" class="btn btn-outline-primary "><i class="bi bi-arrow-left-circle-fill"></i>  Volver a todos los informes</a>
     </div>
   </div>
 
@@ -58,8 +56,8 @@
               
               <p class="card-title m-0 p-0">Revisión del asesor</p>
               <p>
-                <span class="badge bg-@if($informe->estado=="Pendiente"){{'secondary'}}@elseif($informe->estado=="Rechazado"){{'danger'}}@elseif($informe->estado=="Observado"){{'warning'}}@elseif($informe->estado=="Aceptado"){{'primary'}}@elseif($informe->estado=="Publicado"){{'success'}}@endif">
-                  {{$informe->estado}}
+                <span class="badge bg-@if($informe->estado_asesor=="Pendiente"){{'secondary'}}@elseif($informe->estado_asesor=="Rechazado"){{'danger'}}@elseif($informe->estado_asesor=="Observado"){{'warning'}}@elseif($informe->estado_asesor=="Aceptado"){{'primary'}}@elseif($informe->estado_asesor=="Publicado"){{'success'}}@endif">
+                  <i class="bi bi-@if($informe->estado_asesor=="Pendiente"){{'circle'}}@elseif($informe->estado_asesor=="Rechazado"){{'x-circle'}}@elseif($informe->estado_asesor=="Observado"){{'exclamation-triangle'}}@elseif($informe->estado_asesor=="Aceptado"){{'check-circle'}}@endif"></i> {{$informe->estado_asesor}}</span>
                 </span>
               </p>
 
@@ -71,17 +69,16 @@
               </p>
               <hr>
 
-              @if ($informe->estado_responsable == null)
+              @if ($informe->estado == null)
                 <div class=" d-flex justify-content-between mt-4">
                   
-                  @if ($informe->estado == "Aceptado" && $ejecutor->cargo->cargo == "Presidente(a)" )
+                  @if ($informe->estado_asesor == "Aceptado" && $ejecutor->cargo->cargo == "Presidente(a)" )
                     <form action="{{route('informes.update', $informe->id)}}" method="post">
                       @csrf
                       @method('PUT')
                       <button type="submit" class="btn btn-sm btn-outline-success">
                         <i class="bi bi-check"></i> Enviar al responsable
                       </button>
-
                     </form>
                   @else
                     <div></div>
@@ -97,10 +94,10 @@
                   @endif
                 </div>
               @else
-                <p class="text-dark"> Revisión del Responsable de la dependencia: 
-                  <span class="badge bg-@if($informe->estado_responsable=="Pendiente"){{'secondary'}}@elseif($informe->estado_responsable=="Rechazado"){{'danger'}}@elseif($informe->estado_responsable=="Observado"){{'warning'}}@elseif($informe->estado_responsable=="Aceptado"){{'primary'}}@elseif($informe->estado_responsable=="Publicado"){{'success'}}@endif">
-                    {{$informe->estado_responsable}}
-                  </span>
+                <p>
+                  Revisión del responsable: 
+                  <span class="badge bg-@if($informe->estado=="Pendiente"){{'secondary'}}@elseif($informe->estado=="Devuelto"){{'danger'}}@elseif($informe->estado=="Publicado"){{'success'}}@endif">
+                  <i class="bi bi-@if($informe->estado=="Pendiente"){{'circle'}}@elseif($informe->estado=="Devuelto"){{'x-circle'}}@elseif($informe->estado=="Publicado"){{'file-earmark-check'}}@endif"></i> {{$informe->estado}}</span>
                 </p>
                   
               @endif

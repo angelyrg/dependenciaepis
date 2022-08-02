@@ -37,14 +37,19 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($informes as $informe) 
+                @foreach ($informes->reverse() as $informe) 
                 <tr>
                   <td>{{$informe->proyecto->id}}</td>
                   <td>{{$informe->proyecto->nombre_grupo}}</td>
                   <td>{{$informe->proyecto->nombre_proyecto}}</td>
                   <td>{{$informe->proyecto->modalidad->nombre}}</td>
                   <td>{{$informe->tipo}}</td>
-                  <td>{{$informe->estado_responsable}}</td>
+                  <td>
+                    <span class="badge bg-@if($informe->estado=="Pendiente"){{'secondary'}}@elseif($informe->estado=="Devuelto"){{'danger'}}@elseif($informe->estado=="Publicado"){{'success'}}@endif">
+                      <i class="bi bi-@if($informe->estado=="Pendiente"){{'circle'}}@elseif($informe->estado=="Devuelto"){{'x-circle'}}@elseif($informe->estado=="Publicado"){{'file-earmark-check'}}@endif"></i> 
+                      {{$informe->estado}}
+                    </span>
+                  </td>
                   <td>
                     <a href="{{route('responsable.informes.show', $informe->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-check"></i> Revisar</a>
                   </td>

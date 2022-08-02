@@ -7,125 +7,100 @@
 
 
 <div class="pagetitle">
-  <h1>Entregables</h1>
+  <h1>Informes</h1>
   <nav>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-      <li class="breadcrumb-item active">Lista de entregables</li>
+      <li class="breadcrumb-item active">Detalle del informe</li>
     </ol>
   </nav>
 </div><!-- End Page Title -->
 
 <section class="section dashboard">
-  <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          
-          <div class="d-flex justify-content-between align-items-center">
-            <h5 class="card-title">{{$proyecto->nombre_proyecto }}<span>| Informes</span> </h5>
-          </div>
-          <div class="row border d-flex justify-content-center align-items-center">
-            <div class="col-lg-3">
-                Estado del proyecto: 
-                <span class="badge bg-@if($proyecto->estado=="Inicio"){{'secondary'}}@elseif($proyecto->estado=="Parcial"){{'warning'}}@elseif($proyecto->estado=="Completado"){{'success'}}@endif">
-                  <i class="bi bi-ui-checks"></i> 
-                  {{$proyecto->estado}}
-                </span>
-            </div>
-            <div class="col-lg-9  ">
-              <div class="progress">
-                <div class="progress-bar bg-@if($proyecto->estado=="Inicio"){{'secondary'}}@elseif($proyecto->estado=="Parcial"){{'warning'}}@elseif($proyecto->estado=="Completado"){{'success'}}@endif" role="progressbar" style="width: {{$porc_proyecto}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$porc_proyecto}}%</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
   <div class="row">
 
     <!-- Informe parcial -->
-    <div class="col-lg-6">
+    <div class="col-lg-8 offset-lg-2">
       <!-- Entregables -->
       <div class="card">
         <div class="card-body">
-          <div class="d-flex justify-content-between  align-items-center">
-            <h5 class="card-title">Informe parcial <span>| Historial</span></h5>
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="card-title">{{$informe->proyecto->nombre_proyecto}} </h5>
+            <a href="{{route('responsable.informes.index')}}" class="btn btn-outline-primary"><i class="bi bi-arrow-90deg-left"></i> Volver</a>
           </div>
           <div class="activity">
-            @foreach ($proyecto->informes->reverse() as $informe)
-              @if ($informe->tipo == "Informe Parcial")
-                <div class="activity-item d-flex">
-                  <div class="activite-label">{{$informe->created_at->diffForHumans()}}</div>
-                  <i class='bi bi-circle-fill activity-badge text-secondary align-self-start'></i>
-                  <div class="activity-content">
-                    <b>{{$informe->nombre_informe}}</b>
-                    <br>
-                    {{$informe->descripcion}}
-                    <p>
-                      <small>Revisión del asesor: <span class="badge rounded-pill bg-@if($informe->estado=="Pendiente"){{'secondary'}}@elseif($informe->estado=="Rechazado"){{'danger'}}@elseif($informe->estado=="Observado"){{'warning'}}@elseif($informe->estado=="Aceptado"){{'primary'}}@elseif($informe->estado=="Publicado"){{'success'}}@endif">
-                        <i class="bi bi-@if($informe->estado=="Pendiente"){{'circle'}}@elseif($informe->estado=="Rechazado"){{'x-circle'}}@elseif($informe->estado=="Observado"){{'exclamation-triangle'}}@elseif($informe->estado=="Aceptado"){{'check-circle'}}@elseif($informe->estado=="Publicado"){{'file-earmark-check'}}@endif"></i> {{$informe->estado}}</span>
-                      </small>
-                      <br>
-                    </p>
-                    <p>
-                      <a href="{{asset('files/informes/'.$informe->archivo)}}" target="_blank" class="btn btn-sm btn-outline-success">
-                        <i class="bi bi-box-arrow-up-right"></i>
-                        Ver/Descargar informe
-                      </a>
-                      <a href="{{route('asesorado.comments', $informe->id)}}" class="btn btn-sm btn-outline-dark mt-1"><i class="bi bi-card-checklist"></i> Revisar/Calificar</a>
-                    
-                    </p>
-                    
+            <div class="activity-item d-flex">
+              <div class="activite-label">{{$informe->updated_at->diffForHumans()}}</div>
+              <i class='bi bi-circle-fill activity-badge text-secondary align-self-start'></i>
+              <div class="activity-content">
+                <b >{{$informe->tipo}}</b><br>
+                <br>
+                <p>
+                  <small>Revisión del asesor: <span class="badge bg-@if($informe->estado_asesor=="Pendiente"){{'secondary'}}@elseif($informe->estado_asesor=="Rechazado"){{'danger'}}@elseif($informe->estado_asesor=="Observado"){{'warning'}}@elseif($informe->estado_asesor=="Aceptado"){{'primary'}}@elseif($informe->estado_asesor=="Publicado"){{'success'}}@endif">
+                    <i class="bi bi-@if($informe->estado_asesor=="Pendiente"){{'circle'}}@elseif($informe->estado_asesor=="Rechazado"){{'x-circle'}}@elseif($informe->estado_asesor=="Observado"){{'exclamation-triangle'}}@elseif($informe->estado_asesor=="Aceptado"){{'check-circle'}}@elseif($informe->estado_asesor=="Publicado"){{'file-earmark-check'}}@endif"></i> {{$informe->estado_asesor}}</span>
+                  </small>
+                </p>
+                <p>
+                  <small>Revisión responsable: 
+                    <span class="badge rounded-pill bg-@if($informe->estado=="Pendiente"){{'secondary'}}@elseif($informe->estado=="Devuelto"){{'danger'}}@elseif($informe->estado=="Publicado"){{'success'}}@endif">
+                    <i class="bi bi-@if($informe->estado=="Pendiente"){{'circle'}}@elseif($informe->estado=="Devuelto"){{'x-circle'}}@elseif($informe->estado=="Publicado"){{'file-earmark-check'}}@endif"></i> {{$informe->estado}}</span>
+                  </small>
+                </p>
+                <p>
+                  <a href="{{asset('files/informes/'.$informe->archivo)}}" target="_blank" class="btn btn-sm btn-outline-success">
+                    <i class="bi bi-box-arrow-up-right"></i>  Ver/Descargar informe
+                  </a>                
+                </p>
+
+                @if ($informe->estado != "Publicado")
+                  <div class="row">
+                    <form action="{{route('responsable.informes.update', $informe->id)}}" method="post"  class="row g-3 needs-validation mt-2 " >
+                      @csrf
+                      @method('PUT')
+
+                      <p for="validationCustom04" class="form-label">Revisar informe como: </p>
+                      <div class="col-md-8 mt-0">
+                        <div class="input-group has-validation">
+                          <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-toggle-on"></i></span>
+                          <select class="form-select" name="estado" id="validationCustom04" required>
+                            @if ($informe->estado == "Devuelto")
+                              <option selected>Devuelto</option>
+                              <option>Publicado</option>
+                            @elseif ($informe->estado == "Publicado")
+                              <option >Devuelto</option>
+                              <option selected>Publicado</option>
+                            @else
+                              <option selected disabled value="">Seleccione...</option>   
+                              <option>Devuelto</option>
+                              <option>Publicado</option>
+                            @endif
+                          </select>
+                          <div class="invalid-feedback">
+                            Por favor seleccione una opción.
+                          </div>
+                        </div>
+                      </div>
+        
+                      <div class="col-4 mt-0">  
+                        <button type="submit" class="btn  btn-primary">
+                          <i class="bi bi-check-square"></i> Guardar
+                        </button>
+                      </div>
+                      
+                    </form>
                   </div>
-                </div><!-- End activity item-->
-              @endif
-            @endforeach
+                    
+                @endif
+
+                
+              </div>
+            </div><!-- End activity item-->
+           
           </div>
         </div>
       </div><!-- End Entregables -->
     </div> <!-- End Informe parcial -->
-
-
-
-        <!-- Informe Final -->
-        <div class="col-lg-6">
-          <!-- Entregables -->
-          <div class="card">
-            <div class="card-body">
-              <div class="d-flex justify-content-between  align-items-center">
-                <h5 class="card-title">Informe final <span>| Historial</span></h5>
-              </div>
-              <div class="activity">
-                @foreach ($proyecto->informes->reverse() as $informe)
-                  @if ($informe->tipo == "Informe Final")
-                    <div class="activity-item d-flex">
-                      <div class="activite-label">{{$informe->created_at->diffForHumans()}}</div>
-                      <i class='bi bi-circle-fill activity-badge text-secondary align-self-start'></i>
-                      <div class="activity-content">
-                        <b>{{$informe->nombre_informe}}</b>
-                        <br>
-                        {{$informe->descripcion}}
-                        <p>
-                          <small>Revisión del asesor: <span class="badge rounded-pill bg-@if($informe->estado=="Pendiente"){{'secondary'}}@elseif($informe->estado=="Rechazado"){{'danger'}}@elseif($informe->estado=="Observado"){{'warning'}}@elseif($informe->estado=="Aceptado"){{'primary'}}@elseif($informe->estado=="Publicado"){{'success'}}@endif">
-                            <i class="bi bi-@if($informe->estado=="Pendiente"){{'circle'}}@elseif($informe->estado=="Rechazado"){{'x-circle'}}@elseif($informe->estado=="Observado"){{'exclamation-triangle'}}@elseif($informe->estado=="Aceptado"){{'check-circle'}}@elseif($informe->estado=="Publicado"){{'file-earmark-check'}}@endif"></i> {{$informe->estado}}</span>
-                          </small>
-                          <br>
-                          
-                          <a href="{{route('informes.show', $informe->id)}}" class="btn btn-sm btn-outline-dark mt-1"><i class="bi bi-card-checklist"></i> Más detalles</a>
-                        </p>
-                        
-                      </div>
-                    </div><!-- End activity item-->
-                  @endif
-                @endforeach
-              </div>
-            </div>
-            
-          </div><!-- End Entregables -->
-        </div> <!-- End Informe Final -->
-    
 
   </div>
   </div>

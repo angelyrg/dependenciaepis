@@ -4,7 +4,9 @@
 namespace App\Traits;
 
 use App\Models\Asesor;
+use App\Models\Informe;
 use Exception;
+use Illuminate\Support\Facades\File;
 
 trait ProyectoTrait{
 
@@ -23,6 +25,13 @@ trait ProyectoTrait{
         $asesor = Asesor::find($asesor_id);
         $asesor->ctd_asesorados = $asesor->ctd_asesorados - 1;
         $asesor->save();
+    }
+
+    public function deleteInforme($informe_id){
+        $informe = Informe::findOrFail($informe_id);
+        $file_path = public_path().'/files/informes/'.$informe->archivo;
+        File::delete($file_path);
+
     }
 
 }

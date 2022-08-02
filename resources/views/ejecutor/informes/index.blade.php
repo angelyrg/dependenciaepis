@@ -74,9 +74,17 @@
                     <br>
                     {{$informe->descripcion}}
                     <p>
-                      <small>Revisión del asesor: <span class="badge rounded-pill bg-@if($informe->estado=="Pendiente"){{'secondary'}}@elseif($informe->estado=="Rechazado"){{'danger'}}@elseif($informe->estado=="Observado"){{'warning'}}@elseif($informe->estado=="Aceptado"){{'primary'}}@elseif($informe->estado=="Publicado"){{'success'}}@endif">
-                        <i class="bi bi-@if($informe->estado=="Pendiente"){{'circle'}}@elseif($informe->estado=="Rechazado"){{'x-circle'}}@elseif($informe->estado=="Observado"){{'exclamation-triangle'}}@elseif($informe->estado=="Aceptado"){{'check-circle'}}@elseif($informe->estado=="Publicado"){{'file-earmark-check'}}@endif"></i> {{$informe->estado}}</span>
+                      <small>Revisión del asesor: 
+                        <span class="badge rounded-pill bg-@if($informe->estado_asesor=="Pendiente"){{'secondary'}}@elseif($informe->estado_asesor=="Rechazado"){{'danger'}}@elseif($informe->estado_asesor=="Observado"){{'warning'}}@elseif($informe->estado_asesor=="Aceptado"){{'primary'}}@endif">
+                        <i class="bi bi-@if($informe->estado_asesor=="Pendiente"){{'circle'}}@elseif($informe->estado_asesor=="Rechazado"){{'x-circle'}}@elseif($informe->estado_asesor=="Observado"){{'exclamation-triangle'}}@elseif($informe->estado_asesor=="Aceptado"){{'check-circle'}}@endif"></i> {{$informe->estado_asesor}}</span>
                       </small>
+                      @if ($informe->estado != null)
+                        <br>
+                        <small>Revisión del responsable: 
+                          <span class="badge rounded-pill bg-@if($informe->estado=="Pendiente"){{'secondary'}}@elseif($informe->estado=="Devuelto"){{'danger'}}@elseif($informe->estado=="Publicado"){{'success'}}@endif">
+                          <i class="bi bi-@if($informe->estado=="Pendiente"){{'circle'}}@elseif($informe->estado=="Devuelto"){{'x-circle'}}@elseif($informe->estado=="Publicado"){{'file-earmark-check'}}@endif"></i> {{$informe->estado}}</span>
+                        </small>
+                      @endif
                       <br>
                       <a href="{{route('informes.show', $informe->id)}}" class="btn btn-sm btn-outline-dark mt-1"><i class="bi bi-card-checklist"></i> Más detalles</a>
                     </p>
@@ -111,9 +119,17 @@
                     <br>
                     {{$informe->descripcion}}
                     <p>
-                      <small>Revisión del asesor: <span class="badge rounded-pill bg-@if($informe->estado=="Pendiente"){{'secondary'}}@elseif($informe->estado=="Rechazado"){{'danger'}}@elseif($informe->estado=="Observado"){{'warning'}}@elseif($informe->estado=="Aceptado"){{'primary'}}@elseif($informe->estado=="Publicado"){{'success'}}@endif">
-                        <i class="bi bi-@if($informe->estado=="Pendiente"){{'circle'}}@elseif($informe->estado=="Rechazado"){{'x-circle'}}@elseif($informe->estado=="Observado"){{'exclamation-triangle'}}@elseif($informe->estado=="Aceptado"){{'check-circle'}}@elseif($informe->estado=="Publicado"){{'file-earmark-check'}}@endif"></i> {{$informe->estado}}</span>
+                      <small>Revisión del asesor: 
+                        <span class="badge rounded-pill bg-@if($informe->estado_asesor=="Pendiente"){{'secondary'}}@elseif($informe->estado_asesor=="Rechazado"){{'danger'}}@elseif($informe->estado_asesor=="Observado"){{'warning'}}@elseif($informe->estado_asesor=="Aceptado"){{'primary'}}@endif">
+                        <i class="bi bi-@if($informe->estado_asesor=="Pendiente"){{'circle'}}@elseif($informe->estado_asesor=="Rechazado"){{'x-circle'}}@elseif($informe->estado_asesor=="Observado"){{'exclamation-triangle'}}@elseif($informe->estado_asesor=="Aceptado"){{'check-circle'}}@endif"></i> {{$informe->estado_asesor}}</span>
                       </small>
+                      @if ($informe->estado != null)
+                        <br>
+                        <small>Revisión del responsable: 
+                          <span class="badge rounded-pill bg-@if($informe->estado=="Pendiente"){{'secondary'}}@elseif($informe->estado=="Devuelto"){{'danger'}}@elseif($informe->estado=="Publicado"){{'success'}}@endif">
+                          <i class="bi bi-@if($informe->estado=="Pendiente"){{'circle'}}@elseif($informe->estado=="Devuelto"){{'x-circle'}}@elseif($informe->estado=="Publicado"){{'file-earmark-check'}}@endif"></i> {{$informe->estado}}</span>
+                        </small>
+                      @endif
                       <br>
                       <a href="{{route('informes.show', $informe->id)}}" class="btn btn-sm btn-outline-dark mt-1"><i class="bi bi-card-checklist"></i> Más detalles</a>
                     </p>

@@ -50,15 +50,15 @@ class InformeAseController extends Controller
     }
 
     public function update(Informe $informe, Request $request){
-        $request->validate(['estado'=> 'required|string']);
-        $informe->estado = $request->estado;
+        $request->validate(['estado_asesor'=> 'required|string']);
+        $informe->estado_asesor = $request->estado_asesor;
         $informe->save();
 
         
 
         //return back()->with('success', 'Informe calificado');
 
-        return redirect()->route('asesorados.proyecto', $informe->proyecto->id);
+        return redirect()->route('asesorados.proyecto', $informe->proyecto->id)->with('success', 'Informe calificado');
 
     }
 

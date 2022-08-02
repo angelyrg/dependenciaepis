@@ -26,23 +26,36 @@
 
   <div class="row">
 
-    @foreach ($ejecutor->proyecto->asesores as $asesor)                
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-            <img src="{{asset('assets/img/profesor.png')}}"  class="rounded-circle">
-            <h2 class="text-center">{{ $asesor->nombres}}<br>{{$asesor->apellidos }}</h2>
-            <h3>{{ $asesor->dni }}</h3>
-            <div class="social-links mt-2">
-              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-            </div>
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Asesores asignados</div>
+  
+          <div class="table-responsive ">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Nombres</th>
+                  <th scope="col">Apellidos</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($ejecutor->proyecto->asesores as $asesor)
+                  <tr>
+                    <td>{{$asesor->id}}</td>
+                    <td>{{$asesor->nombres}}</td>
+                    <td>{{$asesor->apellidos}}</td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
           </div>
+  
+  
         </div>
       </div>
-    @endforeach
+    </div>
 
   </div>
   

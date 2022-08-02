@@ -30,14 +30,14 @@
 
 </head>
 
-<body>
+<body class="toggle-sidebar">
 
   @include('layouts.flashtoast')
 
   <main>
     <div class="container">
 
-      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center ">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
@@ -55,7 +55,7 @@
 
                   <div class="pt-4 pb-2">
                     <h5 class="card-title text-center pb-0 fs-4">Iniciar sesión</h5>
-                    <p class="text-center small">Ingresa tu correo electrónico y tu contraseña</p>
+                    <p class="text-center small">Ingrese su usuario y contraseña</p>
                   </div>
 
                   <form action="{{route('login')}}" method="POST" class="row g-3 needs-validation" novalidate >
@@ -80,9 +80,7 @@
                         </div>
                     </div>
 
-                    <br>
 
-                    
                     <div class="col-12">
                       @if ($errors->any())
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -98,32 +96,40 @@
                     <!--End Mensajes de error-->
 
                     
-                    <div class="col-12">
+                    <div class="col-12 ">
                       <button class="btn btn-primary w-100" type="submit">Iniciar sesión</button>
                     </div>
+
+                    <div class="col-12 text-center">
+                      <a href="{{route('welcome')}}" class="text-decoration-underline">Salir de login</a>
+                    </div>
+
+
                   </form> <!-- End Login Form -->
 
                 </div>
               </div>
 
-              <br><br>
-
-              <div class="copyright">
-                &copy; Copyright <strong><span>2022</span></strong>
-              </div>
-
-              <div class="credits">
-                Escuela Profesional de <a href="https://sistemas.unh.edu.pe" target="_blank">Ingeniería de Sistemas</a>
-              </div>          
-
+            
             </div>
           </div>
         </div>
 
       </section>
-
+      
     </div>
   </main><!-- End #main -->
+  
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Equipo 5</span></strong>
+    </div>
+    <div class="credits">
+        Escuela Profesional de <a href="https://sistemas.unh.edu.pe" target="_blank">Ingeniería de Sistemas</a>
+    </div>
+  </footer><!-- End Footer -->
+  
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

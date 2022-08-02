@@ -19,9 +19,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credencials)) {
             $request->session()->regenerate();
-
             return redirect()->route('home');
-
         }else{
             return redirect()->back()->with('danger','Credenciales incorrectas!');
         }

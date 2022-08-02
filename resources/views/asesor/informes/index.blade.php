@@ -47,7 +47,7 @@
                   <td>{{$asesorado->fecha_fin}}</td>                  
                    
                   <td>
-                    <span class="badge bg-@if($asesorado->estado=="Inicio"){{'secondary'}}@elseif($asesorado->estado=="Parial"){{'warning'}}@elseif($asesorado->estado=="Completado"){{'success'}}@endif">
+                    <span class="badge bg-@if($asesorado->estado=="Inicio"){{'secondary'}}@elseif($asesorado->estado=="Parcial"){{'warning'}}@elseif($asesorado->estado=="Completado"){{'success'}}@endif">
                       {{$asesorado->estado}}
                     </span></td>                 
                 </tr>

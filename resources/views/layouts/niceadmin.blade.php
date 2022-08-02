@@ -54,7 +54,7 @@
             <span class="badge bg-primary badge-number">4</span> --}}
           </a><!-- End Notification Icon -->
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+          {{-- <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
               You have 4 new notifications
               <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
@@ -118,7 +118,7 @@
               <a href="#">Show all notifications</a>
             </li>
 
-          </ul><!-- End Notification Dropdown Items -->
+          </ul><!-- End Notification Dropdown Items --> --}}
 
         </li><!-- End Notification Nav -->
 
@@ -129,7 +129,7 @@
               <img src="{{ asset('assets/img/manager.png') }}" alt="Profile" class="rounded-circle">
             @elseif (Auth::user()->rol == 'Asesor')
               <img src="{{ asset('assets/img/profesor2.png') }}" alt="Profile" class="rounded-circle">
-            @elseif (Auth::user()->rol == 'Estudiante')                
+            @elseif (Auth::user()->rol == 'Ejecutor')                
               <img src="{{ asset('assets/img/student.png') }}" alt="Profile" class="rounded-circle">
             @endif
             <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }}</span>
@@ -145,7 +145,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="">
+              <a class="dropdown-item d-flex align-items-center" href="{{route('profile')}}">
                 <i class="bi bi-gear"></i>
                 <span>Cambiar contraseña</span>
               </a>

@@ -51,7 +51,7 @@ class InformeController extends Controller
             $tipo_informe = "Informe Parcial";
             $nombre_informe = "Entregable parcial ".($informes_parciales+1);
         }elseif($ejecutor->proyecto->estado == "Parcial"){
-            $tipo_informe = "Informe final";
+            $tipo_informe = "Informe Final";
             $nombre_informe = "Entregable final ".($informes_finales+1);
         }else{
             return "Proyecto completado";
@@ -63,9 +63,9 @@ class InformeController extends Controller
 
         $informe = new Informe();
         $informe->nombre_informe = $nombre_informe;
-        $informe->descripcion = ""; //Borrar esae campo
         $informe->archivo = $nombre_archivo;
-        $informe->estado = 'Pendiente';
+        $informe->estado_asesor = 'Pendiente';
+        $informe->estado_coasesor = 'Pendiente';
         $informe->tipo = $tipo_informe;
         $informe->proyecto_id = $ejecutor->proyecto->id;
         $informe->save();
@@ -85,11 +85,10 @@ class InformeController extends Controller
     }
 
     public function update(Informe $informe){
-
-        $informe->estado_responsable = "Pendiente";
+        $informe->estado = "Pendiente";
         $informe->save();
 
-        return redirect()->route('informes.index')->with('succes', 'Informe enviado');
+        return redirect()->route('informes.index')->with('success', '¡Informe enviado!');
     }
 
 

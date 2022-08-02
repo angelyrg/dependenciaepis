@@ -64,8 +64,8 @@
                     <br>
                     {{$informe->descripcion}}
                     <p>
-                      <small>Revisión del asesor: <span class="badge rounded-pill bg-@if($informe->estado=="Pendiente"){{'secondary'}}@elseif($informe->estado=="Rechazado"){{'danger'}}@elseif($informe->estado=="Observado"){{'warning'}}@elseif($informe->estado=="Aceptado"){{'primary'}}@elseif($informe->estado=="Publicado"){{'success'}}@endif">
-                        <i class="bi bi-@if($informe->estado=="Pendiente"){{'circle'}}@elseif($informe->estado=="Rechazado"){{'x-circle'}}@elseif($informe->estado=="Observado"){{'exclamation-triangle'}}@elseif($informe->estado=="Aceptado"){{'check-circle'}}@elseif($informe->estado=="Publicado"){{'file-earmark-check'}}@endif"></i> {{$informe->estado}}</span>
+                      <small>Revisión del asesor: <span class="badge rounded-pill bg-@if($informe->estado_asesor=="Pendiente"){{'secondary'}}@elseif($informe->estado_asesor=="Rechazado"){{'danger'}}@elseif($informe->estado_asesor=="Observado"){{'warning'}}@elseif($informe->estado_asesor=="Aceptado"){{'primary'}}@elseif($informe->estado_asesor=="Publicado"){{'success'}}@endif">
+                        <i class="bi bi-@if($informe->estado_asesor=="Pendiente"){{'circle'}}@elseif($informe->estado_asesor=="Rechazado"){{'x-circle'}}@elseif($informe->estado_asesor=="Observado"){{'exclamation-triangle'}}@elseif($informe->estado_asesor=="Aceptado"){{'check-circle'}}@elseif($informe->estado_asesor=="Publicado"){{'file-earmark-check'}}@endif"></i> {{$informe->estado_asesor}}</span>
                       </small>
                       <br>
                     </p>
@@ -108,19 +108,25 @@
                         <br>
                         {{$informe->descripcion}}
                         <p>
-                          <small>Revisión del asesor: <span class="badge rounded-pill bg-@if($informe->estado=="Pendiente"){{'secondary'}}@elseif($informe->estado=="Rechazado"){{'danger'}}@elseif($informe->estado=="Observado"){{'warning'}}@elseif($informe->estado=="Aceptado"){{'primary'}}@elseif($informe->estado=="Publicado"){{'success'}}@endif">
-                            <i class="bi bi-@if($informe->estado=="Pendiente"){{'circle'}}@elseif($informe->estado=="Rechazado"){{'x-circle'}}@elseif($informe->estado=="Observado"){{'exclamation-triangle'}}@elseif($informe->estado=="Aceptado"){{'check-circle'}}@elseif($informe->estado=="Publicado"){{'file-earmark-check'}}@endif"></i> {{$informe->estado}}</span>
+                          <small>Revisión del asesor: <span class="badge rounded-pill bg-@if($informe->estado_asesor=="Pendiente"){{'secondary'}}@elseif($informe->estado_asesor=="Rechazado"){{'danger'}}@elseif($informe->estado_asesor=="Observado"){{'warning'}}@elseif($informe->estado_asesor=="Aceptado"){{'primary'}}@elseif($informe->estado_asesor=="Publicado"){{'success'}}@endif">
+                            <i class="bi bi-@if($informe->estado_asesor=="Pendiente"){{'circle'}}@elseif($informe->estado_asesor=="Rechazado"){{'x-circle'}}@elseif($informe->estado_asesor=="Observado"){{'exclamation-triangle'}}@elseif($informe->estado_asesor=="Aceptado"){{'check-circle'}}@elseif($informe->estado_asesor=="Publicado"){{'file-earmark-check'}}@endif"></i> {{$informe->estado_asesor}}</span>
                           </small>
                           <br>
-                          
-                          <a href="{{route('informes.show', $informe->id)}}" class="btn btn-sm btn-outline-dark mt-1"><i class="bi bi-card-checklist"></i> Más detalles</a>
+                        </p>
+                        <p>
+                          <a href="{{asset('files/informes/'.$informe->archivo)}}" target="_blank" class="btn btn-sm btn-outline-success">
+                            <i class="bi bi-box-arrow-up-right"></i>
+                            Ver/Descargar informe
+                          </a>
+                          <a href="{{route('asesorado.comments', $informe->id)}}" class="btn btn-sm btn-outline-dark mt-1"><i class="bi bi-card-checklist"></i> Revisar/Calificar</a>
+                        
                         </p>
                         
                       </div>
                     </div><!-- End activity item-->
                   @endif
                 @endforeach
-              </div>
+                </div>
             </div>
             
           </div><!-- End Entregables -->

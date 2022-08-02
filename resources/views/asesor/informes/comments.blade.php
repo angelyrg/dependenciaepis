@@ -47,8 +47,6 @@
               </div>
             </div>
             <div class="card-footer px-4">
-              <p class="card-title m-0 p-0">Descripción</p>
-              <p >{{$informe->descripcion}}</p>
               
               <p class="card-title m-0 p-0">Tipo</p>
               <p>{{$informe->tipo}}</p>
@@ -56,12 +54,12 @@
               <p class="card-title m-0 p-0">Fecha</p>
               <p>{{$informe->created_at->format('d/m/Y')}} </p>
               
-              <p class="card-title m-0 p-0">Revisión del asesor</p>
+              {{-- <p class="card-title m-0 p-0">Revisión del asesor</p>
               <p>
                 <span class="badge bg-@if($informe->estado=="Pendiente"){{'secondary'}}@elseif($informe->estado=="Rechazado"){{'danger'}}@elseif($informe->estado=="Observado"){{'warning'}}@elseif($informe->estado=="Aceptado"){{'primary'}}@elseif($informe->estado=="Publicado"){{'success'}}@endif">
                   {{$informe->estado}}
                 </span>
-              </p>
+              </p> --}}
 
               <p class="card-title m-0 p-0">Informe</p>
               <p>
@@ -70,7 +68,7 @@
                 </a>
               </p>
 
-              @if ($informe->estado_responsable == null)
+              @if ($informe->estado == null)
                 <div class="row">
                   <form action="{{route('asesorado.informe_update', $informe->id)}}" method="post"  class="row g-3 needs-validation mt-2 " >
                     @csrf
@@ -80,16 +78,16 @@
                     <div class="col-md-8 mt-0">
                       <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-toggle-on"></i></span>
-                        <select class="form-select" name="estado" id="validationCustom04" required>
-                          @if ($informe->estado == "Rechazado")
+                        <select class="form-select" name="estado_asesor" id="validationCustom04" required>
+                          @if ($informe->estado_asesor == "Rechazado")
                           <option selected>Rechazado</option>
                             <option>Observado</option>
                             <option>Aceptado</option>
-                          @elseif ($informe->estado == "Observado")
+                          @elseif ($informe->estado_asesor == "Observado")
                             <option >Rechazado</option>
                             <option selected>Observado</option>
                             <option>Aceptado</option>
-                          @elseif ($informe->estado == "Aceptado")
+                          @elseif ($informe->estado_asesor == "Aceptado")
                             <option>Rechazado</option>
                             <option>Observado</option>
                             <option selected>Aceptado</option>
@@ -119,8 +117,8 @@
               @else
               <hr>
               <p class="text-dark"> Revisión del Responsable de la dependencia: 
-                <span class="badge bg-@if($informe->estado_responsable=="Pendiente"){{'secondary'}}@elseif($informe->estado_responsable=="Rechazado"){{'danger'}}@elseif($informe->estado_responsable=="Observado"){{'warning'}}@elseif($informe->estado_responsable=="Aceptado"){{'primary'}}@elseif($informe->estado_responsable=="Publicado"){{'success'}}@endif">
-                  {{$informe->estado_responsable}}
+                <span class="badge bg-@if($informe->estado=="Pendiente"){{'secondary'}}@elseif($informe->estado=="Rechazado"){{'danger'}}@elseif($informe->estado=="Observado"){{'warning'}}@elseif($informe->estado=="Aceptado"){{'primary'}}@elseif($informe->estado=="Publicado"){{'success'}}@endif">
+                  {{$informe->estado}}
                 </span>
               </p>
                   
