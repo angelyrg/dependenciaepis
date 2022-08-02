@@ -28,6 +28,8 @@
   <!-- Template Main CSS File -->
   <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
+  @yield('css')
+
 </head>
 
 <body>
@@ -217,7 +219,7 @@
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="{{route('calendario')}}">
                 <i class="bi bi-circle"></i><span>Calendario</span>
               </a>
             </li>
@@ -352,8 +354,6 @@
     </ul>
     
   </aside><!-- End Sidebar-->
-
-
 
 
 

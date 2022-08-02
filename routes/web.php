@@ -3,6 +3,7 @@
 use App\Http\Controllers\AsesorController;
 use App\Http\Controllers\Auth\AccountController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CalendarioController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\EjecutorController;
@@ -36,6 +37,8 @@ Route::resource('ejecutores', EjecutorController::class)->names('ejecutores')->m
 Route::resource('reglamentos', ReglamentoController::class)->names('reglamentos')->middleware('auth.responsable');
 Route::resource('cargos', CargoController::class)->names('cargos')->middleware('auth.responsable');
 Route::resource('responsable/informes', InformeRespController::class)->names('responsable.informes')->middleware('auth.responsable');
+Route::get('calendario', [CalendarioController::class, 'index'])->name('calendario')->middleware('auth.responsable');
+Route::get('calendario/show', [CalendarioController::class, 'show'])->name('calendario.show')->middleware('auth.responsable');
 
 
 Route::resource('asesor/proyectos', ProyectoAseController::class)->names('aproyectos')->middleware('auth.asesor');
