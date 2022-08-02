@@ -17,15 +17,12 @@ class CalendarioController extends Controller
             ->map(function($item) {
                 return [
                     'title' => $item->nombre_grupo,
-                    'description' => $item->nombre_proyecto,
-                    
+                    'description' => $item->nombre_proyecto,                    
                     'start' => $item->fecha_inicio,
                     'end' => $item->fecha_fin,
                 ];
             })->toArray();
 
-
         return response()->json($proyectos);
-        //return $proyecto;
     }
 }
