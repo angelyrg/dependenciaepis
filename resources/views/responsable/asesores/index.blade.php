@@ -40,12 +40,11 @@
                   <th scope="col">DNI</th>
                   <th scope="col">Estado</th>
                   <th scope="col">Opciones</th>
-                </tr>
+                </tr> 
               </thead>
               <tbody>
   
                 @foreach ($asesores as $asesor)
-  
                   <tr>
                     <th scope="row">{{$asesor->id}}</th>
                     <td>{{$asesor->nombres}}</td>

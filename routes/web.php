@@ -9,6 +9,7 @@ use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\EjecutorController;
 use App\Http\Controllers\InformeAseController;
 use App\Http\Controllers\InformeController;
+use App\Http\Controllers\InformeDinamicoController;
 use App\Http\Controllers\InformeRespController;
 use App\Http\Controllers\ModalidadController;
 use App\Http\Controllers\ProyectoAseController;
@@ -39,6 +40,8 @@ Route::resource('cargos', CargoController::class)->names('cargos')->middleware('
 Route::resource('responsable/informes', InformeRespController::class)->names('responsable.informes')->middleware('auth.responsable');
 Route::get('calendario', [CalendarioController::class, 'index'])->name('calendario')->middleware('auth.responsable');
 Route::get('calendario/show', [CalendarioController::class, 'show'])->name('calendario.show')->middleware('auth.responsable');
+Route::get('informesdinamicos', [InformeDinamicoController::class, 'index'])->name('informesdinamicos')->middleware('auth.responsable');
+Route::post('informesdinamicos', [InformeDinamicoController::class, 'filtrar'])->name('informesdinamicos.filtrar')->middleware('auth.responsable');
 
 
 Route::resource('asesor/proyectos', ProyectoAseController::class)->names('aproyectos')->middleware('auth.asesor');

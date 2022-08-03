@@ -21,7 +21,7 @@
 
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Proyectos publicados</h5>
+          <h5 class="card-title">Reglamentos publicados</h5>
 
           <div class="table-responsive">
             <table class="table ">

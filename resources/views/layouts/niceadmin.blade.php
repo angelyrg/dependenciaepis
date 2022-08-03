@@ -237,7 +237,7 @@
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="{{route('informesdinamicos')}}">
                 <i class="bi bi-circle"></i><span>Informes dinámicos</span>
               </a>
             </li>
