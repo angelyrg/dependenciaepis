@@ -45,7 +45,7 @@
               <div class="row mb-3 ">
                 <div class="col-sm-12 mx-12">
                   <button type="submit" class="btn btn-primary ">Filtrar</button>
-                  <a href="#" class="btn btn-outline-success "><i class="bi bi-file-earmark-spreadsheet"></i> Descargar</a>
+                  <a href="{{route('informesdinamicos.export')}}" class="btn btn-outline-success "><i class="bi bi-file-earmark-spreadsheet"></i> Descargar</a>
                 </div>
               </div>
 

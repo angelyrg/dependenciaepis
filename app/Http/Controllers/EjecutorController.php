@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EjecutorStoreRequest;
+use App\Models\Cargo;
 use App\Models\Ejecutor;
+use App\Models\Proyecto;
 use App\Traits\UserTrait;
 use Illuminate\Http\Request;
 
@@ -21,9 +23,17 @@ class EjecutorController extends Controller
         return view('responsable.ejecutores.index', compact('ejecutores'));
     }
 
+    public function create(Request $request){
+
+        $proyecto = Proyecto::findOrFail($request->p_id);
+
+        $cargos = Cargo::all();
+
+        return view("responsable.proyectos.add-student", compact('proyecto', 'cargos'));
+    }
+
 
     public function store(EjecutorStoreRequest $request){
-        //return $request;
         $user_added = $this->createUser( $request->nombres." ".$request->apellidos,  $request->codigo_matricula,  $request->codigo_matricula, 'Ejecutor' );
 
         $ejecutor = new Ejecutor();
@@ -36,7 +46,8 @@ class EjecutorController extends Controller
         $ejecutor->cargo_id = $request->cargo_id;
         $ejecutor->save();
 
-        return back()->with('success', 'Integrantes agregados correctamente');
+        return redirect()->route('proyectos.show', $request->proyecto_id)->with('success', 'Integrante agregado correctamente');
+
     }
 
 
@@ -50,5 +61,17 @@ class EjecutorController extends Controller
         return back()->with('success', 'Integrante eliminado correctamente');
 
     }
+
+    public function add(Request $request)
+    {
+        //return $request; WORKING THIS
+        $proyecto = Proyecto::findOrFail($request->proyecto_id);
+        //return $proyecto;
+
+        $cargos = Cargo::all();
+
+        return view("responsable.proyectos.add-student", compact('proyecto', 'cargos'));
+    }
+
 
 }

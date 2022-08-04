@@ -84,26 +84,21 @@
 
               <div class="d-flex justify-content-between align-items-center">
                 <h5 class="card-title">Ejecutores del proyecto</h5>
-
-                @if ($proyecto->modalidad->nombre == 'Servicio Social Universitario' && count($proyecto->miembros) < 12 )
-                  <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal-add-student">
-                    <i class=" bi bi-person-plus-fill"></i> Agregar
-                  </button>
-                  @include('responsable.proyectos.modal-add-student')
                 
-                @elseif ($proyecto->modalidad->nombre == 'Extensión Cultural' && count($proyecto->miembros) < 40 )
-                  <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal-add-student">
-                    <i class=" bi bi-person-plus-fill"></i> Agregar
-                  </button>
-                  @include('responsable.proyectos.modal-add-student')
+                @if ($proyecto->modalidad->id == 1 && count($proyecto->miembros) < 12 )
 
-                @elseif ($proyecto->modalidad->nombre == 'Proyección Social')
-                  <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal-add-student">
-                    <i class=" bi bi-person-plus-fill"></i> Agregar
-                  </button>
-                  @include('responsable.proyectos.modal-add-student')
-                    
+                  <a href="{{route('ejecutores.create', ["p_id" => $proyecto->id] )}}" class="btn btn-sm btn-primary"><i class=" bi bi-person-plus-fill"></i> Agregar</a>
+
+                @elseif ($proyecto->modalidad->id == 2 && count($proyecto->miembros) < 40 )
+
+                  <a href="{{route('ejecutores.create', ["p_id" => $proyecto->id] )}}" class="btn btn-sm btn-primary"><i class=" bi bi-person-plus-fill"></i> Agregar</a>
+
+                @elseif ($proyecto->modalidad->id == 3 )
+                  
+                  <a href="{{route('ejecutores.create', ["p_id" => $proyecto->id] )}}" class="btn btn-sm btn-primary"><i class=" bi bi-person-plus-fill"></i> Agregar</a>
+
                 @endif
+
 
 
               </div>
@@ -167,19 +162,7 @@
 
         </div>
 
-        <div class="row">
-          @if ($errors->any())
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              <ul>
-                @foreach ($errors->all() as $error)
-                  <li> {{ $error }}</li>
-                @endforeach
-              </ul>
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <?php //dd($errors) ?>
-          @endif
-        </div>
+
       
       </div>
 

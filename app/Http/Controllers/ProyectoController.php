@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProyectosExport;
 use App\Http\Requests\ProyectoRequest;
 use App\Models\Asesor;
 use App\Models\Cargo;
 use App\Models\Ejecutor;
-use App\Models\Estudiante;
 use App\Models\Modalidad;
 use App\Models\Proyecto;
-use App\Models\User;
 use App\Traits\ProyectoTrait;
 use App\Traits\UserTrait;
-use Exception;
-use Illuminate\Http\Request;
-
-use function PHPUnit\Framework\isEmpty;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProyectoController extends Controller
 {
@@ -120,5 +116,10 @@ class ProyectoController extends Controller
 
         $proyecto->delete();
         return redirect()->route('proyectos.index')->with('success', 'Proyecto eliminado correctamente.'); 
+    }
+
+    public function export(){
+        return Excel::download(new ProyectosExport, 'proyectos.xlsx');
+
     }
 }

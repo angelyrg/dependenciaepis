@@ -35,6 +35,7 @@ Route::resource('asesors', AsesorController::class)->names('asesors')->middlewar
 Route::resource('modalidads', ModalidadController::class)->names('modalidads')->middleware('auth.responsable');
 Route::resource('proyectos', ProyectoController::class)->names('proyectos')->middleware('auth.responsable');
 Route::resource('ejecutores', EjecutorController::class)->names('ejecutores')->middleware('auth.responsable');
+Route::put('proyectos/{proyecto}/add_ejecutor', [EjecutorController::class, 'add'])->name('ejecutores.add')->middleware('auth.responsable');
 Route::resource('reglamentos', ReglamentoController::class)->names('reglamentos')->middleware('auth.responsable');
 Route::resource('cargos', CargoController::class)->names('cargos')->middleware('auth.responsable');
 Route::resource('responsable/informes', InformeRespController::class)->names('responsable.informes')->middleware('auth.responsable');
@@ -42,6 +43,7 @@ Route::get('calendario', [CalendarioController::class, 'index'])->name('calendar
 Route::get('calendario/show', [CalendarioController::class, 'show'])->name('calendario.show')->middleware('auth.responsable');
 Route::get('informesdinamicos', [InformeDinamicoController::class, 'index'])->name('informesdinamicos')->middleware('auth.responsable');
 Route::post('informesdinamicos', [InformeDinamicoController::class, 'filtrar'])->name('informesdinamicos.filtrar')->middleware('auth.responsable');
+Route::get('informesdinamicos/export', [ProyectoController::class, 'export'])->name('informesdinamicos.export')->middleware('auth.responsable');
 
 
 Route::resource('asesor/proyectos', ProyectoAseController::class)->names('aproyectos')->middleware('auth.asesor');
