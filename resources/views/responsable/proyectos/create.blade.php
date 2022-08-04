@@ -64,10 +64,18 @@
                   <div class="input-group has-validation">
                     <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-toggle-on"></i></span>
                     <select class="form-select" name="modalidad_grupo" id="validationCustom04" required>
-                      <option selected disabled value="">Seleccione...</option>  
-                      <option>Monovalente</option>
-                      <option>Polivalente</option>
-                      <option>Inter facultativo</option>
+
+                      <option selected disabled value="">Seleccione...</option> 
+
+                      <?php $lineas = ["Monovalente", "Polivalente", "Inter facultativo"]; ?>
+
+                      @foreach ($lineas as $linea)
+                        
+                        <option @if (old('modalidad_grupo') == $linea) {{'selected'}} @endif>{{$linea}}</option>                            
+
+                      @endforeach
+
+                      
                       
                       
                     </select>
@@ -128,7 +136,7 @@
                   <label for="validationCustom01" class="form-label">Fecha de inicio</label>
                   <div class="input-group has-validation">
                     <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-layout-text-window-reverse"></i></span>
-                    <input type="month" class="form-control" name="fecha_inicio"  value="{{old('fecha_inicio')}}" min="<?=date('Y-m')?>" id="validationCustom01" required>
+                    <input type="month" class="form-control" name="fecha_inicio"  value="{{old('fecha_inicio')}}"  id="validationCustom01" required>
                     <div class="invalid-feedback">
                       Por favor ingrese la fecha de inicio.
                     </div>
@@ -139,27 +147,17 @@
                   <label for="validationCustom01" class="form-label">Fecha de finalización</label>
                   <div class="input-group has-validation">
                     <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-layout-text-window-reverse"></i></span>
-                    <input type="month" class="form-control" name="fecha_fin" value="{{old('fecha_fin')}}"  min="<?=date('Y-m')?>" id="validationCustom01" required>
+                    <input type="month" class="form-control {{ $errors->has('fecha_fin') ? ' is-invalid' : '' }}" name="fecha_fin" value="{{old('fecha_fin')}}"  id="validationCustom01" required>
                     <div class="invalid-feedback">
-                      Por favor ingrese la fecha de finalización.
+                      Por favor ingrese una fecha de finalización válida.
                     </div>
+                    @if ($errors->has('fecha_fin'))                      
+                      <div class="invalid-feedback">{{ $errors->first('fecha_fin') }}</div>
+                    @endif
                   </div>
                 </div> <!--End Input Fecha fin -->
                 
               </div>
-
-  
-              {{-- <div class="col-md-12 mb-3">
-                <label for="validationCustom02" class="form-label">Descripción</label>
-                <div class="input-group has-validation">
-                  <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-list-columns-reverse"></i></span>
-                  <textarea name="descripcion" class="form-control" id="validationCustom02" required cols="30" rows="2">{{old('descripcion')}}</textarea>
-                  <div class="invalid-feedback">
-                    Por favor ingrese la descripción del proyecto.
-                  </div>
-                </div>
-              </div>  --}}
-              <!--End Input Descripcion-->
 
 
               <div class="row">

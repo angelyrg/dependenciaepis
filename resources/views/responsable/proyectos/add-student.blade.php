@@ -89,9 +89,7 @@
 
                       <?php $ciclos = ["V", "VI", "VII", "VIII", "IX", "X", "EGRESADO",]; ?>
                       @foreach ($ciclos as $ciclo)
-                        
                         <option @if (old('ciclo') == $ciclo) {{'selected'}} @endif>{{$ciclo}}</option>                            
-
                       @endforeach
 
                     </select>
@@ -107,9 +105,6 @@
                     <select name="cargo_id" id="cargo_id" class="form-select" required>
                       @foreach ($cargos->reverse() as $cargo)
                         <option @if (old('cargo_id') == $cargo->id) {{'selected'}} @endif value="{{$cargo->id}}">{{$cargo->cargo}}</option>    
-
-                        
-                                            
                       @endforeach
                     </select>
                     <div class="invalid-feedback">Seleccione el cargo.</div>

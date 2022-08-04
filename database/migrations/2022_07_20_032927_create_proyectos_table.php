@@ -20,12 +20,14 @@ class CreateProyectosTable extends Migration
             $table->string('nombre_proyecto');
             $table->unsignedBigInteger("modalidad_id")->nullable();
 
-            //$table->text('descripcion');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
 
             $table->string('estado', 20)->default('Inicio'); //Inicio, Parcial, Completado
-            //$table->integer('ctd_max_ejecutores')->default(0);
+           
+            $table->boolean('presidente')->nullable();
+            $table->boolean('tesorero')->nullable();
+            $table->boolean('secretario')->nullable();
             
             $table->foreign('modalidad_id')->references('id')->on('modalidads')->cascadeOnUpdate()->nullOnDelete();;
             

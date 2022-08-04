@@ -61,7 +61,7 @@ class ProyectoController extends Controller
     }
 
     public function show(Proyecto $proyecto){
-        $ejecutores = Ejecutor::where('proyecto_id', $proyecto->id)->get();
+        $ejecutores = Ejecutor::where('proyecto_id', $proyecto->id)->orderBy('cargo_id')->get();
         $cargos = Cargo::all();
         
         return view('responsable.proyectos.show', compact('proyecto', 'ejecutores', 'cargos'));
