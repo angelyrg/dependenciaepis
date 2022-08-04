@@ -58,13 +58,26 @@
             <p class="card-title mt-3">Integrantes</p>
             <p>{{count($proyecto->miembros)}}</p>
 
-            <p class="card-title mt-3">Asesores</p>
-            
-            <ul>
+            <p class="card-title mt-3">Asesores</p>            
+            <ul class="mb-0">
               @foreach ($proyecto->asesores as $asesor)
                 <li><p>{{$asesor->nombres." ".$asesor->apellidos}}</p></li>
               @endforeach
             </ul>
+
+            @if ($proyecto->estado != "Inicio")
+            <p class="card-title mt-3">Informes</p>
+            <ul class="mb-0">
+              @foreach ($proyecto->informes as $informe)
+                @if ($informe->estado == "Publicado")                    
+                  <li><a href="{{asset('files/informes/'.$informe->archivo)}}" target="_blank">{{$informe->nombre_informe}}</a></li>
+                @endif
+              @endforeach
+            </ul>
+          @endif
+
+
+
             
 
           </div>
@@ -90,7 +103,8 @@
                     <th scope="col">#</th>
                     <th scope="col">Nombres</th>
                     <th scope="col">Apellidos</th>
-                    <th scope="col">Código de Matrícula</th>
+                    <th scope="col">Código</th>
+                    <th scope="col">Cargo</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -104,6 +118,7 @@
                       <td>{{$estudiante->nombres}}</td>
                       <td>{{$estudiante->apellidos}}</td>
                       <td>{{$estudiante->codigo_matricula}}</td>
+                      <td>{{$estudiante->cargo->cargo}}</td>
                       
                     </tr>
                         

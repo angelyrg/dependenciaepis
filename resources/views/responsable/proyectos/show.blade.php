@@ -59,15 +59,24 @@
             <p>{{count($proyecto->miembros)}}</p>
 
             <p class="card-title mt-3">Asesores</p>
-            
-            <ul>
+            <ul class="mb-0">
               @foreach ($proyecto->asesores as $asesor)
                 <li><p>{{$asesor->nombres." ".$asesor->apellidos}}</p></li>
               @endforeach
-             
             </ul>
-            
 
+            @if ($proyecto->estado != "Inicio")
+              <p class="card-title mt-3">Informes</p>
+              <ul class="mb-0">
+                @foreach ($proyecto->informes as $informe)
+                  @if ($informe->estado == "Publicado")                    
+                    <li>
+                      <a class="" href="{{asset('files/informes/'.$informe->archivo)}}" target="_blank" >{{$informe->tipo}}</a>
+                    </li>                    
+                  @endif
+                @endforeach
+              </ul>
+            @endif
           </div>
           
         </div>
