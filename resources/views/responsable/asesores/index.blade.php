@@ -60,12 +60,20 @@
                     </td>
                     
                     <td>
+
                       <a href="{{route('asesors.edit', $asesor->id)}}" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
    
                       <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$asesor->id}}">
                         <i class="bi bi-trash"></i>
                       </button>
+
+                      <button type="button" class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modal-restore-{{$asesor->id}}">
+                        <i class="bi bi-lock"></i> Restablecer contraseña
+                      </button>
+
                   </td>
+c
+                  @include('responsable.asesores.restore-password')
                   @include('responsable.asesores.modal')
                   </tr>
                       

@@ -38,6 +38,7 @@
                   <th scope="col">Código de Matrícula</th>
                   <th scope="col">Ciclo</th>
                   <th scope="col">Grupo</th>
+                  <th scope="col">Opción</th>
                 </tr>
               </thead>
               <tbody>
@@ -51,9 +52,16 @@
                     <td>{{$ejecutor->codigo_matricula}}</td>
                     <td>{{$ejecutor->ciclo}}</td>
                     <td>
-                      <a href="{{route('proyectos.show', $ejecutor->proyecto->id)}}" class="fw-bold link-info">{{$ejecutor->proyecto->nombre_grupo}}</a>
+                      <a href="{{route('proyectos.show', $ejecutor->proyecto->id)}}" class="fw-bold link-primary">{{$ejecutor->proyecto->nombre_grupo}}</a>
                     </td>
-  
+                    <td>                      
+                      <button type="button" class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modal-restore-{{$ejecutor->id}}">
+                        <i class="bi bi-lock"></i> Restablecer contraseña
+                      </button>
+                    </td>
+
+                  @include('responsable.ejecutores.restore-password')
+
                   </tr>
                       
                 @endforeach

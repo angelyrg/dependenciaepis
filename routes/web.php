@@ -30,6 +30,7 @@ Route::post('login', [LoginController::class, 'login'] )->name('login');
 Route::post('logout', [LoginController::class, 'logout'] )->name('logout');
 Route::get('profile', [AccountController::class, 'profile'] )->name('profile');
 Route::put('password', [AccountController::class, 'changePassword'] )->name('password');
+Route::put('password/{user}/restore', [AccountController::class, 'restorePassword'] )->name('restore');
 
 Route::resource('asesors', AsesorController::class)->names('asesors')->middleware('auth.responsable');
 Route::resource('modalidads', ModalidadController::class)->names('modalidads')->middleware('auth.responsable');

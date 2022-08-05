@@ -34,5 +34,14 @@ class AccountController extends Controller
         return redirect()->route('profile')->with('success', '¡Contraseña actualizada!');
     }
 
+    public function restorePassword(User $user){
+
+        $user->password = Hash::make($user->username);
+        $user->save();
+
+        return back()->with('success', '¡Contraseña restablecida!');
+
+    }
+
     
 }
