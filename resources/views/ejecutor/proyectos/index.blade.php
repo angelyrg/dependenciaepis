@@ -64,8 +64,19 @@
               @foreach ($ejecutor->proyecto->asesores as $asesor)
                 <li><p>{{$asesor->nombres." ".$asesor->apellidos}}</p></li>
               @endforeach
-             
+
             </ul>
+
+            @if (count($ejecutor->proyecto->documentos) > 0)
+              <p class="card-title mt-3">Documentos del proyecto</p>
+              <ul class="mb-0">
+                @foreach ($ejecutor->proyecto->documentos as $documento)
+                <li>
+                  <a href="{{asset('files/documentos/'.$documento->archivo)}}" target="_blank" >{{$documento->nombre_documento}}</a>
+                </li>                    
+                @endforeach
+              </ul>
+            @endif
             
 
           </div>

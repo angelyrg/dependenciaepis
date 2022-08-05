@@ -66,15 +66,26 @@
             </ul>
 
             @if ($proyecto->estado != "Inicio")
-            <p class="card-title mt-3">Informes</p>
-            <ul class="mb-0">
-              @foreach ($proyecto->informes as $informe)
-                @if ($informe->estado == "Publicado")                    
-                  <li><a href="{{asset('files/informes/'.$informe->archivo)}}" target="_blank">{{$informe->nombre_informe}}</a></li>
-                @endif
-              @endforeach
-            </ul>
-          @endif
+              <p class="card-title mt-3">Informes</p>
+              <ul class="mb-0">
+                @foreach ($proyecto->informes as $informe)
+                  @if ($informe->estado == "Publicado")                    
+                    <li><a href="{{asset('files/informes/'.$informe->archivo)}}" target="_blank">{{$informe->nombre_informe}}</a></li>
+                  @endif
+                @endforeach
+              </ul>
+            @endif
+
+            @if (count($proyecto->documentos) > 0)
+              <p class="card-title mt-3">Documentos del proyecto</p>
+              <ul class="mb-0">
+                @foreach ($proyecto->documentos as $documento)
+                <li>
+                  <a href="{{asset('files/documentos/'.$documento->archivo)}}" target="_blank" >{{$documento->nombre_documento}}</a>
+                </li>                    
+                @endforeach
+              </ul>
+            @endif
 
 
 

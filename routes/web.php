@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CalendarioController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\EjecutorController;
 use App\Http\Controllers\InformeAseController;
 use App\Http\Controllers\InformeController;
@@ -45,6 +46,8 @@ Route::get('calendario/show', [CalendarioController::class, 'show'])->name('cale
 Route::get('informesdinamicos', [InformeDinamicoController::class, 'index'])->name('informesdinamicos')->middleware('auth.responsable');
 Route::post('informesdinamicos', [InformeDinamicoController::class, 'filtrar'])->name('informesdinamicos.filtrar')->middleware('auth.responsable');
 Route::get('informesdinamicos/export', [ProyectoController::class, 'export'])->name('informesdinamicos.export')->middleware('auth.responsable');
+Route::resource('documentos', DocumentoController::class)->only(['store', 'destroy'])->names('responsable.documentos')->middleware('auth.responsable');
+
 
 
 Route::resource('asesor/proyectos', ProyectoAseController::class)->names('aproyectos')->middleware('auth.asesor');
@@ -59,5 +62,4 @@ Route::get('proyecto', [ProyectoEstController::class, 'index'])->name('proyecto'
 Route::get('asesor', [ProyectoEstController::class, 'asesor'])->name('asesor')->middleware('auth.estudiante');
 Route::get('estudiante/reglamentos', [ReglamentoEstController::class, 'index'])->name('sreglamentos')->middleware('auth.estudiante');
 Route::resource('informes', InformeController::class)->names('informes')->middleware('auth.estudiante');
-
 Route::resource('comentarios', ComentarioController::class)->names('comentarios')->middleware('auth');

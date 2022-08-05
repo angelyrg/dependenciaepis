@@ -4,6 +4,8 @@
 
 @section('content')
 
+@include('layouts.flashtoast')
+
 <div class="pagetitle">
   <div class="row d-flex justify-content-between">
     <div class="col">
@@ -71,12 +73,45 @@
                 @foreach ($proyecto->informes as $informe)
                   @if ($informe->estado == "Publicado")                    
                     <li>
-                      <a class="" href="{{asset('files/informes/'.$informe->archivo)}}" target="_blank" >{{$informe->tipo}}</a>
+                      <a href="{{asset('files/informes/'.$informe->archivo)}}" target="_blank" >{{$informe->tipo}}</a>
                     </li>                    
                   @endif
                 @endforeach
               </ul>
             @endif
+
+            @if (count($proyecto->documentos) > 0)
+              <p class="card-title mt-3">Documentos del proyecto</p>
+              <table class="table table-sm table-hover">
+                @foreach ($proyecto->documentos as $documento)                  
+                  <tr>
+                    <td>
+                      <a href="{{asset('files/documentos/'.$documento->archivo)}}" target="_blank" >{{$documento->nombre_documento}}</a>
+                    </td>
+                    <td>
+                      
+                      <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete-document-{{$documento->id}}">
+                          Eliminar 
+                      </button>
+                      @include('responsable.proyectos.modal-delete-document')
+                    </td>
+                  </tr>
+                @endforeach
+              </table>
+             
+            @endif
+
+
+
+            <div class="d-flex justify-content-end mt-1 ">
+
+              <button type="button" class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modal-upload-document">
+                Subir archivo
+              </button>
+              @include('responsable.proyectos.upload-document')
+            </div>
+
+
           </div>
           
         </div>
