@@ -57,12 +57,13 @@
             <table class="table datatable">
               <thead>
                 <tr>
+                  <th scope="col">Proyecto</th>
+                  <th scope="col">Modalidad</th>
+                  <th scope="col">Inicio</th>
+                  <th scope="col">Finalización</th>
+                  <th scope="col">Grupo</th>
                   <th scope="col">Modalidad grupo</th>
-                  <th scope="col">Nombre del grupo</th>
-                  <th scope="col">Modalidad del proyecto</th>
-                  <th scope="col">Nombre del proyecto</th>
-                  <th scope="col">Fecha de inicio</th>
-                  <th scope="col">Fecha de finalización</th>
+                  <th scope="col">Estado</th>
                 </tr>
               </thead>
               <tbody>
@@ -71,12 +72,13 @@
   
                 @foreach ($proyectos as $proyecto)
                   <tr>
-                    <td>{{$proyecto->modalidad_grupo}}</td>
-                    <td>{{$proyecto->nombre_grupo}}</td>
-                    <td>{{$proyecto->modalidad->nombre}}</td>
                     <td>{{$proyecto->nombre_proyecto}}</td>
+                    <td>{{$proyecto->modalidad->nombre}}</td>
+                    <td>{{$proyecto->modalidad_grupo}}</td>
                     <td>{{$meses[date('m', strtotime($proyecto->fecha_inicio))-1]." ".date('Y', strtotime($proyecto->fecha_inicio))}}</td>
                     <td>{{$meses[date('m', strtotime($proyecto->fecha_fin))-1]." ".date('Y', strtotime($proyecto->fecha_fin))}}</td>
+                    <td>{{$proyecto->nombre_grupo}}</td>
+                    <td>{{$proyecto->estado}}</td>
                 </tr>
                 @endforeach
 

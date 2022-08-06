@@ -37,6 +37,11 @@
                 </tr>
               </thead>
               <tbody>
+                @if (count($informes) == 0)
+                <tr>
+                  <td colspan="7">¡Aún no hay informes enviados!</td>
+                </tr>
+                @endif
                 @foreach ($informes->reverse() as $informe) 
                 <tr>
                   <td>{{$informe->proyecto->id}}</td>

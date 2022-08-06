@@ -8,6 +8,7 @@ use App\Http\Controllers\CargoController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\EjecutorController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InformeAseController;
 use App\Http\Controllers\InformeController;
 use App\Http\Controllers\InformeDinamicoController;
@@ -24,7 +25,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->name('welcome');
 
-Route::view('home', 'home')->name('home')->middleware('auth');
+Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+//Route::view('home', 'home')->name('home')->middleware('auth');
 Route::view('login', 'auth.login')->name('login')->middleware('guest');
 
 Route::post('login', [LoginController::class, 'login'] )->name('login');
