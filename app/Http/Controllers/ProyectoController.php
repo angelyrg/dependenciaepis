@@ -11,6 +11,7 @@ use App\Models\Modalidad;
 use App\Models\Proyecto;
 use App\Traits\ProyectoTrait;
 use App\Traits\UserTrait;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ProyectoController extends Controller
@@ -118,8 +119,14 @@ class ProyectoController extends Controller
         return redirect()->route('proyectos.index')->with('success', 'Proyecto eliminado correctamente.'); 
     }
 
-    public function export(){
-        return Excel::download(new ProyectosExport, 'proyectos.xlsx');
+    public function export(Request $request){
+
+        $fecha_desde = $request->get('fecha_desde');
+        $fecha_hasta = $request->get('fecha_hasta');
+
+        //return $fecha_desde;
+
+        return Excel::download(new ProyectosExport($fecha_desde, $fecha_hasta), 'proyectos.xlsx'); 
 
     }
 }

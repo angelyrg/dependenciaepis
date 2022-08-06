@@ -26,31 +26,44 @@
           <div class="d-flex justify-content-between align-items-end">
             <h5 class="card-title">Proyectos</h5>    
 
-            <form action="{{route('informesdinamicos')}}" method="post" class="d-flex flex-row align-items-center flex-wrap">
-              @csrf
-
+            <form  class="d-flex flex-row align-items-center flex-wrap">
+              
               <div class="row mb-3">
-                <label for="inputEmail3" class="col-sm-3 col-form-label">Desde</label>
-                <div class="col-sm-9">
-                  <input type="month"  name="fecha_desde" class="form-control" id="inputEmail3" required>
+                <label for="inputEmail3" class="col-sm-6 col-form-label">Fecha de inicio desde</label>
+                <div class="col-sm-6">
+                  <input type="month"  name="fecha_desde" value="{{$fecha_desde}}" class="form-control" id="inputEmail3">
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="inputEmail3" class="col-sm-3 col-form-label">Hasta</label>
+                <label for="inputEmail3" class="col-sm-3 col-form-label"> hasta</label>
                 <div class="col-sm-9">
-                  <input type="month"  name="fecha_hasta" class="form-control" id="inputEmail3" required>
+                  <input type="month"  name="fecha_hasta" value="{{$fecha_hasta}}" class="form-control" id="inputEmail3">
                 </div>
               </div>
 
               <div class="row mb-3 ">
                 <div class="col-sm-12 mx-12">
                   <button type="submit" class="btn btn-primary ">Filtrar</button>
-                  <a href="{{route('informesdinamicos.export')}}" class="btn btn-outline-success "><i class="bi bi-file-earmark-spreadsheet"></i> Descargar</a>
                 </div>
               </div>
 
             </form>
+
+          </div >
+          <div class="d-flex justify-content-end align-items-end mb-0">
+            <form action="{{route('informesdinamicos.export')}}">
+                
+              <input type="hidden"  name="fecha_desde" value="{{$fecha_desde}}" >
+              <input type="hidden"  name="fecha_hasta" value="{{$fecha_hasta}}" >
+
+              <button type="submit" class="btn btn-success btn-sm">
+                <i class="bi bi-file-earmark-spreadsheet"></i> Descargar
+              </button>
+
+            </form>
           </div>
+
+        </div>
 
 
           <div class="table-responsive">
@@ -74,10 +87,10 @@
                   <tr>
                     <td>{{$proyecto->nombre_proyecto}}</td>
                     <td>{{$proyecto->modalidad->nombre}}</td>
-                    <td>{{$proyecto->modalidad_grupo}}</td>
                     <td>{{$meses[date('m', strtotime($proyecto->fecha_inicio))-1]." ".date('Y', strtotime($proyecto->fecha_inicio))}}</td>
                     <td>{{$meses[date('m', strtotime($proyecto->fecha_fin))-1]." ".date('Y', strtotime($proyecto->fecha_fin))}}</td>
                     <td>{{$proyecto->nombre_grupo}}</td>
+                    <td>{{$proyecto->modalidad_grupo}}</td>
                     <td>{{$proyecto->estado}}</td>
                 </tr>
                 @endforeach

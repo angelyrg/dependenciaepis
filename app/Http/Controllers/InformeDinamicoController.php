@@ -7,18 +7,21 @@ use Illuminate\Http\Request;
 
 class InformeDinamicoController extends Controller
 {
-    public function index(){
-        $proyectos = Proyecto::all();
-        return view('responsable.informesdinamicos.index', compact('proyectos'));
+    public function index(Request $request){
+
+        $fecha_desde = $request->get('fecha_desde');
+        $fecha_hasta = $request->get('fecha_hasta');
+
+        if (isset($fecha_desde) && isset($fecha_desde)){
+            $proyectos = Proyecto::where('fecha_inicio', '>=', $fecha_desde."-1")
+                        ->where('fecha_inicio', '<=', $fecha_hasta."-1")
+                        ->get();
+        }else{
+            $proyectos = Proyecto::all();
+        }
+
+        return view('responsable.informesdinamicos.index', compact('proyectos', 'fecha_desde', 'fecha_hasta'));
     }
 
-    public function filtrar(Request $request){
 
-        $proyectos = Proyecto::where('fecha_inicio', '>=', $request->fecha_desde)
-                    ->where('fecha_fin', '<=', $request->fecha_hasta)
-                    ->get();
-
-        return view('responsable.informesdinamicos.index', compact('proyectos'));
-
-    }
 }
