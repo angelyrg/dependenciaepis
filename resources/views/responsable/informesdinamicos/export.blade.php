@@ -1,13 +1,14 @@
 <table>
     <thead>
     <tr class="text-primary">
-        <th>Proyecto</th>
-        <th>Modalidad</th>
-        <th>Inicio</th>
-        <th>Finalización</th>
-        <th>Grupo</th>
-        <th>Modalidad grupo</th>
-        <th>Estado</th>
+        <th>PROYECTO</th>
+        <th>MODALIDAD</th>
+        <th>INICIO</th>
+        <th>FINALIZACIÓN</th>
+        <th>GRUPO</th>
+        <th>MODALIDAD GRUPO</th>
+        <th>ESTADO</th>
+        <th>INTEGRANTES</th>
     </tr>
     </thead>
     <tbody>

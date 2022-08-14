@@ -239,6 +239,11 @@
                 <i class="bi bi-circle"></i><span>Informes dinámicos</span>
               </a>
             </li>
+            <li>
+              <a href="{{route('indiceparticipacion')}}">
+                <i class="bi bi-circle"></i><span>Indicador de participación</span>
+              </a>
+            </li>
           </ul>
         </li><!-- End Informes Nav -->
 

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Asesor;
 use App\Models\Cargo;
+use App\Models\Estudiante;
 use App\Models\Modalidad;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -38,11 +39,12 @@ class DatabaseSeeder extends Seeder
             'nombre' => "Proyección Social",
             'estado' => "Activo",]);
 
-
         Cargo::create([ 'cargo' => "Presidente(a)" ]);
         Cargo::create([ 'cargo' => "Tesorero(a)" ]);
         Cargo::create([ 'cargo' => "Secretario(a)" ]);
         Cargo::create([ 'cargo' => "Integrante" ]);
+
+        Estudiante::create(['total_estudiantes' => 100]);
             
     }
 }

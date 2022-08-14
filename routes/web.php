@@ -8,6 +8,7 @@ use App\Http\Controllers\CargoController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\EjecutorController;
+use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InformeAseController;
 use App\Http\Controllers\InformeController;
@@ -49,7 +50,7 @@ Route::get('informesdinamicos', [InformeDinamicoController::class, 'index'])->na
 Route::post('informesdinamicos', [InformeDinamicoController::class, 'filtrar'])->name('informesdinamicos.filtrar')->middleware('auth.responsable');
 Route::get('informesdinamicos/export', [ProyectoController::class, 'export'])->name('informesdinamicos.export')->middleware('auth.responsable');
 Route::resource('documentos', DocumentoController::class)->only(['store', 'destroy'])->names('responsable.documentos')->middleware('auth.responsable');
-
+Route::get('participacion', [EstudianteController::class, 'participacion'])->name('indiceparticipacion')->middleware('auth.responsable');
 
 
 Route::resource('asesor/proyectos', ProyectoAseController::class)->names('aproyectos')->middleware('auth.asesor');

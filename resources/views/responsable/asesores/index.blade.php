@@ -53,9 +53,9 @@
   
                     <td>
                       @if ($asesor->ctd_asesorados < 2)
-                        <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Activo</span>
+                        <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Disponible</span>
                       @else
-                        <span class="badge bg-danger"><i class="bi bi-x-circle me-1"></i> Ocupado</span>
+                        <span class="badge bg-danger"><i class="bi bi-x-circle me-1"></i> No disponible</span>
                       @endif
                     </td>
                     
