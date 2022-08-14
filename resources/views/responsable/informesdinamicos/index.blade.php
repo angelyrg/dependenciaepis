@@ -28,22 +28,36 @@
 
             <form  class="d-flex flex-row align-items-center flex-wrap">
               
+              <?php $years = range(2017, strftime("%Y", time())); ?>
+
               <div class="row mb-3">
-                <label for="inputEmail3" class="col-sm-6 col-form-label">Fecha de inicio desde</label>
+                <label for="inputEmail3" class="col-sm-6 col-form-label  px-0 d-flex justify-content-end">Año inicio desde:</label>
                 <div class="col-sm-6">
-                  <input type="month"  name="fecha_desde" value="{{$fecha_desde}}" class="form-control" id="inputEmail3">
-                </div>
-              </div>
-              <div class="row mb-3">
-                <label for="inputEmail3" class="col-sm-3 col-form-label"> hasta</label>
-                <div class="col-sm-9">
-                  <input type="month"  name="fecha_hasta" value="{{$fecha_hasta}}" class="form-control" id="inputEmail3">
+                  <select class="form-select" name="fecha_desde" required>
+                    <option selected disabled value="">Año inicio..</option>
+                    @foreach ( array_reverse($years) as $year)
+                      <option @if($fecha_desde==$year){{"selected"}}@endif>{{$year}}</option>
+                    @endforeach                  
+                  </select>
                 </div>
               </div>
 
               <div class="row mb-3 ">
+                <label for="inputEmail3" class="col-sm-6 col-form-label  px-0 d-flex justify-content-end">Año inicio hasta:</label>
+                
+                <div class="col-sm-6">
+                  <select class="form-select" name="fecha_hasta" required>
+                    <option selected disabled value="">Año fin...</option>
+                    @foreach ( array_reverse($years) as $year)
+                      <option @if($fecha_hasta==$year){{"selected"}}@endif>{{$year}}</option>
+                    @endforeach                  
+                  </select>
+                </div>
+              </div>
+
+              <div class="row mb-3 mx-2">
                 <div class="col-sm-12 mx-12">
-                  <button type="submit" class="btn btn-primary ">Filtrar</button>
+                  <button type="submit" class="btn btn-primary "> <i class="bi bi-funnel"></i> Filtrar</button>
                 </div>
               </div>
 
@@ -66,7 +80,7 @@
         </div>
 
 
-          <div class="table-responsive">
+          <div class="table-responsive p-2">
             <table class="table datatable">
               <thead>
                 <tr>
@@ -77,6 +91,7 @@
                   <th scope="col">Grupo</th>
                   <th scope="col">Modalidad grupo</th>
                   <th scope="col">Estado</th>
+                  <th scope="col">Integrantes</th>
                 </tr>
               </thead>
               <tbody>
@@ -84,7 +99,7 @@
                 <?php $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); ?>  <!-- Necesario para tener los meses del año en español -->
   
                 @foreach ($proyectos as $proyecto)
-                  <tr>
+                  <tr >
                     <td>{{$proyecto->nombre_proyecto}}</td>
                     <td>{{$proyecto->modalidad->nombre}}</td>
                     <td>{{$meses[date('m', strtotime($proyecto->fecha_inicio))-1]." ".date('Y', strtotime($proyecto->fecha_inicio))}}</td>
@@ -92,7 +107,8 @@
                     <td>{{$proyecto->nombre_grupo}}</td>
                     <td>{{$proyecto->modalidad_grupo}}</td>
                     <td>{{$proyecto->estado}}</td>
-                </tr>
+                    <td>{{count($proyecto->miembros)}}</td>
+                  </tr> 
                 @endforeach
 
               </tbody>

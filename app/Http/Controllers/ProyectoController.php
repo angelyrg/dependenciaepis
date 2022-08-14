@@ -120,7 +120,7 @@ class ProyectoController extends Controller
     }
 
     public function export(Request $request){
-
+ 
         $fecha_desde = $request->get('fecha_desde');
         $fecha_hasta = $request->get('fecha_hasta');
 

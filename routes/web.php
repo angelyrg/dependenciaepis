@@ -51,6 +51,7 @@ Route::post('informesdinamicos', [InformeDinamicoController::class, 'filtrar'])-
 Route::get('informesdinamicos/export', [ProyectoController::class, 'export'])->name('informesdinamicos.export')->middleware('auth.responsable');
 Route::resource('documentos', DocumentoController::class)->only(['store', 'destroy'])->names('responsable.documentos')->middleware('auth.responsable');
 Route::get('participacion', [EstudianteController::class, 'participacion'])->name('indiceparticipacion')->middleware('auth.responsable');
+Route::post('setstudents', [EstudianteController::class, 'store'])->name('setstudents')->middleware('auth.responsable');
 
 
 Route::resource('asesor/proyectos', ProyectoAseController::class)->names('aproyectos')->middleware('auth.asesor');

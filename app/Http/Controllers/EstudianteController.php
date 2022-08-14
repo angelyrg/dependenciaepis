@@ -9,6 +9,19 @@ use Illuminate\Http\Request;
 
 class EstudianteController extends Controller
 {
+
+    public function store(Request $request){
+        $request->validate(['ctd_estudiantes'=>'required|numeric|min:0']);
+
+        $students = Estudiante::first();
+        $students->total_estudiantes = $request->ctd_estudiantes;
+        $students->save();
+
+        return redirect()->route('indiceparticipacion')->with('success', 'Cantidad de estudiantes actualizado.');
+
+    }
+
+
     public function participacion(){
         if ($estudiantes = Estudiante::first()){
             $total_estudiantes = $estudiantes->total_estudiantes;
@@ -34,8 +47,10 @@ class EstudianteController extends Controller
             $total_estudiantes_completado = $total_estudiantes_completado + count($proyecto_completado->miembros);
         }
 
-        $data = [$total_estudiantes_inicio, $total_estudiantes_parcial, $total_estudiantes_completado, $total_estudiantes];
+        $total_sin_proyecto = $total_estudiantes - ($total_estudiantes_inicio + $total_estudiantes_parcial + $total_estudiantes_completado);
 
-        return view('responsable.participacion.index', compact('data'));
+        $data = [$total_estudiantes_inicio, $total_estudiantes_parcial, $total_estudiantes_completado, $total_sin_proyecto];
+
+        return view('responsable.participacion.index', compact('data', 'total_estudiantes'));
     }
 }

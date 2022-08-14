@@ -13,8 +13,8 @@ class ProyectosExport implements FromView {
 	public function __construct($fecha_desde, $fecha_hasta)
 	{
         if ($fecha_desde != null && $fecha_hasta != null){
-            $this->fecha_inicio = $fecha_desde."-1";
-            $this->fecha_fin = $fecha_hasta."-1";
+            $this->fecha_inicio = $fecha_desde."-01-01";
+            $this->fecha_fin = $fecha_hasta."-12-01";
 
             $this->proyectos = Proyecto::where('fecha_inicio', '>=', $this->fecha_inicio)
                                 ->where('fecha_inicio', '<=', $this->fecha_fin)
