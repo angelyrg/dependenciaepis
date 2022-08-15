@@ -72,13 +72,12 @@
                       </button>
 
                   </td>
-c
-                  @include('responsable.asesores.restore-password')
-                  @include('responsable.asesores.modal')
-                  </tr>
-                      
+                </tr>
+                @include('responsable.asesores.restore-password')
+                @include('responsable.asesores.modal')
+                
                 @endforeach
-  
+                
               </tbody>
             </table>
             <!-- End Table with stripped rows -->
@@ -92,9 +91,5 @@ c
   </div>
 </section>
 
-
-
-
-
-
 @endsection
+
