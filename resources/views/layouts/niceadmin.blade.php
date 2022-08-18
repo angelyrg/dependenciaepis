@@ -26,6 +26,7 @@
   <!-- Template Main CSS File -->
   <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
   
 
@@ -50,80 +51,10 @@
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
 
-        <li class="nav-item dropdown">
+        @if (Auth::user()->rol == 'Responsable')
+          @include('layouts.notifications')
+        @endif
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            {{-- <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span> --}}
-          </a><!-- End Notification Icon -->
-
-          {{-- <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              You have 4 new notifications
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Show all notifications</a>
-            </li>
-
-          </ul><!-- End Notification Dropdown Items --> --}}
-
-        </li><!-- End Notification Nav -->
 
         <li class="nav-item dropdown pe-3">
 
@@ -379,6 +310,8 @@
       &copy; Copyright <strong><span>Equipo 5</span></strong>
     </div>
     <div class="credits">
+      <span>SCRUM MASTER: adfliuae</span><br>
+      <span>Algo más</span><br>
         Escuela Profesional de <a href="https://sistemas.unh.edu.pe" target="_blank">Ingeniería de Sistemas</a>
     </div>
   </footer><!-- End Footer -->
@@ -395,8 +328,6 @@
   <script src="{{ asset('assets/vendor/echarts/echarts.min.js') }} "></script>
   <script src="{{ asset('assets/vendor/quill/quill.min.js') }} "></script>
   <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }} "></script>
-  {{-- <script src="{{ asset('assets/vendor/php-email-form/validate.js') }} "></script> --}}
-
   <!-- Template Main JS File -->
   <script src="{{ asset('assets/js/main.j') }}s"></script>
 

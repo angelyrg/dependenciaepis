@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Asesor;
 use App\Models\Ejecutor;
+use App\Models\Informe;
 use App\Models\Modalidad;
 use App\Models\Proyecto;
 use Illuminate\Http\Request;
@@ -29,7 +30,8 @@ class HomeController extends Controller
             $data[] = $totals;
             $data[] = $modalidads;
 
-            return view('home', ['data' => $data, ]);        
+
+            return view('home', ['data' => $data]);        
 
 
         }    
@@ -49,10 +51,25 @@ class HomeController extends Controller
             return view('home', ['asesor'=>$asesor]);        
         }
 
+    }
 
 
+    public function getNotifications(){
 
+        $informes_pendientes = Informe::where('estado', 'Pendiente')->get();
 
+        foreach($informes_pendientes as $infor){
 
+            $noti[] = [ 
+                        $infor->proyecto->nombre_grupo, 
+                        $infor->proyecto->nombre_proyecto,
+                        $infor->nombre_informe,
+                        $infor->id
+                        ];
+        }
+        $notifications = $noti;
+
+        return response()->json($notifications);
+        
     }
 }
