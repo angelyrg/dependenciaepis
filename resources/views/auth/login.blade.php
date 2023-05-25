@@ -29,6 +29,7 @@
 
   @include('layouts.flashtoast')
 
+  <!-- ======= Main ======= -->
   <main>
     <div class="container">
 
@@ -118,10 +119,18 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>Equipo 5</span></strong>
+      &copy; Copyright <br>
+      <span> <strong>Scrum Master: </strong>Mg. Ing. Gilmer Matos Vila</span><br>
+      <span> <strong>Product Owner:</strong>Mg. Ing. Gilmer Matos Vila</span>
     </div>
     <div class="credits">
-        Escuela Profesional de <a href="https://sistemas.unh.edu.pe" target="_blank">Ingeniería de Sistemas</a>
+      <span> <strong>Scrum Team:</strong></span><br>
+      <span> Waldir Chunhuay Ruiz</span><br>
+      <span> Angela Paucar Soto</span><br>
+      <span> Jose Fernando Guillermo Ccoriñaupa</span><br>
+      <span> Angela Beatriz Acuña Huaman</span><br>
+      <span> Renzo Huaranga Lopez </span><br>
+      <strong> Escuela Profesional de</strong> <a href="https://sistemas.unh.edu.pe" target="_blank">Ingeniería de Sistemas</a>
     </div>
   </footer><!-- End Footer -->
   

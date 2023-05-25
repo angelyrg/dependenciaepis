@@ -275,7 +275,7 @@
         <div class="col-lg-6">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Pie Chart</h5>
+              <h5 class="card-title">Proyectos según la Modalidad</h5>
 
               
               <div id="pieChart"></div>

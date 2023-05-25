@@ -23,6 +23,17 @@ use App\Http\Controllers\ReglamentoController;
 use App\Http\Controllers\ReglamentoEstController;
 use Illuminate\Support\Facades\Route;
 
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
 
 Route::view('/', 'welcome')->name('welcome');
 
@@ -68,3 +79,4 @@ Route::get('asesor', [ProyectoEstController::class, 'asesor'])->name('asesor')->
 Route::get('estudiante/reglamentos', [ReglamentoEstController::class, 'index'])->name('sreglamentos')->middleware('auth.estudiante');
 Route::resource('informes', InformeController::class)->names('informes')->middleware('auth.estudiante');
 Route::resource('comentarios', ComentarioController::class)->names('comentarios')->middleware('auth');
+

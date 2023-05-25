@@ -30,7 +30,7 @@
               
               <?php $years = range(2017, strftime("%Y", time())); ?>
 
-              <div class="row mb-3">
+              <div class="row mb-3 px-2">
                 <label for="inputEmail3" class="col-sm-6 col-form-label  px-0 d-flex justify-content-end">Año inicio desde:</label>
                 <div class="col-sm-6">
                   <select class="form-select" name="fecha_desde" required>

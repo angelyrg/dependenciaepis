@@ -165,6 +165,11 @@
           <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
               <a href="{{route('responsable.informes.index')}}">
+                <i class="bi bi-circle"></i><span>Redacción de informes</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{route('responsable.informes.index')}}">
                 <i class="bi bi-circle"></i><span>Informes de los grupos</span>
               </a>
             </li>
@@ -182,18 +187,37 @@
         </li><!-- End Informes Nav -->
 
         <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#settings-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-gear"></i><span>Configuración</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="settings-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+              <a class="nav-link collapsed" href="{{route('modalidads.index')}}">
+                <i class="bi bi-circle"></i><span><span>Modalidades</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link collapsed" href="{{route('cargos.index')}}">
+                <i class="bi bi-circle"></i><span><span>Cargos</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+
+        {{-- <li class="nav-item">
           <a class="nav-link collapsed" href="{{route('modalidads.index')}}">
             <i class="bi bi-gem"></i>
             <span>Modalidades</span>
           </a>
-        </li><!-- End Modalidades Page Nav -->
+        </li><!-- End Modalidades Page Nav --> --}}
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a class="nav-link collapsed" href="{{route('cargos.index')}}">
             <i class="bi bi-gear"></i>
             <span>Cargos</span>
           </a>
-        </li><!-- End Cargos Page Nav -->
+        </li><!-- End Cargos Page Nav --> --}}
 
         <li class="nav-heading">COMPONENTES</li>
 
@@ -294,7 +318,7 @@
 
 
 
-
+<!-- ======= Main ======= -->
   <main id="main" class="main">
 
     @yield('content')
@@ -307,12 +331,18 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>Equipo 5</span></strong>
+      &copy; Copyright <br>
+      <span> <strong>Scrum Master: </strong>Mg. Ing. Gilmer Matos Vila</span><br>
+      <span> <strong>Product Owner:</strong>Mg. Ing. Gilmer Matos Vila</span>
     </div>
     <div class="credits">
-      <span>SCRUM MASTER: adfliuae</span><br>
-      <span>Algo más</span><br>
-        Escuela Profesional de <a href="https://sistemas.unh.edu.pe" target="_blank">Ingeniería de Sistemas</a>
+      <span> <strong>Scrum Team:</strong></span><br>
+      <span> Waldir Chunhuay Ruiz</span><br>
+      <span> Angela Paucar Soto</span><br>
+      <span> Jose Fernando Guillermo Ccoriñaupa</span><br>
+      <span> Angela Beatriz Acuña Huaman</span><br>
+      <span> Renzo Huaranga Lopez </span><br>
+      <strong> Escuela Profesional de</strong> <a href="https://sistemas.unh.edu.pe" target="_blank">Ingeniería de Sistemas</a>
     </div>
   </footer><!-- End Footer -->
 
@@ -329,7 +359,7 @@
   <script src="{{ asset('assets/vendor/quill/quill.min.js') }} "></script>
   <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }} "></script>
   <!-- Template Main JS File -->
-  <script src="{{ asset('assets/js/main.j') }}s"></script>
+  <script src="{{ asset('assets/js/main.js') }}"></script>
 
 
 
