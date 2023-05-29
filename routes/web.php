@@ -21,6 +21,7 @@ use App\Http\Controllers\ProyectoEstController;
 use App\Http\Controllers\ReglamentoAseController;
 use App\Http\Controllers\ReglamentoController;
 use App\Http\Controllers\ReglamentoEstController;
+use App\Http\Controllers\WordController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -64,6 +65,8 @@ Route::get('informesdinamicos/export', [ProyectoController::class, 'export'])->n
 Route::resource('documentos', DocumentoController::class)->only(['store', 'destroy'])->names('responsable.documentos')->middleware('auth.responsable');
 Route::get('participacion', [EstudianteController::class, 'participacion'])->name('indiceparticipacion')->middleware('auth.responsable');
 Route::post('setstudents', [EstudianteController::class, 'store'])->name('setstudents')->middleware('auth.responsable');
+
+Route::resource('redaccion', WordController::class)->names('redaccion');
 
 
 Route::resource('asesor/proyectos', ProyectoAseController::class)->names('aproyectos')->middleware('auth.asesor');
