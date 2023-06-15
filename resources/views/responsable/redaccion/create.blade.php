@@ -42,19 +42,19 @@
             <h5 class="card-title">Datos del proyecto</h5>
   
               <hr class="dropdown-divider">
+              
+              <div class="row">
+                <b>Número de informe: </b>
+                <label> {{$setting->year}} </label>
+              </div>
 
               <div class="row mb-3">
                 <div class="col-md-8 mb-3">
                   <label for="validationNumeroInforme" class="form-label">Número de informe</label>
-                  <div class="input-group has-validation">
-                    <span class="input-group-text" id=""><i class="bi bi-layout-text-window-reverse"></i></span>
-                    <input type="text" class="form-control" name="numero_informe" value="{{old('numero_informe')}}" id="validationNumeroInforme" required>
-                    <div class="invalid-feedback">
-                      Por favor ingrese el número del informe.
-                    </div>
-                  </div>
+                  <input type="text" class="form-control" name="numero_informe" value="" id="validationNumeroInforme" required disabled>                  
                 </div>
               </div>
+
 
               <div class="row mb-3">
 
@@ -116,15 +116,9 @@
                     <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-toggle-on"></i></span>
                     <select class="form-select" name="modalidad_proyecto" id="validationCustom04" required>
                       <option selected disabled value="">Seleccione...</option>  
-                      @foreach ($modalidades as $modalidad)
-                        @if ($modalidad->estado == "Activo")
-                          @if (old('modalidad_proyecto') == $modalidad->id )
-                            <option value="{{$modalidad->nombre}}" selected>{{$modalidad->nombre}}</option>
-                          @else                            
-                            <option value="{{$modalidad->nombre}}">{{$modalidad->nombre}}</option>
-                          @endif
-                        @endif
-                      @endforeach
+                      <option value="SSU">Servicio Social Universitario</option>
+                      <option value="EC">Extensión Cultural</option>
+                      <option value="PS">Proyección Social</option>              
                     </select>
                     <div class="invalid-feedback">
                       Por favor seleccion una modalidad.
@@ -135,7 +129,7 @@
 
 
               <div class="col-12 d-flex justify-content-center mt-4">
-                <a href="{{route('proyectos.index')}}" class="btn btn-secondary m-2 " ><i class="bi bi-x me-1"></i> Cancelar</a>
+                <a href="{{route('redaccion.index')}}" class="btn btn-secondary m-2 " ><i class="bi bi-x me-1"></i> Cancelar</a>
                 <button class="btn btn-primary m-2" type="submit"><i class="bi bi-file-word me-1"></i> Generar documento</button>
               </div> <!--End Botones-->
 

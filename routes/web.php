@@ -18,10 +18,11 @@ use App\Http\Controllers\ModalidadController;
 use App\Http\Controllers\ProyectoAseController;
 use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\ProyectoEstController;
+use App\Http\Controllers\RedaccionController;
 use App\Http\Controllers\ReglamentoAseController;
 use App\Http\Controllers\ReglamentoController;
 use App\Http\Controllers\ReglamentoEstController;
-use App\Http\Controllers\WordController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,7 +67,8 @@ Route::resource('documentos', DocumentoController::class)->only(['store', 'destr
 Route::get('participacion', [EstudianteController::class, 'participacion'])->name('indiceparticipacion')->middleware('auth.responsable');
 Route::post('setstudents', [EstudianteController::class, 'store'])->name('setstudents')->middleware('auth.responsable');
 
-Route::resource('redaccion', WordController::class)->names('redaccion');
+Route::resource('redaccion', RedaccionController::class)->names('redaccion');
+Route::resource('settings', SettingController::class)->names('settings');
 
 
 Route::resource('asesor/proyectos', ProyectoAseController::class)->names('aproyectos')->middleware('auth.asesor');

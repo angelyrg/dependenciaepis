@@ -164,7 +164,7 @@
           </a>
           <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="{{route('responsable.informes.index')}}">
+              <a href="{{route('redaccion.index')}}">
                 <i class="bi bi-circle"></i><span>Redacción de informes</span>
               </a>
             </li>
@@ -191,6 +191,11 @@
             <i class="bi bi-gear"></i><span>Configuración</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="settings-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+              <a class="nav-link collapsed" href="{{route('settings.index')}}">
+                <i class="bi bi-circle"></i><span><span>General</span>
+              </a>
+            </li>
             <li>
               <a class="nav-link collapsed" href="{{route('modalidads.index')}}">
                 <i class="bi bi-circle"></i><span><span>Modalidades</span>

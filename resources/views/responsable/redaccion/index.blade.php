@@ -18,9 +18,6 @@
         </ol>
       </nav>
     </div>
-    <div class="col-12 col-md-3 d-flex align-items-end justify-content-end">
-      <a href="{{route('proyectos.index')}}" class="btn btn-outline-primary "><i class="bi bi-arrow-left-circle-fill"></i>  Todos los proyectos</a>
-    </div>
     
   </div>
 </div><!-- End Page Title -->
@@ -30,29 +27,25 @@
 
   <div class="row">
 
-    <div class="col-lg-4">
+    <div class="col-lg-2">
       <div class="row">
         <div class="col-lg-12">
           <div class="info-box card">
 
             <div class="row d-flex align-items-start">
               <div class="col-2 ">
-                <i class="bi bi-chat-right-quote-fill"></i>
+                <i class="bi bi-file-word"></i>
               </div>
               <div class="col-10 mt-0">
-                <small>Grupo </small>
-                <h3 class="p-0 m-0">Nombre grupo</h3>
+                <small>Redacción de informes</small>
+                <h3 class="p-0 m-0">Tipos de informes</h3>
               </div>
             </div>
-            <p class="card-title mt-3">Proyecto</p>
-            <p>NOmbre proyecto</p>
 
-            <div class="d-flex justify-content-end mt-1 ">
+            <div class="mt-1 text-center">
 
-              <a href="{{route('redaccion.create')}}" class="btn btn-sm btn-info">Crear un nuevo informe</a>
-              <button type="button" class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modal-upload-document">
-                Subir archivo
-              </button>
+              <a href="{{route('redaccion.create')}}" class="btn rounded-3 mb-2 btn-outline-primary ">Crear nuevo informe</a>
+
             </div>
 
 
@@ -62,7 +55,7 @@
       </div>
     </div>
 
-    <div class="col-lg-8">
+    <div class="col-lg-10">
 
       <div class="col-lg-12">
 
@@ -71,26 +64,34 @@
             <div class="card-body">
 
               <div class="d-flex justify-content-between align-items-center">
-                <h5 class="card-title">Ejecutores del proyecto</h5>
-                
-
+                <h5 class="card-title">Historial de informes</h5>
               </div>
 
-              <div class="table-responsive">
+              <div class="table-responsive ">
 
                 <!-- Table with stripped rows -->
-                <table class="table table-sm ">
+                <table class="table datatable table-sm ">
                   <thead>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">Nombres</th>
-                      <th scope="col">Apellidos</th>
-                      
-                      <th scope="col">Cargo</th>
-                      <th>Opt</th>
+                      <th scope="col">N° informe</th>
+                      <th scope="col">Nombre del archivo</th>
+                      <th>Fecha</th>
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach ($redacciones as $redaccion)
+                        <tr>
+                          <td>{{$redaccion->id}}</th>
+                          <td>{{$redaccion->redaccion_codigo}}</td>
+                          <td>
+                            <a href="{{asset('files/redaccion/'.$redaccion->nombre_documento)}}" download target="_blank">
+                              {{$redaccion->nombre_documento}}
+                            </a>
+                          </td>
+                          <td>{{$redaccion->created_at}}</td>
+                        </tr>
+                    @endforeach
   
                   </tbody>
                 </table>
