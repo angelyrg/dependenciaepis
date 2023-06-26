@@ -50,16 +50,22 @@ class RedaccionController extends Controller
     public function store(Request $request)
     {
         $proyecto_id = $request->proyecto_id;
-
         $proyecto = Proyecto::findOrFail($proyecto_id);
+        $configuracion = Setting::all()->last();
+        $ultimo_informe = Redaccion::where("year_documento", $configuracion->year)->last();
 
-        $configuracion = Setting::first()->get();
-
-        return $configuracion;
-
-        $ultimo_informe = Redaccion::all();
-
-        
+        //VARIABLES PARA EL DOCUMENTO
+        $numero_informe = ($ultimo_informe->numero_documento + 1) . "-" . $configuracion->year; 
+        $nombre_director_epis = $configuracion->nombre_director;
+        $modalidad_proyecto = $proyecto->modalidad->nombre;
+        $fecha_actual = date('d/m/Y');
+        $nombre_proyecto = $proyecto->nombre_proyecto;
+        $modalidad_grupo = $proyecto->modalidad_grupo;
+        $nombre_grupo = $proyecto->nombre_grupo;
+        $numero_resolucion = $request->numero_resolucion;
+        $asesor1 = $proyecto->asesores->first->nombres;
+        $asesor2 = count($proyecto->asesores) > 1 ? $proyecto->asesores->last->nombres : "";
+        $nombre_responsable = $configuracion->responsable_id;
 
         // - numero_informe		:CONTROLLER
         // - nombre_director_epis	:CONTROLLER
@@ -73,38 +79,36 @@ class RedaccionController extends Controller
         // - asesor2				:CONTROLLER
         // - nombre_responsable	:CONTROLLER
 
-
         // NOMBRE: 001-2023-SSU-HATARIY
-        //
-
-        $nombre_archivo = $request->numero_informe."_".$request->nombre_grupo;
-
+        $nombre_archivo = $numero_informe."_".$nombre_grupo;
 
         //Script phpWORD
         // Creating the new document...
         $phpWord = new \PhpOffice\PhpWord\TemplateProcessor('INFORME_INFORME_FINAL.docx');
-
-        //Edit String
-        //TODO: Add date =============
         $phpWord->setValues([
-            'numero_informe' => $request->numero_informe, 
-            'nombre_grupo' => $request->nombre_grupo, 
-            'nombre_proyecto' => $request->nombre_proyecto,
-            'modalidad_grupo' => $request->modalidad_grupo,
-            'modalidad_proyecto' => $request->modalidad_proyecto,
+            'numero_informe' => $numero_informe, 
+            'nombre_director_epis' => $nombre_director_epis, 
+            'modalidad_proyecto' => $modalidad_proyecto,
+            'fecha_actual' => $fecha_actual,
+            'nombre_proyecto' => $nombre_proyecto,
+            'modalidad_grupo' => $modalidad_grupo,
+            'nombre_grupo' => $nombre_grupo,
+            'numero_resolucion' => $numero_resolucion,
+            'asesor1' => $asesor1,
+            'asesor2' => $asesor2,
+            'nombre_responsable' => $nombre_responsable,
         ]);
 
         $carpetaRedaccion = 'files/redaccion/';
-        if (!file_exists($carpetaRedaccion)) {
-            mkdir($carpetaRedaccion, 0777, true);
-        }
+        (!file_exists($carpetaRedaccion)) ? mkdir($carpetaRedaccion, 0777, true) : '';
 
         $phpWord->saveAs($carpetaRedaccion."/".$nombre_archivo.'.docx');
 
-        // $nuevo = new Redaccion();
-        // $nuevo->redaccion_codigo = $request->numero_informe;
-        // $nuevo->nombre_documento = $nombre_archivo.".docx";
-        // $nuevo->save();
+        $nuevo = new Redaccion();
+        $nuevo->numero_documento = $ultimo_informe->numero_documento + 1;
+        $nuevo->year_documento = $configuracion->year;
+        $nuevo->nombre_documento = $nombre_archivo.".docx";
+        $nuevo->save();
 
         // return redirect()->route('redaccion.index');
     }

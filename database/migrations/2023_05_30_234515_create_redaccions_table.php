@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('redaccions', function (Blueprint $table) {
             $table->id();
-            $table->string('redaccion_codigo', 20);
+            $table->integer('numero_documento');
+            $table->string('year_documento', 4);
             $table->string('nombre_documento');
             $table->timestamps();
         });
