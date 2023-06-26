@@ -67,8 +67,8 @@ Route::resource('documentos', DocumentoController::class)->only(['store', 'destr
 Route::get('participacion', [EstudianteController::class, 'participacion'])->name('indiceparticipacion')->middleware('auth.responsable');
 Route::post('setstudents', [EstudianteController::class, 'store'])->name('setstudents')->middleware('auth.responsable');
 
-Route::resource('redaccion', RedaccionController::class)->names('redaccion');
-Route::resource('settings', SettingController::class)->names('settings');
+Route::resource('redaccion', RedaccionController::class)->names('redaccion')->middleware('auth.responsable');;
+Route::resource('settings', SettingController::class)->names('settings')->middleware('auth.responsable');;
 
 
 Route::resource('asesor/proyectos', ProyectoAseController::class)->names('aproyectos')->middleware('auth.asesor');

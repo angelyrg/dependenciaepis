@@ -61,7 +61,7 @@
                       <label for="username" class="form-label">Usuario</label>
                       <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person"></i></span>
-                        <input type="text" name="username" class="form-control" id="username" maxlength="10" required>
+                        <input type="text" name="username" class="form-control" id="username" maxlength="10" autofocus required>
                         <div class="invalid-feedback">Ingresa tu usuario.</div>
                       </div>
                     </div>

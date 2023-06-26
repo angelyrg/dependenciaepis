@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Modalidad;
+use App\Models\Proyecto;
 use App\Models\Redaccion;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -17,7 +18,8 @@ class RedaccionController extends Controller
     public function index()
     {
         $redacciones = Redaccion::all();
-        return view('responsable.redaccion.index', ['redacciones'=>$redacciones]);
+        $grupos = Proyecto::all();
+        return view('responsable.redaccion.index', ['redacciones'=>$redacciones, "grupos"=>$grupos]);
     }
 
     /**
@@ -47,10 +49,29 @@ class RedaccionController extends Controller
      */
     public function store(Request $request)
     {
-        $nombre_grupo = $request->nombre_grupo;
-        $modalidad_grupo = $request->modalidad_grupo;
-        $nombre_proyecto = $request->nombre_proyecto;
-        $modalidad_proyecto = $request->modalidad_proyecto;
+        $proyecto_id = $request->proyecto_id;
+
+        $proyecto = Proyecto::findOrFail($proyecto_id);
+
+        $configuracion = Setting::first()->get();
+
+        return $configuracion;
+
+        $ultimo_informe = Redaccion::all();
+
+        
+
+        // - numero_informe		:CONTROLLER
+        // - nombre_director_epis	:CONTROLLER
+        // - modalidad_proyecto	:FORM => CONTROLLER
+        // - fecha_actual			:CONTROLLER
+        // - nombre_proyecto		:FORM => CONTROLLER
+        // - modalidad_grupo		:FORM => CONTROLLER
+        // - nombre_grupo			:FORM)
+        // - numero_resolucion		:FORM)
+        // - asesor1				:CONTROLLER
+        // - asesor2				:CONTROLLER
+        // - nombre_responsable	:CONTROLLER
 
 
         // NOMBRE: 001-2023-SSU-HATARIY
@@ -58,14 +79,13 @@ class RedaccionController extends Controller
 
         $nombre_archivo = $request->numero_informe."_".$request->nombre_grupo;
 
-        // return $request;
 
         //Script phpWORD
         // Creating the new document...
         $phpWord = new \PhpOffice\PhpWord\TemplateProcessor('INFORME_INFORME_FINAL.docx');
 
         //Edit String
-        //TODO: Add date
+        //TODO: Add date =============
         $phpWord->setValues([
             'numero_informe' => $request->numero_informe, 
             'nombre_grupo' => $request->nombre_grupo, 
@@ -81,12 +101,12 @@ class RedaccionController extends Controller
 
         $phpWord->saveAs($carpetaRedaccion."/".$nombre_archivo.'.docx');
 
-        $nuevo = new Redaccion();
-        $nuevo->redaccion_codigo = $request->numero_informe;
-        $nuevo->nombre_documento = $nombre_archivo.".docx";
-        $nuevo->save();
+        // $nuevo = new Redaccion();
+        // $nuevo->redaccion_codigo = $request->numero_informe;
+        // $nuevo->nombre_documento = $nombre_archivo.".docx";
+        // $nuevo->save();
 
-        return redirect()->route('redaccion.index');
+        // return redirect()->route('redaccion.index');
     }
 
     /**

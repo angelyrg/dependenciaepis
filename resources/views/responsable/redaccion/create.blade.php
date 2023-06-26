@@ -42,22 +42,28 @@
             <h5 class="card-title">Datos del proyecto</h5>
   
               <hr class="dropdown-divider">
-              
-              <div class="row">
-                <b>Número de informe: </b>
-                <label> {{$setting->year}} </label>
-              </div>
 
               <div class="row mb-3">
-                <div class="col-md-8 mb-3">
-                  <label for="validationNumeroInforme" class="form-label">Número de informe</label>
-                  <input type="text" class="form-control" name="numero_informe" value="" id="validationNumeroInforme" required disabled>                  
+                <div class="col-12">
+                  <label for="btnradio" class="form-label">Seleccione el tipo de informe</label>
+                  <div class="btn-group" role="group" aria-label="Tipo de informe">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                    <label class="btn btn-outline-success d-flex align-items-center" for="btnradio1">Aprobación e inscripción del proyecto</label>
+                  
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" disabled>
+                    <label class="btn btn-outline-success d-flex align-items-center" for="btnradio2">Revisión y aprobación del informe parcial</label>
+                  
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                    <label class="btn btn-outline-success d-flex align-items-center" for="btnradio3">Revisión y aprobación del informe final</label>
+                    
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" disabled>
+                    <label class="btn btn-outline-success d-flex align-items-center" for="btnradio4">Informe de casos especiales</label>
+                  </div>
                 </div>
               </div>
 
-
               <div class="row mb-3">
-
+                
                 <div class="col-md-8 ">
                   <label for="validationCustom03" class="form-label">Nombre del Grupo</label>
                   <div class="input-group has-validation">
@@ -68,7 +74,6 @@
                     </div>
                   </div>
                 </div> <!--End Input Nombre Grupo-->
-
 
                 <div class="col-md-4">
                   <label for="validationCustom04" class="form-label">Modalidad de grupo</label>

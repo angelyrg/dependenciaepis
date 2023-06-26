@@ -5,6 +5,7 @@
 @section('content')
 
 @include('layouts.flashtoast')
+@include('responsable.redaccion.modal-create')
 
 <div class="pagetitle">
   <div class="row d-flex justify-content-between">
@@ -42,9 +43,15 @@
               </div>
             </div>
 
+            
+
             <div class="mt-1 text-center">
 
               <a href="{{route('redaccion.create')}}" class="btn rounded-3 mb-2 btn-outline-primary ">Crear nuevo informe</a>
+
+              <button type="button" class="btn rounded-3 mb-2 btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal-redaccion-aprobacion">
+                Redactar nuevo documento
+              </button>
 
             </div>
 
@@ -113,6 +120,9 @@
   </div>
   
 </section>
+
+
+
 
 @endsection
 
