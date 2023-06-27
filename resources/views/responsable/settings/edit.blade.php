@@ -58,7 +58,7 @@
               </div>
             </div>
 
-            <div class="col-md-12">
+            {{-- <div class="col-md-12">
               <label for="validationCustom02" class="form-label">Número de informe</label>
               <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person-lines-fill"></i></span>
@@ -67,7 +67,7 @@
                   Por favor ingrese el número de informe.
                 </div>
               </div>
-            </div>
+            </div> --}}
 
             <div class="col-md-12">
               <label for="validationCustom02" class="form-label">Nombre del director</label>

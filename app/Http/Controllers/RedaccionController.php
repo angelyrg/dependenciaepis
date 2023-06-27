@@ -52,10 +52,19 @@ class RedaccionController extends Controller
         $proyecto_id = $request->proyecto_id;
         $proyecto = Proyecto::findOrFail($proyecto_id);
         $configuracion = Setting::all()->last();
-        $ultimo_informe = Redaccion::where("year_documento", $configuracion->year)->last();
+
+        if (!isset($configuracion->id)) {
+            return redirect()->back()->with("danger", "Actualiza la Configuración / General");
+        }
+
+        $ultimo_informe = Redaccion::where("year_documento", $configuracion->year)->latest()->get();
+
+        // return $ultimo_informe;
+        
+        $numero_de_informe = isset($ultimo_informe) ? ($ultimo_informe->numero_documento + 1) : 1;
 
         //VARIABLES PARA EL DOCUMENTO
-        $numero_informe = ($ultimo_informe->numero_documento + 1) . "-" . $configuracion->year; 
+        $numero_informe = ($numero_de_informe) . "-" . $configuracion->year; 
         $nombre_director_epis = $configuracion->nombre_director;
         $modalidad_proyecto = $proyecto->modalidad->nombre;
         $fecha_actual = date('d/m/Y');
@@ -66,6 +75,8 @@ class RedaccionController extends Controller
         $asesor1 = $proyecto->asesores->first->nombres;
         $asesor2 = count($proyecto->asesores) > 1 ? $proyecto->asesores->last->nombres : "";
         $nombre_responsable = $configuracion->responsable_id;
+
+        return $asesor1;
 
         // - numero_informe		:CONTROLLER
         // - nombre_director_epis	:CONTROLLER
@@ -84,7 +95,7 @@ class RedaccionController extends Controller
 
         //Script phpWORD
         // Creating the new document...
-        $phpWord = new \PhpOffice\PhpWord\TemplateProcessor('INFORME_INFORME_FINAL.docx');
+        $phpWord = new \PhpOffice\PhpWord\TemplateProcessor('INFORME_APROBACION_PROYECTO.docx');
         $phpWord->setValues([
             'numero_informe' => $numero_informe, 
             'nombre_director_epis' => $nombre_director_epis, 
@@ -104,11 +115,11 @@ class RedaccionController extends Controller
 
         $phpWord->saveAs($carpetaRedaccion."/".$nombre_archivo.'.docx');
 
-        $nuevo = new Redaccion();
-        $nuevo->numero_documento = $ultimo_informe->numero_documento + 1;
-        $nuevo->year_documento = $configuracion->year;
-        $nuevo->nombre_documento = $nombre_archivo.".docx";
-        $nuevo->save();
+        // $nuevo = new Redaccion();
+        // $nuevo->numero_documento = $ultimo_informe->numero_documento + 1;
+        // $nuevo->year_documento = $configuracion->year;
+        // $nuevo->nombre_documento = $nombre_archivo.".docx";
+        // $nuevo->save();
 
         // return redirect()->route('redaccion.index');
     }

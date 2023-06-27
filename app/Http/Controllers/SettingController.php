@@ -36,9 +36,14 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "year_settings" => "required",
+            "nombre_director" => "required"
+        ]);
+
         $setting = new Setting();
         $setting->year = $request->year_settings;
-        $setting->numero_informe = $request->numero_informe;
+        // $setting->numero_informe = $request->numero_informe;
         $setting->nombre_director = $request->nombre_director;
         $setting->save();
         return redirect()->route('settings.index')->with('success', 'Configuración creada.');
@@ -75,8 +80,13 @@ class SettingController extends Controller
      */
     public function update(Request $request, Setting $setting)
     {
+        $request->validate([
+            "year_settings" => "required",
+            "nombre_director" => "required"
+        ]);
+
         $setting->year = $request->year_settings;
-        $setting->numero_informe = $request->numero_informe;
+        // $setting->numero_informe = $request->numero_informe;
         $setting->nombre_director = $request->nombre_director;
         $setting->save();
         return redirect()->route('settings.index')->with('success', 'Configuración actualizada.');

@@ -29,11 +29,11 @@
           <div class="pt-3">  
             <b>Año</b>
             <p>{{$setting->year}}</p>
-            <b>Número de informe</b>
-            <p>{{$setting->numero_informe}}</p>
+            {{-- <b>Número de informe</b>
+            <p>{{$setting->numero_informe}}</p> --}}
             <b>Nombre del director</b>
             <p>{{$setting->nombre_director}}</p>
-            <p>{{$setting->id}}</p>
+            {{-- <p>{{$setting->id}}</p> --}}
 
             <p class="my-2">
               <a href="{{route('settings.edit', $setting->id)}}" class="btn btn-outline-dark">Actualizar datos</a>

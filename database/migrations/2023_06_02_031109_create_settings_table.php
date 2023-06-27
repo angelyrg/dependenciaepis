@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->string("year", 4);
-            $table->integer("numero_informe");
+            // $table->integer("numero_informe");
             $table->string("nombre_director", 100);
 
             $table->unsignedBigInteger('responsable_id')->nullable();
