@@ -8,6 +8,8 @@ use App\Models\Redaccion;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\isEmpty;
+
 class RedaccionController extends Controller
 {
     /**
@@ -57,14 +59,12 @@ class RedaccionController extends Controller
             return redirect()->back()->with("danger", "Actualiza la Configuración / General");
         }
 
-        $ultimo_informe = Redaccion::where("year_documento", $configuracion->year)->latest()->get();
+        $ultimo_informe = Redaccion::where("year_documento", $configuracion->year)->latest()->first();
 
-        // return $ultimo_informe;
-        
-        $numero_de_informe = isset($ultimo_informe) ? ($ultimo_informe->numero_documento + 1) : 1;
+        $numero_de_informe = !isset($ultimo_informe) ? 1 : ($ultimo_informe->numero_documento + 1);
 
         //VARIABLES PARA EL DOCUMENTO
-        $numero_informe = ($numero_de_informe) . "-" . $configuracion->year; 
+        $numero_informe = ($numero_de_informe) . "-" . $configuracion->year;
         $nombre_director_epis = $configuracion->nombre_director;
         $modalidad_proyecto = $proyecto->modalidad->nombre;
         $fecha_actual = date('d/m/Y');
@@ -74,21 +74,9 @@ class RedaccionController extends Controller
         $numero_resolucion = $request->numero_resolucion;
         $asesor1 = $proyecto->asesores->first->nombres;
         $asesor2 = count($proyecto->asesores) > 1 ? $proyecto->asesores->last->nombres : "";
-        $nombre_responsable = $configuracion->responsable_id;
+        // $nombre_responsable = $configuracion->responsable_id;
+        $nombre_responsable = "Gilmer Matos";
 
-        return $asesor1;
-
-        // - numero_informe		:CONTROLLER
-        // - nombre_director_epis	:CONTROLLER
-        // - modalidad_proyecto	:FORM => CONTROLLER
-        // - fecha_actual			:CONTROLLER
-        // - nombre_proyecto		:FORM => CONTROLLER
-        // - modalidad_grupo		:FORM => CONTROLLER
-        // - nombre_grupo			:FORM)
-        // - numero_resolucion		:FORM)
-        // - asesor1				:CONTROLLER
-        // - asesor2				:CONTROLLER
-        // - nombre_responsable	:CONTROLLER
 
         // NOMBRE: 001-2023-SSU-HATARIY
         $nombre_archivo = $numero_informe."_".$nombre_grupo;
@@ -105,8 +93,8 @@ class RedaccionController extends Controller
             'modalidad_grupo' => $modalidad_grupo,
             'nombre_grupo' => $nombre_grupo,
             'numero_resolucion' => $numero_resolucion,
-            'asesor1' => $asesor1,
-            'asesor2' => $asesor2,
+            'asesor1' => $asesor1->nombres. " ". $asesor1->apellidos,
+            'asesor2' => (!isEmpty($asesor2)) ? $asesor2->nombres. " ". $asesor2->apellidos : "",
             'nombre_responsable' => $nombre_responsable,
         ]);
 
@@ -115,13 +103,13 @@ class RedaccionController extends Controller
 
         $phpWord->saveAs($carpetaRedaccion."/".$nombre_archivo.'.docx');
 
-        // $nuevo = new Redaccion();
-        // $nuevo->numero_documento = $ultimo_informe->numero_documento + 1;
-        // $nuevo->year_documento = $configuracion->year;
-        // $nuevo->nombre_documento = $nombre_archivo.".docx";
-        // $nuevo->save();
+        $nuevo = new Redaccion();
+        $nuevo->numero_documento = $numero_de_informe;
+        $nuevo->year_documento = $configuracion->year;
+        $nuevo->nombre_documento = $nombre_archivo.".docx";
+        $nuevo->save();
 
-        // return redirect()->route('redaccion.index');
+        return redirect()->route('redaccion.index');
     }
 
     /**
