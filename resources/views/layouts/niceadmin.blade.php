@@ -137,6 +137,11 @@
                 <i class="bi bi-circle"></i><span>Ejecutores</span>
               </a>
             </li>
+            <li>
+              <a href="{{route('secretaria.index')}}">
+                <i class="bi bi-circle"></i><span>Secretaría</span>
+              </a>
+            </li>
           </ul>
         </li><!-- End Usuarios Nav -->
 
@@ -313,6 +318,21 @@
             <span>Reglamento</span>
           </a>
         </li><!-- End Reglamento Nav -->
+
+      @elseif (Auth::user()->rol == "Secretaria")
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-layout-text-window-reverse"></i><span>Gestión de Documentos</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="{{route('aslgoeasodjfn.index')}}">
+                <i class="bi bi-circle"></i><span>Proyectos</span>
+              </a>
+            </li>
+          </ul>
+        </li><!-- End Proyectos Nav -->
 
       @endif
 

@@ -50,9 +50,15 @@ Route::get('profile', [AccountController::class, 'profile'] )->name('profile');
 Route::put('password', [AccountController::class, 'changePassword'] )->name('password');
 Route::put('password/{user}/restore', [AccountController::class, 'restorePassword'] )->name('restore');
 
+
+
 Route::resource('asesors', AsesorController::class)->names('asesors')->middleware('auth.responsable');
+Route::resource('secretarias', SecretariaController::class)->names('secretarias')->middleware('auth.responsable');
 Route::resource('modalidads', ModalidadController::class)->names('modalidads')->middleware('auth.responsable');
 Route::resource('proyectos', ProyectoController::class)->names('proyectos')->middleware('auth.responsable');
+
+Route::put('proyectos/{proyecto}/set_resolution', [ProyectoController::class, 'update_resolucion'])->name('proyecto.set_resolution')->middleware('auth.responsable');
+
 Route::resource('ejecutores', EjecutorController::class)->names('ejecutores')->middleware('auth.responsable');
 Route::put('proyectos/{proyecto}/add_ejecutor', [EjecutorController::class, 'add'])->name('ejecutores.add')->middleware('auth.responsable');
 Route::resource('reglamentos', ReglamentoController::class)->names('reglamentos')->middleware('auth.responsable');
@@ -71,12 +77,18 @@ Route::resource('redaccion', RedaccionController::class)->names('redaccion')->mi
 Route::resource('settings', SettingController::class)->names('settings')->middleware('auth.responsable');;
 
 
+
+
+
 Route::resource('asesor/proyectos', ProyectoAseController::class)->names('aproyectos')->middleware('auth.asesor');
 Route::get('asesor/reglamentos', [ReglamentoAseController::class, 'index'])->name('areglamentos')->middleware('auth.asesor');
 Route::get('asesorados', [InformeAseController::class, 'index'])->name('asesorados')->middleware('auth.asesor');
 Route::get('asesorados/{proyecto}', [InformeAseController::class, 'show'])->name('asesorados.proyecto')->middleware('auth.asesor');
 Route::get('asesorados/{informe}/comments', [InformeAseController::class, 'comments'])->name('asesorado.comments')->middleware('auth.asesor');
 Route::put('asesorados/{informe}', [InformeAseController::class, 'update'])->name('asesorado.informe_update')->middleware('auth.asesor');
+
+
+
 
 
 Route::get('proyecto', [ProyectoEstController::class, 'index'])->name('proyecto')->middleware('auth.estudiante');

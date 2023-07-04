@@ -21,7 +21,12 @@ class RedaccionController extends Controller
     {
         $redacciones = Redaccion::latest()->get();
         $grupos = Proyecto::all();
-        return view('responsable.redaccion.index', ['redacciones'=>$redacciones, "grupos"=>$grupos]);
+        
+        $grupos_inicio = Proyecto::where('estado', 'Inicio')->get();
+        $grupos_parcial = Proyecto::where('estado', 'Parcial')->get();
+        $grupos_completado = Proyecto::where('estado', 'Completado')->get();
+
+        return view('responsable.redaccion.index', ['redacciones'=>$redacciones, "grupos"=>$grupos, "grupos_inicio"=>$grupos_inicio, "grupos_parcial"=>$grupos_parcial]);
     }
 
     /**
@@ -31,16 +36,7 @@ class RedaccionController extends Controller
      */
     public function create()
     {
-        $setting = Setting::latest()->first();
-
-        // $current_year = $setting->year;
-
-        // $redaccion = Redaccion::latest()->Where('year')->first();
-        
-        // $lastRedaccion = isset($redaccion->redaccion_codigo) ? (int)$redaccion->redaccion_codigo : 1;
-        // $lastRedaccion = str_pad($lastRedaccion, 2, "0", STR_PAD_LEFT);
-
-        return view('responsable.redaccion.create', compact('setting'));
+        //
     }
 
     /**
@@ -59,6 +55,10 @@ class RedaccionController extends Controller
             return redirect()->back()->with("danger", "Actualiza la Configuración / General");
         }
 
+        if ( $proyecto->resolucion_aprobacion == null ) {
+            return redirect()->back()->with("danger", "El proyecto debe tener el número de resolución de aprobación.");
+        }
+
         $ultimo_informe = Redaccion::where("year_documento", $configuracion->year)->latest()->first();
 
         $numero_de_informe = !isset($ultimo_informe) ? 1 : ($ultimo_informe->numero_documento + 1);
@@ -71,14 +71,24 @@ class RedaccionController extends Controller
         $nombre_proyecto = $proyecto->nombre_proyecto;
         $modalidad_grupo = $proyecto->modalidad_grupo;
         $nombre_grupo = $proyecto->nombre_grupo;
-        $numero_resolucion = $request->numero_resolucion;
+        $numero_resolucion = $proyecto->resolucion_aprobacion;
         $asesor1 = $proyecto->asesores->first();
         $asesor2 = (count($proyecto->asesores) > 1) ? $proyecto->asesores->last() : "";
 
         // $nombre_responsable = $configuracion->responsable_id;
         $nombre_responsable = "Gilmer Matos Vila";
 
-        $numero_informe_con_ceros = str_pad($numero_de_informe, 3, "0", STR_PAD_LEFT);
+        //plantillas
+        $pantilla = [ 
+            'APROBACION' => 'INFORME_APROBACION.docx',
+            'PARCIAL' => 'INFORME_PARCIAL.docx',
+            'FINAL' => 'INFORME_FINAL.docx',
+            'ESPECIAL' => 'INFORME_ESPECIAL.docx',
+        ];
+
+        // return $pantilla[$request->tipo_informe];
+
+        $numero_informe_con_ceros = str_pad($numero_de_informe, 3, "0", STR_PAD_LEFT); //001
 
         // NOMBRE: 001-2023-SSU-HATARIY
         $nombre_archivo = $numero_informe_con_ceros."-".$configuracion->year."-".$proyecto->modalidad->sigla."-".$nombre_grupo;
@@ -90,10 +100,11 @@ class RedaccionController extends Controller
             $asesores = $asesor1->nombres. " ". $asesor1->apellidos;
         }
 
+        
 
         //Script phpWORD
         // Creating the new document...
-        $phpWord = new \PhpOffice\PhpWord\TemplateProcessor('INFORME_APROBACION_PROYECTO.docx');
+        $phpWord = new \PhpOffice\PhpWord\TemplateProcessor($pantilla[$request->tipo_informe]);
         $phpWord->setValues([
             'numero_informe' => $numero_informe_con_ceros, 
             'nombre_director_epis' => $nombre_director_epis, 
@@ -103,10 +114,11 @@ class RedaccionController extends Controller
             'modalidad_grupo' => $modalidad_grupo,
             'nombre_grupo' => $nombre_grupo,
             'numero_resolucion' => $numero_resolucion,
-
             'asesores' => $asesores,
             'nombre_responsable' => $nombre_responsable,
         ]);
+
+
 
         $carpetaRedaccion = 'files/redaccion/';
         (!file_exists($carpetaRedaccion)) ? mkdir($carpetaRedaccion, 0777, true) : '';

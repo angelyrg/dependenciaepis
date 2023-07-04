@@ -19,11 +19,12 @@ class CreateProyectosTable extends Migration
             $table->string('modalidad_grupo', 20); //Monovalente, Polivalente, Inter facultativo
             $table->string('nombre_proyecto');
             $table->unsignedBigInteger("modalidad_id")->nullable();
-
+            
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
-
-            $table->string('estado', 20)->default('Inicio'); //Inicio, Parcial, Completado
+            
+            $table->string('resolucion_aprobacion')->nullable();
+            $table->string('estado', 20)->default('Inscrito'); //Inscrito, Inicio, Parcial, Completado
            
             $table->boolean('presidente')->nullable();
             $table->boolean('tesorero')->nullable();

@@ -99,6 +99,7 @@
                               </button>
                           </td>
                           @include('responsable.proyectos.modal')
+                          @include('responsable.proyectos.modal-update_resolucion')
                           </tr>
                         @endif
   

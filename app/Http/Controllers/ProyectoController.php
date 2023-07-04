@@ -129,4 +129,13 @@ class ProyectoController extends Controller
         return Excel::download(new ProyectosExport($fecha_desde, $fecha_hasta), 'proyectos.xlsx'); 
 
     }
+
+    public function update_resolucion(ProyectoRequest $request, Proyecto $proyecto){
+
+        $proyecto->resolucion_aprobacion = $request->resolucion_aprobacion;
+        $proyecto->save();
+
+        return redirect()->route('proyectos.index')->with('success', 'Proyecto '.$request->codigo.' actualizado correctamente.');
+
+    }
 }
