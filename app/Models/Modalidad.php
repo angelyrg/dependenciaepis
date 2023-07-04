@@ -11,6 +11,7 @@ class Modalidad extends Model
 
     protected $fillable = [
         'nombre',
+        'sigla',
         'estado',
     ];
 

@@ -41,6 +41,7 @@ class ModalidadController extends Controller
     public function update(ModalidadRequest $request, Modalidad $modalidad)
     {
         $modalidad->nombre = $request->nombre;
+        $modalidad->sigla = $request->sigla;
         $modalidad->estado = $request->estado;
         $modalidad->save();
 

@@ -29,14 +29,17 @@ class DatabaseSeeder extends Seeder
 
         Modalidad::create([
             'nombre' => "Servicio Social Universitario",
+            'sigla' => "SSU",
             'estado' => "Activo",]);
 
         Modalidad::create([
             'nombre' => "Extensión Cultural",
+            'sigla' => "EC",
             'estado' => "Activo",]);
                 
         Modalidad::create([
             'nombre' => "Proyección Social",
+            'sigla' => "PS",
             'estado' => "Activo",]);
 
         Cargo::create([ 'cargo' => "Presidente(a)" ]);

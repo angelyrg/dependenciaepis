@@ -19,7 +19,7 @@ class RedaccionController extends Controller
      */
     public function index()
     {
-        $redacciones = Redaccion::all();
+        $redacciones = Redaccion::latest()->get();
         $grupos = Proyecto::all();
         return view('responsable.redaccion.index', ['redacciones'=>$redacciones, "grupos"=>$grupos]);
     }
@@ -53,7 +53,7 @@ class RedaccionController extends Controller
     {
         $proyecto_id = $request->proyecto_id;
         $proyecto = Proyecto::findOrFail($proyecto_id);
-        $configuracion = Setting::all()->last();
+        $configuracion = Setting::latest()->first();
 
         if (!isset($configuracion->id)) {
             return redirect()->back()->with("danger", "Actualiza la Configuración / General");
@@ -64,7 +64,7 @@ class RedaccionController extends Controller
         $numero_de_informe = !isset($ultimo_informe) ? 1 : ($ultimo_informe->numero_documento + 1);
 
         //VARIABLES PARA EL DOCUMENTO
-        $numero_informe = ($numero_de_informe) . "-" . $configuracion->year;
+        // $numero_informe = ($numero_de_informe) . "-" . $configuracion->year;
         $nombre_director_epis = $configuracion->nombre_director;
         $modalidad_proyecto = $proyecto->modalidad->nombre;
         $fecha_actual = date('d/m/Y');
@@ -72,20 +72,30 @@ class RedaccionController extends Controller
         $modalidad_grupo = $proyecto->modalidad_grupo;
         $nombre_grupo = $proyecto->nombre_grupo;
         $numero_resolucion = $request->numero_resolucion;
-        $asesor1 = $proyecto->asesores->first->nombres;
-        $asesor2 = count($proyecto->asesores) > 1 ? $proyecto->asesores->last->nombres : "";
-        // $nombre_responsable = $configuracion->responsable_id;
-        $nombre_responsable = "Gilmer Matos";
+        $asesor1 = $proyecto->asesores->first();
+        $asesor2 = (count($proyecto->asesores) > 1) ? $proyecto->asesores->last() : "";
 
+        // $nombre_responsable = $configuracion->responsable_id;
+        $nombre_responsable = "Gilmer Matos Vila";
+
+        $numero_informe_con_ceros = str_pad($numero_de_informe, 3, "0", STR_PAD_LEFT);
 
         // NOMBRE: 001-2023-SSU-HATARIY
-        $nombre_archivo = $numero_informe."_".$nombre_grupo;
+        $nombre_archivo = $numero_informe_con_ceros."-".$configuracion->year."-".$proyecto->modalidad->sigla."-".$nombre_grupo;
+
+        //Asesores
+        if (count($proyecto->asesores) > 1){
+            $asesores = $asesor1->nombres. " ". $asesor1->apellidos. " y a " . $asesor2->nombres. " ". $asesor2->apellidos;
+        }else{
+            $asesores = $asesor1->nombres. " ". $asesor1->apellidos;
+        }
+
 
         //Script phpWORD
         // Creating the new document...
         $phpWord = new \PhpOffice\PhpWord\TemplateProcessor('INFORME_APROBACION_PROYECTO.docx');
         $phpWord->setValues([
-            'numero_informe' => $numero_informe, 
+            'numero_informe' => $numero_informe_con_ceros, 
             'nombre_director_epis' => $nombre_director_epis, 
             'modalidad_proyecto' => $modalidad_proyecto,
             'fecha_actual' => $fecha_actual,
@@ -93,8 +103,8 @@ class RedaccionController extends Controller
             'modalidad_grupo' => $modalidad_grupo,
             'nombre_grupo' => $nombre_grupo,
             'numero_resolucion' => $numero_resolucion,
-            'asesor1' => $asesor1->nombres. " ". $asesor1->apellidos,
-            'asesor2' => (!isEmpty($asesor2)) ? $asesor2->nombres. " ". $asesor2->apellidos : "",
+
+            'asesores' => $asesores,
             'nombre_responsable' => $nombre_responsable,
         ]);
 

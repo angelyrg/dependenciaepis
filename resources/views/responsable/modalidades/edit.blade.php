@@ -41,7 +41,7 @@
             @endif
 
             <div class="col-md-12">
-              <label for="validationCustom01" class="form-label">Nombres</label>
+              <label for="validationCustom01" class="form-label">Nombre de la modalidad</label>
               <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person-bounding-box"></i></span>
                 <input type="text" name="nombre" value="@if(!old('nombre')){{$modalidad->nombre}}@else{{old('nombre')}}@endif" class="form-control" id="validationCustom01" required>
@@ -50,6 +50,17 @@
                 </div>
               </div>
             </div> <!--End Input Nombre-->
+
+            <div class="col-md-12">
+              <label for="validationCustom01" class="form-label">Sigla</label>
+              <div class="input-group has-validation">
+                <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-chat-right-quote-fill"></i></span>
+                <input type="text" name="sigla" value="@if(!old('sigla')){{$modalidad->sigla}}@else{{old('sigla')}}@endif" class="form-control" id="validationCustom01" required>
+                <div class="invalid-feedback">
+                  Por favor ingrese la sigla de la modalidad.
+                </div>
+              </div>
+            </div> <!--End Input Sigla-->
 
             <div class="col-md-12">
               <label for="validationCustom04" class="form-label">Estado</label>

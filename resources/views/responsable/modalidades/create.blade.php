@@ -43,12 +43,23 @@
               <label for="validationCustom01" class="form-label">Modalidad</label>
               <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-chat-right-quote-fill"></i></span>
-                <input type="text" class="form-control" name="nombre" value="{{old('nombre')}}" placeholder="Nombre de la modalidad" id="validationCustom01" required autocomplete="off">
+                <input type="text" class="form-control" name="nombre" value="{{old('nombre')}}" placeholder="Proyección social" id="validationCustom01" required autocomplete="off">
                 <div class="invalid-feedback">
                   Por favor ingrese el nombre de la modalidad.
                 </div>
               </div>
             </div> <!--End Input Nombre-->
+
+            <div class="col-md-12">
+              <label for="validationCustom01" class="form-label">Sigla</label>
+              <div class="input-group has-validation">
+                <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-chat-right-quote-fill"></i></span>
+                <input type="text" class="form-control" name="sigla" value="{{old('sigla')}}" placeholder="PS" id="validationCustom01" required autocomplete="off">
+                <div class="invalid-feedback">
+                  Por favor ingrese la sigla de la modalidad.
+                </div>
+              </div>
+            </div> <!--End Input Sigla-->
 
 
             <div class="col-md-12">

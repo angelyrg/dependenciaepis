@@ -28,7 +28,7 @@
 
   <div class="row">
 
-    <div class="col-lg-2">
+    <div class="col-lg-3">
       <div class="row">
         <div class="col-lg-12">
           <div class="info-box card">
@@ -39,30 +39,28 @@
               </div>
               <div class="col-10 mt-0">
                 <small>Redacción de informes</small>
-                <h3 class="p-0 m-0">Tipos de informes</h3>
               </div>
             </div>
 
-            
-
             <div class="mt-1 text-center">
-
-              <a href="{{route('redaccion.create')}}" class="btn rounded-3 mb-2 btn-outline-primary ">Crear nuevo informe</a>
-
-              <button type="button" class="btn rounded-3 mb-2 btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal-redaccion-aprobacion">
-                Redactar nuevo documento
+              <button type="button" class="btn rounded-3 mb-2 w-100 btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal-redaccion-aprobacion">
+                Aprobación e Inscripción
               </button>
-
+            </div>
+            <div class="mt-1 text-center">
+              <button type="button" class="btn rounded-3 mb-2 btn-block btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal-redaccion-parcial">
+                Informe parcial
+              </button>
             </div>
 
 
+
           </div>
-          
         </div>
       </div>
     </div>
 
-    <div class="col-lg-10">
+    <div class="col-lg-9">
 
       <div class="col-lg-12">
 
@@ -81,23 +79,31 @@
                   <thead>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">N° informe</th>
                       <th scope="col">Nombre del archivo</th>
                       <th>Fecha</th>
                     </tr>
                   </thead>
                   <tbody>
+                    <?php $i = 0; ?>
                     @foreach ($redacciones as $redaccion)
-                        <tr>
+                        <tr>                          
                           <td>{{$redaccion->id}}</th>
-                          <td>{{$redaccion->redaccion_codigo}}</td>
                           <td>
                             <a href="{{asset('files/redaccion/'.$redaccion->nombre_documento)}}" download target="_blank">
                               {{$redaccion->nombre_documento}}
                             </a>
                           </td>
                           <td>{{$redaccion->created_at}}</td>
+                          @if ($i<2)
+                          <td>
+                            <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$redaccion->id}}">
+                              <i class="bi bi-trash"></i>
+                            </button>
+                          </td>
+                          @include('responsable.redaccion.modal-delete')
+                          @endif
                         </tr>
+                        <?php $i++; ?>
                     @endforeach
   
                   </tbody>

@@ -33,6 +33,7 @@
               <thead>
                 <tr>
                   <th scope="col">ID</th>
+                  <th scope="col">Sigla</th>
                   <th scope="col">Nombre de Modalidad</th>
                   <th scope="col">Estado</th>
                   <th scope="col">Opciones</th>
@@ -44,6 +45,7 @@
   
                   <tr>
                     <th scope="row">{{$modalidad->id}}</th>
+                    <td>{{$modalidad->sigla}}</td>
                     <td>{{$modalidad->nombre}}</td>
                     <td>
                       @if ($modalidad->estado == 'Activo')
