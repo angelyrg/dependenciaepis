@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Secretaria;
 use App\Traits\UserTrait;
 
@@ -16,6 +17,7 @@ class SecretariaController extends Controller
 
     public function index()
     {
+        
         $secretarias = Secretaria::all();
         return view("responsable.secretarias.index", compact('secretarias'));
     }
@@ -23,7 +25,7 @@ class SecretariaController extends Controller
 
     public function create()
     {
-        return view("responsable.secretaria.create");
+        return view("responsable.secretarias.create");
     }
 
 

@@ -7,7 +7,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>¿Está seguro si desea eliminar  <b>{{$secretaria->nombres." ".$secretaria->apellidos}}</b> ?</p>
+        <p>¿Está seguro que desea eliminar  <b>{{$secretaria->nombres." ".$secretaria->apellidos}}</b> ?</p>
       </div>
       <div class="modal-footer">
         <form method="POST" action="{{route('secretarias.destroy', $secretaria->id)}}">

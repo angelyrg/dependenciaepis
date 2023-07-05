@@ -48,7 +48,11 @@ class HomeController extends Controller
         }elseif(Auth::user()->rol == "Asesor"){
 
             $asesor = Asesor::where('user_id', Auth::user()->id)->first();
-            return view('home', ['asesor'=>$asesor]);        
+            return view('home', ['asesor'=>$asesor]);
+
+        }elseif(Auth::user()->rol == "Secretaria"){
+            
+            return view('home');        
         }
 
     }

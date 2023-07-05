@@ -22,6 +22,7 @@ use App\Http\Controllers\RedaccionController;
 use App\Http\Controllers\ReglamentoAseController;
 use App\Http\Controllers\ReglamentoController;
 use App\Http\Controllers\ReglamentoEstController;
+use App\Http\Controllers\SecretariaController;
 use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 

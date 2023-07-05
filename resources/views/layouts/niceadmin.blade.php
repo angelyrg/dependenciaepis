@@ -138,7 +138,7 @@
               </a>
             </li>
             <li>
-              <a href="{{route('secretaria.index')}}">
+              <a href="{{route('secretarias.index')}}">
                 <i class="bi bi-circle"></i><span>Secretaría</span>
               </a>
             </li>
@@ -327,8 +327,8 @@
           </a>
           <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="{{route('aslgoeasodjfn.index')}}">
-                <i class="bi bi-circle"></i><span>Proyectos</span>
+              <a href="#">
+                <i class="bi bi-circle"></i><span>Something</span>
               </a>
             </li>
           </ul>

@@ -20,7 +20,12 @@
                     <div class="input-group has-validation">
                       <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-toggle-on"></i></span>
                       <select class="form-select" name="proyecto_id" id="proyecto_id" required>
-                          <option selected disabled value="">Seleccione...</option>  
+                          <option selected disabled value="">Seleccione...</option>
+
+                          @if($grupos_inicio->isEmpty())
+                            <option disabled value="">No hay grupos con resolución de aprobación. </option>
+                          @endif                              
+
                           @foreach ($grupos_inicio as $grupo)
                             <option value={{$grupo->id}} >{{$grupo->nombre_grupo}}</option>
                           @endforeach
@@ -47,7 +52,7 @@
 
                 <div class="col-12 d-flex justify-content-center mt-4">
                   {{-- <a href="{{route('redaccion.index')}}" class="btn btn-secondary m-2 " ><i class="bi bi-x me-1"></i> Cancelar</a> --}}
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x me-1"></i> Cancelar</button>
+                  <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal"><i class="bi bi-x me-1"></i> Cancelar</button>
                   <button class="btn btn-primary m-2" type="submit"><i class="bi bi-file-word me-1"></i> Generar documento</button>
                 </div> <!--End Botones-->
                 
@@ -83,6 +88,11 @@
                       <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-toggle-on"></i></span>
                       <select class="form-select" name="proyecto_id" id="proyecto_id" required>
                           <option selected disabled value="">Seleccione...</option>  
+
+                          @if($grupos_inicio->isEmpty())
+                            <option disabled value="">No hay grupos con resolución de aprobación. </option>
+                          @endif 
+                          
                           @foreach ($grupos_inicio as $grupo)
                             <option value={{$grupo->id}} >{{$grupo->nombre_grupo}}</option>
                           @endforeach
@@ -109,7 +119,7 @@
       
                 <div class="col-12 d-flex justify-content-center mt-4">
                   {{-- <a href="{{route('redaccion.index')}}" class="btn btn-secondary m-2 " ><i class="bi bi-x me-1"></i> Cancelar</a> --}}
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x me-1"></i> Cancelar</button>
+                  <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal"><i class="bi bi-x me-1"></i> Cancelar</button>
                   <button class="btn btn-primary m-2" type="submit"><i class="bi bi-file-word me-1"></i> Generar documento</button>
                 </div> <!--End Botones-->
                 
@@ -141,7 +151,10 @@
                   <div class="input-group has-validation">
                     <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-toggle-on"></i></span>
                     <select class="form-select" name="proyecto_id" id="proyecto_id" required>
-                        <option selected disabled value="">Seleccione...</option>  
+                        <option selected disabled value="">Seleccione...</option>
+                        @if($grupos_parcial->isEmpty())
+                          <option disabled value="">No hay grupos en estado "Parcial" </option>
+                        @endif
                         @foreach ($grupos_parcial as $grupo)
                           <option value={{$grupo->id}} >{{$grupo->nombre_grupo}}</option>
                         @endforeach
@@ -155,7 +168,7 @@
 
               <div class="col-12 d-flex justify-content-center mt-4">
                 {{-- <a href="{{route('redaccion.index')}}" class="btn btn-secondary m-2 " ><i class="bi bi-x me-1"></i> Cancelar</a> --}}
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x me-1"></i> Cancelar</button>
+                <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal"><i class="bi bi-x me-1"></i> Cancelar</button>
                 <button class="btn btn-primary m-2" type="submit"><i class="bi bi-file-word me-1"></i> Generar documento</button>
               </div> <!--End Botones-->
               

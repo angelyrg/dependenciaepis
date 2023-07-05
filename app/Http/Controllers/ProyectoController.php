@@ -130,9 +130,13 @@ class ProyectoController extends Controller
 
     }
 
-    public function update_resolucion(ProyectoRequest $request, Proyecto $proyecto){
+    public function update_resolucion(Request $request, Proyecto $proyecto){
 
-        $proyecto->resolucion_aprobacion = $request->resolucion_aprobacion;
+        if (!isset($proyecto->resolucion_aprobacion)){
+            $proyecto->estado = "Inicio";
+        }
+
+        $proyecto->resolucion_aprobacion = $request->numero_resolucion;
         $proyecto->save();
 
         return redirect()->route('proyectos.index')->with('success', 'Proyecto '.$request->codigo.' actualizado correctamente.');

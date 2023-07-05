@@ -4,12 +4,13 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Redactar: Informe Final</h5>
+        <h5 class="modal-title">Actualizar número de resolución de aprobación</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
           <form action="{{route('proyecto.set_resolution', $proyecto->id)}}" method="POST" class="row g-3 needs-validation" novalidate>
-              @csrf  
+              @csrf
+              @method('PUT')
               
               <div class="row mb-3">      
                 <div class="col-md-12 mb-3">
@@ -25,7 +26,7 @@
               </div>
 
               <div class="col-12 d-flex justify-content-center mt-4">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x me-1"></i> Cancelar</button>
+                <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal"><i class="bi bi-x me-1"></i> Cancelar</button>
                 <button class="btn btn-primary m-2" type="submit"><i class="bi bi-file-word me-1"></i> Crear Resolución</button>
               </div> <!--End Botones-->
               
