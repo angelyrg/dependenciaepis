@@ -58,17 +58,6 @@
               </div>
             </div>
 
-            {{-- <div class="col-md-12">
-              <label for="validationCustom02" class="form-label">Número de informe</label>
-              <div class="input-group has-validation">
-                <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person-lines-fill"></i></span>
-                <input type="text" class="form-control" name="numero_informe" value="@if(!old('numero_informe')){{$setting->numero_informe}}@else{{old('numero_informe')}}@endif" id="validationCustom02" required >
-                <div class="invalid-feedback">
-                  Por favor ingrese el número de informe.
-                </div>
-              </div>
-            </div> --}}
-
             <div class="col-md-12">
               <label for="validationCustom02" class="form-label">Nombre del director</label>
               <div class="input-group has-validation">
@@ -76,6 +65,18 @@
                 <input type="text" class="form-control" name="nombre_director" value="@if(!old('nombre_director')){{$setting->nombre_director}}@else{{old('nombre_director')}}@endif" id="validationCustom02" placeholder="Dr. ..." required >
                 <div class="invalid-feedback">
                   Por favor ingrese el nombre del director.
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-md-12">
+              <label for="validationCustom02" class="form-label">Nombre del responsable</label>
+              <div class="input-group has-validation">
+                <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person-lines-fill"></i></span>
+                <input type="hidden" name="responsable_id" value="{{$responsable->id}}">
+                <input type="text" class="form-control" name="nombre_responsable" value="@if(!old('nombre_responsable')){{$responsable->name}}@else{{old('nombre_responsable')}}@endif" id="validationCustom02" placeholder="Responsable" required >
+                <div class="invalid-feedback">
+                  Por favor ingrese el nombre del responsable del área.
                 </div>
               </div>
             </div>

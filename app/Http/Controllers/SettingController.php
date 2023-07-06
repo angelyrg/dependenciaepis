@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Setting;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -15,7 +16,9 @@ class SettingController extends Controller
     public function index()
     {
         $setting = Setting::latest()->first();
-        return view('responsable.settings.index', compact('setting'));
+        $responsable = User::where('rol', 'Responsable')->latest()->first();
+
+        return view('responsable.settings.index', compact('setting', 'responsable'));
     }
 
     /**
@@ -43,7 +46,6 @@ class SettingController extends Controller
 
         $setting = new Setting();
         $setting->year = $request->year_settings;
-        // $setting->numero_informe = $request->numero_informe;
         $setting->nombre_director = $request->nombre_director;
         $setting->save();
         return redirect()->route('settings.index')->with('success', 'Configuración creada.');
@@ -68,7 +70,8 @@ class SettingController extends Controller
      */
     public function edit(Setting $setting)
     {
-        return view('responsable.settings.edit',  compact('setting'));
+        $responsable = User::where('rol', 'Responsable')->latest()->first();
+        return view('responsable.settings.edit',  compact('setting', 'responsable'));
     }
 
     /**
@@ -82,13 +85,20 @@ class SettingController extends Controller
     {
         $request->validate([
             "year_settings" => "required",
-            "nombre_director" => "required"
+            "nombre_director" => "required",
+            "responsable_id" => "required",
+            "nombre_responsable" => "required"
         ]);
-
+        
+        
         $setting->year = $request->year_settings;
-        // $setting->numero_informe = $request->numero_informe;
         $setting->nombre_director = $request->nombre_director;
         $setting->save();
+
+        $responsable = User::findOrFail($request->responsable_id);
+        $responsable->name = $request->nombre_responsable;
+        $responsable->save();
+
         return redirect()->route('settings.index')->with('success', 'Configuración actualizada.');
     }
 

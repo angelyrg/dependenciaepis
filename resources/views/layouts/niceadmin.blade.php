@@ -335,7 +335,13 @@
         </li><!-- End Proyectos Nav -->
 
       @endif
-
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{route('generaldocuments.index')}}">
+          <i class="bi bi-file-earmark-text-fill"></i>
+          <span>Documentos de la dependencia</span>
+        </a>
+      </li><!-- End Documentos generales Nav -->
 
     </ul>
     

@@ -49,36 +49,61 @@ class RedaccionController extends Controller
      */
     public function store(Request $request)
     {
-        $proyecto_id = $request->proyecto_id;
-        $proyecto = Proyecto::findOrFail($proyecto_id);
-        $configuracion = Setting::latest()->first();
+        $contenido_informe = [];
 
+        // VALIDACION ID DEL PROYECTO PARA INFORME: INSCRIPCION, PARCIAL Y FINAL
+        if (isset($request->proyecto_id)) {
+            
+            $proyecto_id = $request->proyecto_id;
+    
+            $proyecto = Proyecto::findOrFail($proyecto_id);
+            if ( $proyecto->resolucion_aprobacion == null ) {
+                return redirect()->back()->with("danger", "El proyecto debe tener el número de resolución de aprobación.");
+            }
+            $modalidad_proyecto = $proyecto->modalidad->nombre;
+            $nombre_proyecto = $proyecto->nombre_proyecto;
+            $modalidad_grupo = $proyecto->modalidad_grupo;
+            $nombre_grupo = $proyecto->nombre_grupo;
+            $numero_resolucion = $proyecto->resolucion_aprobacion;
+            $asesor1 = $proyecto->asesores->first();
+            $asesor2 = (count($proyecto->asesores) > 1) ? $proyecto->asesores->last() : "";
+    
+            //Asesores
+            if (count($proyecto->asesores) > 1){
+                $asesores = $asesor1->nombres. " ". $asesor1->apellidos. " y a " . $asesor2->nombres. " ". $asesor2->apellidos;
+            }else{
+                $asesores = $asesor1->nombres. " ". $asesor1->apellidos;
+            }
+
+            $proyecto_contenido = [
+                'modalidad_proyecto' => $modalidad_proyecto,
+                'nombre_proyecto' => $nombre_proyecto,
+                'modalidad_grupo' => $modalidad_grupo,
+                'nombre_grupo' => $nombre_grupo,
+                'numero_resolucion' => $numero_resolucion,
+                'asesores' => $asesores,
+            ];
+
+            $contenido_informe = array_merge($contenido_informe, $proyecto_contenido);
+        }
+
+
+        $configuracion = Setting::latest()->first();
+        $responsable = User::where('rol', 'Responsable')->latest()->first();
         if (!isset($configuracion->id)) {
             return redirect()->back()->with("danger", "Actualiza la Configuración / General");
         }
 
-        if ( $proyecto->resolucion_aprobacion == null ) {
-            return redirect()->back()->with("danger", "El proyecto debe tener el número de resolución de aprobación.");
-        }
-
         $ultimo_informe = Redaccion::where("year_documento", $configuracion->year)->latest()->first();
-
         $numero_de_informe = !isset($ultimo_informe) ? 1 : ($ultimo_informe->numero_documento + 1);
 
-        //VARIABLES PARA EL DOCUMENTO
-        // $numero_informe = ($numero_de_informe) . "-" . $configuracion->year;
-        $nombre_director_epis = $configuracion->nombre_director;
-        $modalidad_proyecto = $proyecto->modalidad->nombre;
-        $fecha_actual = date('d/m/Y');
-        $nombre_proyecto = $proyecto->nombre_proyecto;
-        $modalidad_grupo = $proyecto->modalidad_grupo;
-        $nombre_grupo = $proyecto->nombre_grupo;
-        $numero_resolucion = $proyecto->resolucion_aprobacion;
-        $asesor1 = $proyecto->asesores->first();
-        $asesor2 = (count($proyecto->asesores) > 1) ? $proyecto->asesores->last() : "";
 
-        // $nombre_responsable = $configuracion->responsable_id;
-        $nombre_responsable = "Gilmer Matos Vila";
+        $nombre_director_epis = $configuracion->nombre_director;
+        $fecha_actual = date('d/m/Y');
+        $nombre_responsable = $responsable->name;
+
+        $fecha_recepcion_solicitud = isset($request->fecha_recepcion_solicitud) ? $request->fecha_recepcion_solicitud : "";
+        $asunto_solicitud = isset($request->asunto_solicitud) ? $request->asunto_solicitud : "";
 
         //plantillas
         $pantilla = [ 
@@ -88,39 +113,27 @@ class RedaccionController extends Controller
             'ESPECIAL' => 'INFORME_ESPECIAL.docx',
         ];
 
-        // return $pantilla[$request->tipo_informe];
-
-        $numero_informe_con_ceros = str_pad($numero_de_informe, 3, "0", STR_PAD_LEFT); //001
+        //001
+        $numero_informe_con_ceros = str_pad($numero_de_informe, 3, "0", STR_PAD_LEFT); 
 
         // NOMBRE: 001-2023-SSU-HATARIY
         $nombre_archivo = $numero_informe_con_ceros."-".$configuracion->year."-".$proyecto->modalidad->sigla."-".$nombre_grupo;
 
-        //Asesores
-        if (count($proyecto->asesores) > 1){
-            $asesores = $asesor1->nombres. " ". $asesor1->apellidos. " y a " . $asesor2->nombres. " ". $asesor2->apellidos;
-        }else{
-            $asesores = $asesor1->nombres. " ". $asesor1->apellidos;
-        }
+        $contenido_general = [
+            'numero_informe' => $numero_informe_con_ceros, 
+            'nombre_director_epis' => $nombre_director_epis, 
+            'fecha_actual' => $fecha_actual,
+            'nombre_responsable' => $nombre_responsable,
+            'fecha_recepcion_solicitud' => $fecha_recepcion_solicitud,
+            'asunto_solicitud' => $asunto_solicitud
+        ];
 
-        
+        $contenido_informe = array_merge($contenido_informe, $contenido_general);
 
         //Script phpWORD
         // Creating the new document...
         $phpWord = new \PhpOffice\PhpWord\TemplateProcessor($pantilla[$request->tipo_informe]);
-        $phpWord->setValues([
-            'numero_informe' => $numero_informe_con_ceros, 
-            'nombre_director_epis' => $nombre_director_epis, 
-            'modalidad_proyecto' => $modalidad_proyecto,
-            'fecha_actual' => $fecha_actual,
-            'nombre_proyecto' => $nombre_proyecto,
-            'modalidad_grupo' => $modalidad_grupo,
-            'nombre_grupo' => $nombre_grupo,
-            'numero_resolucion' => $numero_resolucion,
-            'asesores' => $asesores,
-            'nombre_responsable' => $nombre_responsable,
-        ]);
-
-
+        $phpWord->setValues($contenido_informe);
 
         $carpetaRedaccion = 'files/redaccion/';
         (!file_exists($carpetaRedaccion)) ? mkdir($carpetaRedaccion, 0777, true) : '';

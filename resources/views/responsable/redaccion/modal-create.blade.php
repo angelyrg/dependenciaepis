@@ -181,3 +181,54 @@
   </div>
 </div>
 
+{{-- Modal Informe ESPECIAL --}}
+<div class="modal fade" id="modal-redaccion-final" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Redactar: Informe Caso especial</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form action="{{route('redaccion.store')}}" method="POST" class="row g-3 needs-validation" novalidate>
+              @csrf      
+          
+              <div class="row mb-3">                
+                <div class="col-md-12 ">
+                  <input type="hidden" name="tipo_informe" value="ESPECIAL" required>
+                  <label for="fechaRecepcionSolicitud" class="form-label">Fecha de recepción de solicitud</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" id="fechaRecepcionSolicitud"><i class="bi bi-toggle-on"></i></span>
+                    <input type="date" name="fecha_recepcion_solicitud" value="{{old('fecha_recepcion_solicitud')}}" required>
+                    <div class="invalid-feedback">
+                      Por favor seleccione una fecha.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-12 ">
+                  <label for="asuntoSolicitud" class="form-label">Asunto de solicitud:</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" id="asuntoSolicitud"><i class="bi bi-toggle-on"></i></span>
+                    <input type="text" name="asunto_solicitud" value="{{old('asunto_solicitud')}}" placeholder="Asunto de la solicitud" required>
+                    <div class="invalid-feedback">
+                      Por favor ingrese el asunto de la solicitud.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 d-flex justify-content-center mt-4">
+                <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal"><i class="bi bi-x me-1"></i> Cancelar</button>
+                <button class="btn btn-primary m-2" type="submit"><i class="bi bi-file-word me-1"></i> Generar documento</button>
+              </div>
+              
+          </form>
+      </div>
+      <div class="modal-footer">
+            
+      </div>
+    </div>
+  </div>
+</div>
+

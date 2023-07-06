@@ -24,6 +24,7 @@ use App\Http\Controllers\ReglamentoController;
 use App\Http\Controllers\ReglamentoEstController;
 use App\Http\Controllers\SecretariaController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\GeneralDocumentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -76,6 +77,8 @@ Route::post('setstudents', [EstudianteController::class, 'store'])->name('setstu
 
 Route::resource('redaccion', RedaccionController::class)->names('redaccion')->middleware('auth.responsable');;
 Route::resource('settings', SettingController::class)->names('settings')->middleware('auth.responsable');;
+Route::resource('generaldocuments', GeneralDocumentController::class)->only(['index', 'store', 'destroy'])->names('generaldocuments')->middleware('auth');
+
 
 
 

@@ -52,8 +52,11 @@
                 Informe parcial
               </button>
             </div>
-
-
+            <div class="mt-1 text-center">
+              <button type="button" class="btn rounded-3 mb-2 btn-block btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal-redaccion-final">
+                Informe final
+              </button>
+            </div>
 
           </div>
         </div>
