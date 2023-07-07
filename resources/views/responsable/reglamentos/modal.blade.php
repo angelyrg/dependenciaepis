@@ -3,11 +3,11 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Eliminar reglamento</h5>
+        <h5 class="modal-title">Eliminar documento</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>¿Está seguro que desea eliminar el reglamento <b>{{$reglamento->nombre_reglamento}}</b> ?</p>
+        <p>¿Está seguro que desea eliminar el documento <b>{{$reglamento->nombre_reglamento}}</b> ?</p>
       </div>
       <div class="modal-footer">
         <form method="POST" action="{{route('reglamentos.destroy', $reglamento->id)}}">

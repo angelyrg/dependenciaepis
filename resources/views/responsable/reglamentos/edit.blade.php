@@ -4,12 +4,12 @@
 @section('content')
 
 <div class="pagetitle">
-  <h1>Gestión de reglamentos</h1>
+  <h1>Gestión de documentos</h1>
   <nav>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-      <li class="breadcrumb-item">Reglamentos</li>
-      <li class="breadcrumb-item active">Editar reglamento</li>
+      <li class="breadcrumb-item">Documentos</li>
+      <li class="breadcrumb-item active">Editar documento</li>
 
     </ol>
   </nav>
@@ -21,7 +21,7 @@
 
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Editar reglamento</h5>
+          <h5 class="card-title">Editar documento</h5>
 
           <!-- Custom Styled Validation -->
           <form action="{{route('reglamentos.update', $reglamento->id)}}" method="POST" class="row g-3 needs-validation" novalidate enctype="multipart/form-data">
@@ -46,12 +46,12 @@
             </div> <!--End Mensajes de error-->
           
             <div class="col-md-12">
-              <label for="validationCustom01" class="form-label">Reglamento</label>
+              <label for="validationCustom01" class="form-label">Documento</label>
               <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-file-earmark-text-fill"></i></span>
                 <input type="text" class="form-control" name="nombre_reglamento" value="@if(!old('nombre_reglamento')){{$reglamento->nombre_reglamento}}@else{{old('nombre_reglamento')}}@endif" placeholder="Nombre de la reglamento" id="validationCustom01"  >
                 <div class="invalid-feedback">
-                  Por favor ingrese el nombre del reglamento.
+                  Por favor ingrese el nombre del documento.
                 </div>
               </div>
             </div> <!--End Input Nombre-->
@@ -62,18 +62,18 @@
                 <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-file-text"></i></span>
                 <textarea name="descripcion" class="form-control" id="validationCustom02" required cols="30" rows="2">@if(!old('descripcion')){{$reglamento->descripcion}}@else{{old('descripcion')}}@endif</textarea>
                 <div class="invalid-feedback">
-                  Por favor ingrese la descripción del reglamento.
+                  Por favor ingrese la descripción del documento.
                 </div>
               </div>
             </div> <!--End Input Descripcion-->
 
             <div class="col-md-12">
-              <label for="validationCustom01" class="form-label">Archivo del reglamento</label>
+              <label for="validationCustom01" class="form-label">Archivo</label>
               <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-file-pdf"></i></span>
                 <input type="file" class="form-control" name="archivo"  id="validationCustom01"  >
                 <div class="invalid-feedback">
-                  Por favor carga el documento del reglamento.
+                  Por favor carga el documento del documento.
                 </div>
               </div>
             </div> <!--End Input Nombre-->

@@ -11,7 +11,7 @@
   <nav>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-      <li class="breadcrumb-item active">Lista de reglamentos</li>
+      <li class="breadcrumb-item active">Lista de Documentos</li>
     </ol>
   </nav>
 </div><!-- End Page Title -->
@@ -25,8 +25,8 @@
       <div class="card">
         <div class="card-body">
           <div class="d-flex justify-content-between  align-items-center">
-            <h5 class="card-title">Reglamentos</h5>            
-              <a href="{{route('reglamentos.create')}}" class="btn btn-outline-primary " ><i class="bi bi-person-plus-fill me-1"></i> Nuevo reglamento</a>
+            <h5 class="card-title">Documentos de la dependencia</h5>            
+              <a href="{{route('reglamentos.create')}}" class="btn btn-outline-primary " ><i class="bi bi-plus-circle-fill me-1"></i> Nuevo</a>
           </div>
 
           <div class="table-responsive">
@@ -35,7 +35,7 @@
               <thead>
                 <tr>
                   <th scope="col">ID</th>
-                  <th scope="col">Reglamento</th>
+                  <th scope="col">Documento</th>
                   <th scope="col">Descripción</th>
                   <th scope="col">Archivo</th>
                   <th scope="col">Opciones</th>
