@@ -6,7 +6,9 @@ use App\Models\Modalidad;
 use App\Models\Proyecto;
 use App\Models\Redaccion;
 use App\Models\Setting;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -67,6 +69,7 @@ class RedaccionController extends Controller
             $numero_resolucion = $proyecto->resolucion_aprobacion;
             $asesor1 = $proyecto->asesores->first();
             $asesor2 = (count($proyecto->asesores) > 1) ? $proyecto->asesores->last() : "";
+            $tipo_documento = $proyecto->modalidad->sigla;
     
             //Asesores
             if (count($proyecto->asesores) > 1){
@@ -113,11 +116,19 @@ class RedaccionController extends Controller
             'ESPECIAL' => 'INFORME_ESPECIAL.docx',
         ];
 
-        //001
+        // TODO:
+        //001-2023-EC
         $numero_informe_con_ceros = str_pad($numero_de_informe, 3, "0", STR_PAD_LEFT); 
 
-        // NOMBRE: 001-2023-SSU-HATARIY
-        $nombre_archivo = $numero_informe_con_ceros."-".$configuracion->year."-".$proyecto->modalidad->sigla."-".$nombre_grupo;
+        if (isset($request->proyecto_id)) {
+            // NOMBRE: 001-2023-SSU-HATARIY
+            $nombre_archivo = $numero_informe_con_ceros."-".$configuracion->year."-".$proyecto->modalidad->sigla."-".$nombre_grupo;
+        }else{
+            // NOMBRE: 001-2023-CASOS-ESPECIALES
+            $nombre_archivo = $numero_informe_con_ceros."-".$configuracion->year."-CASOS-ESPECIALES";
+            $tipo_documento = "ESP";
+        }
+
 
         $contenido_general = [
             'numero_informe' => $numero_informe_con_ceros, 
@@ -144,6 +155,7 @@ class RedaccionController extends Controller
         $nuevo->numero_documento = $numero_de_informe;
         $nuevo->year_documento = $configuracion->year;
         $nuevo->nombre_documento = $nombre_archivo.".docx";
+        $nuevo->tipo_documento = $tipo_documento;
         $nuevo->save();
 
         return redirect()->route('redaccion.index');
@@ -191,6 +203,10 @@ class RedaccionController extends Controller
      */
     public function destroy(Redaccion $redaccion)
     {
-        //
+        $file_path = public_path().'/files/redaccion/'.$redaccion->nombre_documento;
+        File::delete($file_path);
+        $redaccion->delete();
+
+        return redirect()->route('redaccion.index')->with('success', 'Documento eliminado correctamente.');
     }
 }

@@ -356,25 +356,38 @@
 
   </main><!-- End #main -->
 
-
-
   
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
-    <div class="copyright">
-      &copy; Copyright <br>
-      <span> <strong>Scrum Master: </strong>Mg. Ing. Gilmer Matos Vila</span><br>
-      <span> <strong>Product Owner:</strong>Mg. Ing. Gilmer Matos Vila</span>
+    <div class="row">
+      <div class="col-6">
+        <div class="copyright text-end">         
+          <span> 
+            <strong>Scrum Master:</strong><br> Mg. Ing. Gilmer Matos Vila
+          </span>          
+          <br>
+          <span>
+            <strong>Product Owner:</strong><br> Mg. Ing. Gilmer Matos Vila
+          </span>
+        </div>
+      </div>
+      <div class="col-6 ">
+        <div class="credits text-start">
+          <span> <strong>Scrum Team:</strong></span><br>
+          <span> Waldir Chunhuay Ruiz</span><br>
+          <span> Angela Paucar Soto</span><br>
+          <span> Jose Fernando Guillermo Ccoriñaupa</span><br>
+          <span> Renzo Huaranga Lopez </span><br>
+        </div>
+      </div>
     </div>
-    <div class="credits">
-      <span> <strong>Scrum Team:</strong></span><br>
-      <span> Waldir Chunhuay Ruiz</span><br>
-      <span> Angela Paucar Soto</span><br>
-      <span> Jose Fernando Guillermo Ccoriñaupa</span><br>
-      <span> Angela Beatriz Acuña Huaman</span><br>
-      <span> Renzo Huaranga Lopez </span><br>
-      <strong> Escuela Profesional de</strong> <a href="https://sistemas.unh.edu.pe" target="_blank">Ingeniería de Sistemas</a>
+    <div class="row">
+      <div class="col-12 text-center">
+        &copy; Copyright
+        <strong> Escuela Profesional de</strong> <a href="https://sistemas.unh.edu.pe" target="_blank">Ingeniería de Sistemas</a>
+      </div>
     </div>
+
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

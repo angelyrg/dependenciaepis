@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GeneralDocumentStoreRequest;
 use App\Models\GeneralDocument;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -15,8 +16,8 @@ class GeneralDocumentController extends Controller
      */
     public function index()
     {
-        $generaldocuments = GeneralDocument::all();
-        return view('responsable.generaldocuments.index', compact('generaldocuments'));
+        $documents = GeneralDocument::all();
+        return view('responsable.generaldocuments.index', compact('documents'));
     }
 
 
@@ -24,8 +25,9 @@ class GeneralDocumentController extends Controller
         return view('responsable.generaldocuments.create');
     }
 
+    
 
-    public function store(GeneralDocumentStoreRequest $request){
+    public function store(GeneralDocumentStoreRequest $request){        
         $file = $request->file('archivo');
         $nombre_archivo = time().$file->getClientOriginalName();
         $file->move(public_path()."/files/documentos/", $nombre_archivo);

@@ -23,7 +23,7 @@
                           <option selected disabled value="">Seleccione...</option>
 
                           @if($grupos_inicio->isEmpty())
-                            <option disabled value="">No hay grupos con resolución de aprobación. </option>
+                            <option disabled value="">No hay grupos. </option>
                           @endif                              
 
                           @foreach ($grupos_inicio as $grupo)
@@ -36,19 +36,6 @@
                     </div>
                   </div>
                 </div>
-      
-                {{-- <div class="row mb-3">      
-                  <div class="col-md-12 mb-3">
-                    <label for="numero_resolucion" class="form-label">Proyecto aprobado con resolución:</label>
-                    <div class="input-group has-validation">
-                      <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-layout-text-window-reverse"></i></span>
-                      <input type="text" class="form-control" name="numero_resolucion" value="{{old('numero_resolucion')}}" id="numero_resolucion" placeholder="0000-2023-CU-UNH" required>
-                      <div class="invalid-feedback">
-                        Por favor ingrese el número de resolución.
-                      </div>
-                    </div>
-                  </div>
-                </div> --}}
 
                 <div class="col-12 d-flex justify-content-center mt-4">
                   {{-- <a href="{{route('redaccion.index')}}" class="btn btn-secondary m-2 " ><i class="bi bi-x me-1"></i> Cancelar</a> --}}
@@ -90,7 +77,7 @@
                           <option selected disabled value="">Seleccione...</option>  
 
                           @if($grupos_inicio->isEmpty())
-                            <option disabled value="">No hay grupos con resolución de aprobación. </option>
+                            <option disabled value="">No hay grupos. </option>
                           @endif 
                           
                           @foreach ($grupos_inicio as $grupo)
@@ -182,7 +169,7 @@
 </div>
 
 {{-- Modal Informe ESPECIAL --}}
-<div class="modal fade" id="modal-redaccion-final" tabindex="-1">
+<div class="modal fade" id="modal-redaccion-especial" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -199,7 +186,7 @@
                   <label for="fechaRecepcionSolicitud" class="form-label">Fecha de recepción de solicitud</label>
                   <div class="input-group has-validation">
                     <span class="input-group-text" id="fechaRecepcionSolicitud"><i class="bi bi-toggle-on"></i></span>
-                    <input type="date" name="fecha_recepcion_solicitud" value="{{old('fecha_recepcion_solicitud')}}" required>
+                    <input type="date" name="fecha_recepcion_solicitud" value="{{old('fecha_recepcion_solicitud')}}" class="form-control" required>
                     <div class="invalid-feedback">
                       Por favor seleccione una fecha.
                     </div>
@@ -210,7 +197,7 @@
                   <label for="asuntoSolicitud" class="form-label">Asunto de solicitud:</label>
                   <div class="input-group has-validation">
                     <span class="input-group-text" id="asuntoSolicitud"><i class="bi bi-toggle-on"></i></span>
-                    <input type="text" name="asunto_solicitud" value="{{old('asunto_solicitud')}}" placeholder="Asunto de la solicitud" required>
+                    <input type="text" name="asunto_solicitud" value="{{old('asunto_solicitud')}}" class="form-control" placeholder="Asunto de la solicitud" required>
                     <div class="invalid-feedback">
                       Por favor ingrese el asunto de la solicitud.
                     </div>

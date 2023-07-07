@@ -43,7 +43,7 @@
               </thead>
               <tbody>
   
-                @foreach ($generaldocuments as $documento)
+                @foreach ($documents as $documento)
   
                   <tr>
                     <th scope="row">{{$documento->id}}</th>

@@ -77,7 +77,7 @@ Route::post('setstudents', [EstudianteController::class, 'store'])->name('setstu
 
 Route::resource('redaccion', RedaccionController::class)->names('redaccion')->middleware('auth.responsable');;
 Route::resource('settings', SettingController::class)->names('settings')->middleware('auth.responsable');;
-Route::resource('generaldocuments', GeneralDocumentController::class)->only(['index', 'store', 'destroy'])->names('generaldocuments')->middleware('auth');
+Route::resource('generaldocuments', GeneralDocumentController::class)->only(['index', 'create', 'store', 'destroy'])->names('generaldocuments')->middleware('auth');
 
 
 

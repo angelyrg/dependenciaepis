@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('numero_documento');
             $table->string('year_documento', 4);
             $table->string('nombre_documento');
+            $table->string('tipo_documento')->nullable();
             $table->timestamps();
         });
     }

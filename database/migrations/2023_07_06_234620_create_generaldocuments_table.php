@@ -13,7 +13,7 @@ class CreateGeneralDocumentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('generaldocuments', function (Blueprint $table) {
+        Schema::create('general_documents', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_documento');
             $table->text('descripcion');
@@ -30,6 +30,6 @@ class CreateGeneralDocumentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('generaldocuments');
+        Schema::dropIfExists('general_documents');
     }
 }

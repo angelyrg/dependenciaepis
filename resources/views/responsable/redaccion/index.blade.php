@@ -57,6 +57,11 @@
                 Informe final
               </button>
             </div>
+            <div class="mt-1 text-center">
+              <button type="button" class="btn rounded-3 mb-2 btn-block btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal-redaccion-especial">
+                Casos especiales
+              </button>
+            </div>
 
           </div>
         </div>
@@ -97,7 +102,7 @@
                             </a>
                           </td>
                           <td>{{$redaccion->created_at}}</td>
-                          @if ($i<2)
+                          @if ($i<3)
                           <td>
                             <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$redaccion->id}}">
                               <i class="bi bi-trash"></i>
