@@ -47,6 +47,11 @@ class SettingController extends Controller
         $setting = new Setting();
         $setting->year = $request->year_settings;
         $setting->nombre_director = $request->nombre_director;
+        
+        $setting->reglamento_anexo = $request->reglamento_anexo;
+        $setting->reglamento_nombre = $request->reglamento_nombre;
+        $setting->reglamento_nro_resolucion = $request->reglamento_nro_resolucion;
+
         $setting->save();
         return redirect()->route('settings.index')->with('success', 'Configuración creada.');
     }
@@ -70,6 +75,7 @@ class SettingController extends Controller
      */
     public function edit(Setting $setting)
     {
+        
         $responsable = User::where('rol', 'Responsable')->latest()->first();
         return view('responsable.settings.edit',  compact('setting', 'responsable'));
     }

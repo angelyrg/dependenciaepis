@@ -18,7 +18,7 @@
 
 <section class="section">
   <div class="row">
-    <div class="col-lg-6 offset-lg-3 ">
+    <div class="col-lg-10 offset-lg-1 ">
 
       <div class="card">
         <div class="card-body ">
@@ -26,7 +26,7 @@
           <hr class="dropdown-divider">
 
           <!-- Custom Styled Validation -->
-          <form action="{{route('settings.update', 1)}}" method="POST" class="row g-3 needs-validation px-5" novalidate>
+          <form action="{{route('settings.update', $setting->id)}}" method="POST" class="row needs-validation px-5" novalidate>
             @csrf
             @method('PUT')
 
@@ -45,41 +45,86 @@
                 @endif
               </div>
             </div> <!--End Mensajes de error-->
+
+
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group mb-3">
+                  <label for="validationCustom01" class="form-label">Año</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person-bounding-box"></i></span>
+                    <input type="text" maxlength="4" minlength="4" class="form-control" name="year_settings" value="@if(!old('year_settings')){{$setting->year}}@else{{old('year_settings')}}@endif" id="validationCustom01" required>
+                    <div class="invalid-feedback">
+                      Por favor ingrese el año.
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="form-group mb-3">
+                  <label for="validationCustom02" class="form-label">Nombre del director</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person-lines-fill"></i></span>
+                    <input type="text" class="form-control" name="nombre_director" value="@if(!old('nombre_director')){{$setting->nombre_director}}@else{{old('nombre_director')}}@endif" id="validationCustom02" placeholder="Dr. ..." required >
+                    <div class="invalid-feedback">
+                      Por favor ingrese el nombre del director.
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group mb-3">
+                  <label for="validationCustom02" class="form-label">Nombre del responsable</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person-lines-fill"></i></span>
+                    <input type="hidden" name="responsable_id" value="{{$responsable->id}}">
+                    <input type="text" class="form-control" name="nombre_responsable" value="@if(!old('nombre_responsable')){{$responsable->name}}@else{{old('nombre_responsable')}}@endif" id="validationCustom02" placeholder="Responsable" required >
+                    <div class="invalid-feedback">
+                      Por favor ingrese el nombre del responsable del área.
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="col-6">
+
+                <div class="form-group mb-3">
+                  <label class="form-label">Anexo del reglamento de UNH</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" ><i class="bi bi-person-bounding-box"></i></span>
+                    <input type="text" maxlength="4" minlength="4" class="form-control" name="reglamento_anexo" value="@if(!old('reglamento_anexo')){{$setting->reglamento_anexo}}@else{{old('reglamento_anexo')}}@endif" placeholder="ANEXO 06 (FICHA DE VALORACION DE INFORMES" required>
+                    <div class="invalid-feedback">
+                      Por favor ingrese el anexo.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label class="form-label">Nombre del reglamento</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" ><i class="bi bi-person-lines-fill"></i></span>
+                    <input type="text" class="form-control" name="reglamento_nombre" value="@if(!old('reglamento_nombre')){{$setting->reglamento_nombre}}@else{{old('reglamento_nombre')}}@endif" placeholder="Reglamento de Servicio Social, Extensión Cultural y Proyección Social" required >
+                    <div class="invalid-feedback">
+                      Por favor ingrese el nombre del reglamento.
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group mb-3">
+                  <label class="form-label">Reglamento aprobado con Resolución</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" ><i class="bi bi-person-lines-fill"></i></span>
+                    <input type="text" class="form-control" name="reglamento_nro_resolucion" value="@if(!old('reglamento_nro_resolucion')){{$setting->reglamento_nro_resolucion}}@else{{old('reglamento_nro_resolucion')}}@endif" placeholder="0222-2022-CU-UNH" required >
+                    <div class="invalid-feedback">
+                      Por favor ingrese el número de resolución.
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+
+            </div>
           
 
-            <div class="col-md-12">
-              <label for="validationCustom01" class="form-label">Año</label>
-              <div class="input-group has-validation">
-                <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person-bounding-box"></i></span>
-                <input type="text" maxlength="4" minlength="4" class="form-control" name="year_settings" value="@if(!old('year_settings')){{$setting->year}}@else{{old('year_settings')}}@endif" id="validationCustom01" required>
-                <div class="invalid-feedback">
-                  Por favor ingrese el año.
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-12">
-              <label for="validationCustom02" class="form-label">Nombre del director</label>
-              <div class="input-group has-validation">
-                <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person-lines-fill"></i></span>
-                <input type="text" class="form-control" name="nombre_director" value="@if(!old('nombre_director')){{$setting->nombre_director}}@else{{old('nombre_director')}}@endif" id="validationCustom02" placeholder="Dr. ..." required >
-                <div class="invalid-feedback">
-                  Por favor ingrese el nombre del director.
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-12">
-              <label for="validationCustom02" class="form-label">Nombre del responsable</label>
-              <div class="input-group has-validation">
-                <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-person-lines-fill"></i></span>
-                <input type="hidden" name="responsable_id" value="{{$responsable->id}}">
-                <input type="text" class="form-control" name="nombre_responsable" value="@if(!old('nombre_responsable')){{$responsable->name}}@else{{old('nombre_responsable')}}@endif" id="validationCustom02" placeholder="Responsable" required >
-                <div class="invalid-feedback">
-                  Por favor ingrese el nombre del responsable del área.
-                </div>
-              </div>
-            </div>
 
             <div class="col-12 d-flex justify-content-center mt-4">
               <a href="{{route('settings.index')}}" class="btn btn-secondary m-2 " ><i class="bi bi-x me-1"></i> Cancelar</a>

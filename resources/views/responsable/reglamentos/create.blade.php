@@ -9,7 +9,7 @@
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
       <li class="breadcrumb-item">Documentos</li>
-      <li class="breadcrumb-item active">Registrar documentos</li>
+      <li class="breadcrumb-item active">Registrar documento</li>
 
     </ol>
   </nav>
@@ -67,10 +67,10 @@
             </div> <!--End Input Descripcion-->
 
             <div class="col-md-12">
-              <label for="validationCustom01" class="form-label">Archivo del reglamento <span class="badge border-light border-1 text-info">* .pdf</span></label>
+              <label for="validationCustom01" class="form-label">Archivo <span class="badge border-light border-1 text-info">*</span></label>
               <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-file-pdf"></i></span>
-                <input type="file" class="form-control" name="archivo" id="validationCustom01" accept="application/pdf" required >
+                <input type="file" class="form-control" name="archivo" id="validationCustom01" accept=".xlsx, .xls, .doc, .docx,.ppt, .pptx,.txt,.pdf" required >
                 <div class="invalid-feedback">
                   Por favor carga el documento.
                 </div>
@@ -82,7 +82,7 @@
             <div class="col-12 d-flex justify-content-center mt-4">
               <a href="{{route('reglamentos.index')}}" class="btn btn-secondary m-2 " ><i class="bi bi-x me-1"></i> Cancelar</a>
 
-              <button class="btn btn-primary m-2" type="submit"><i class="bi bi-person-check-fill me-1"></i> Guardar</button>
+              <button class="btn btn-primary m-2" type="submit"><i class="bi bi-check-circle me-1"></i> Guardar</button>
             </div>
             
           </form><!-- End Form -->

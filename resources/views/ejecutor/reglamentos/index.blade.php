@@ -6,11 +6,11 @@
 
 
 <div class="pagetitle">
-  <h1>Reglamentoss</h1>
+  <h1>Documentos de la dependencia</h1>
   <nav>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-      <li class="breadcrumb-item active">Lista de reglamentos</li>
+      <li class="breadcrumb-item active">Historial de documentos</li>
     </ol>
   </nav>
 </div><!-- End Page Title -->
@@ -24,7 +24,7 @@
 
 
         <div class="card-body">
-          <h5 class="card-title">Reglamentos</h5>
+          <h5 class="card-title">Documentos publicados</h5>
 
           <div class="activity">
 
@@ -40,7 +40,7 @@
                     <b>{{$reglamento->nombre_reglamento}}</b>
                     <p>{{$reglamento->descripcion}}</p>
                     <a href="{{asset('files/reglamentos/'.$reglamento->archivo)}}" target="_blank" class="btn btn-sm btn-outline-success">
-                      <i class="bi bi-box-arrow-up-right"> Ver reglamento</i>
+                      <i class="bi bi-box-arrow-up-right"> Ver documento</i>
                     </a>
                   </div>
                 </div><!-- End activity item-->

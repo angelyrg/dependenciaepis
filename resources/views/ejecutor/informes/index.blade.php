@@ -38,14 +38,14 @@
           <div class="row border d-flex justify-content-center align-items-center">
             <div class="col-lg-3">
                 Estado del proyecto: 
-                <span class="badge bg-@if($ejecutor->proyecto->estado=="Inicio"){{'secondary'}}@elseif($ejecutor->proyecto->estado=="Parcial"){{'warning'}}@elseif($ejecutor->proyecto->estado=="Completado"){{'success'}}@endif">
+                <span class="badge bg-@if($ejecutor->proyecto->estado=="Inscrito"){{'secondary'}}@elseif($ejecutor->proyecto->estado=="Inicio"){{'dark'}}@elseif($ejecutor->proyecto->estado=="Parcial"){{'warning'}}@elseif($ejecutor->proyecto->estado=="Completado"){{'success'}}@endif">
                   <i class="bi bi-ui-checks"></i> 
                   {{$ejecutor->proyecto->estado}}
                 </span>
             </div>
             <div class="col-lg-9  ">
               <div class="progress">
-                <div class="progress-bar bg-@if($ejecutor->proyecto->estado=="Inicio"){{'secondary'}}@elseif($ejecutor->proyecto->estado=="Parcial"){{'warning'}}@elseif($ejecutor->proyecto->estado=="Completado"){{'success'}}@endif" role="progressbar" style="width: {{$porc_proyecto}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$porc_proyecto}}%</div>
+                <div class="progress-bar bg-@if($ejecutor->proyecto->estado=="Inscrito"){{'secondary'}}@elseif($ejecutor->proyecto->estado=="Inicio"){{'dark'}}@elseif($ejecutor->proyecto->estado=="Parcial"){{'warning'}}@elseif($ejecutor->proyecto->estado=="Completado"){{'success'}}@endif" role="progressbar" style="width: {{$porc_proyecto}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$porc_proyecto}}%</div>
               </div>
             </div>
           </div>

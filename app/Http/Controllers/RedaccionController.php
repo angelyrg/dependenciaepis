@@ -23,14 +23,15 @@ class RedaccionController extends Controller
     {
         $redacciones = Redaccion::latest()->get();
         $grupos = Proyecto::all();
+        $modalidades = Modalidad::all();
         
+        $grupos_inscrito = Proyecto::where('estado', 'Inscrito')->get();
         $grupos_inicio = Proyecto::where('estado', 'Inicio')->get();
         $grupos_parcial = Proyecto::where('estado', 'Parcial')->get();
         $grupos_completado = Proyecto::where('estado', 'Completado')->get();
 
-        // return $grupos_inicio;
-
-        return view('responsable.redaccion.index', ['redacciones'=>$redacciones, "grupos"=>$grupos, "grupos_inicio"=>$grupos_inicio, "grupos_parcial"=>$grupos_parcial]);
+        return view('responsable.redaccion.index', compact('redacciones', 'modalidades', 'grupos_inscrito', 'grupos_inicio', 'grupos_parcial', 'grupos_completado') );
+        // return view('responsable.redaccion.index', ['redacciones'=>$redacciones, "grupos"=>$grupos, "grupos_inicio"=>$grupos_inicio, "grupos_parcial"=>$grupos_parcial, "modalidades"=>$modalidades]);
     }
 
     /**

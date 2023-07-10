@@ -214,27 +214,12 @@
           </ul>
         </li>
 
-
-        {{-- <li class="nav-item">
-          <a class="nav-link collapsed" href="{{route('modalidads.index')}}">
-            <i class="bi bi-gem"></i>
-            <span>Modalidades</span>
-          </a>
-        </li><!-- End Modalidades Page Nav --> --}}
-
-        {{-- <li class="nav-item">
-          <a class="nav-link collapsed" href="{{route('cargos.index')}}">
-            <i class="bi bi-gear"></i>
-            <span>Cargos</span>
-          </a>
-        </li><!-- End Cargos Page Nav --> --}}
-
         <li class="nav-heading">COMPONENTES</li>
 
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{route('reglamentos.index')}}">
             <i class="bi bi-file-earmark-text-fill"></i>
-            <span>Reglamento</span>
+            <span>Documentos de la Depedencia</span>
           </a>
         </li><!-- End Reglamento Page Nav -->
       
@@ -272,7 +257,7 @@
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{route('areglamentos')}}">
             <i class="bi bi-file-earmark-text-fill"></i>
-            <span>Reglamento</span>
+            <span>Documentos de la Depedencia</span>
           </a>
         </li><!-- End Reglamento Nav -->
 
@@ -315,7 +300,7 @@
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{route('sreglamentos')}}">
             <i class="bi bi-file-earmark-text-fill"></i>
-            <span>Reglamento</span>
+            <span>Documentos de la Depedencia</span>
           </a>
         </li><!-- End Reglamento Nav -->
 
@@ -336,12 +321,6 @@
 
       @endif
       
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{route('generaldocuments.index')}}">
-          <i class="bi bi-file-earmark-text-fill"></i>
-          <span>Documentos de la dependencia</span>
-        </a>
-      </li><!-- End Documentos generales Nav -->
 
     </ul>
     
@@ -383,7 +362,7 @@
     </div>
     <div class="row">
       <div class="col-12 text-center">
-        &copy; Copyright
+        &copy; Copyright -
         <strong> Escuela Profesional de</strong> <a href="https://sistemas.unh.edu.pe" target="_blank">Ingeniería de Sistemas</a>
       </div>
     </div>

@@ -25,7 +25,7 @@ class ReglamentoUpdateRequest extends FormRequest
             'archivo' => 'nullable'];
 
         if ( $this->hasFile('archivo') ){
-            $rules['archivo'] = ['mimes:pdf,docx,doc'];
+            $rules['archivo'] = ['mimes:ppt,pptx,doc,docx,pdf,xls,xlsx'];
         }
 
         return $rules;

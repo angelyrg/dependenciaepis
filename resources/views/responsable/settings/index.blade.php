@@ -26,22 +26,29 @@
           </ul>
 
           @if ($setting)
-          <div class="pt-3">  
-            <b>Año</b>
-            <p>{{$setting->year}}</p>
+          <div class="row">
+            <div class="col-6 pt-3">
+              <b>Año</b>
+              <p>{{$setting->year}}</p>
+              <b>Nombre del director</b>
+              <p>{{$setting->nombre_director}}</p>
+              <b>Nombre del Jefe del Área:</b>
+              <p>{{$responsable->name}}</p>
+            </div>
 
-            <b>Nombre del director</b>
-            <p>{{$setting->nombre_director}}</p>
-
-            <b>Nombre del Jefe del Área:</b>
-            <p>{{$responsable->name}}</p>
+            <div class="col-6 pt-3">
+              <b>Anexo del reglamento de UNH</b>
+              <p>{{$setting->reglamento_anexo}}</p>
+              <b>Nombre del reglamento</b>
+              <p>{{$setting->reglamento_nombre}}</p>
+              <b>Reglamento aprobado con Resolución</b>
+              <p>{{$setting->reglamento_nro_resolucion}}</p>
+            </div>
             
-
             <p class="my-2">
               <a href="{{route('settings.edit', $setting->id)}}" class="btn btn-outline-dark">Actualizar datos</a>
             </p>
-
-          </div>              
+          </div>
           @else
           <div class="pt-3">
             <i>Aún no hay configuraciones</i>

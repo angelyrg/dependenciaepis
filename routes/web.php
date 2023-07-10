@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AccountController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CalendarioController;
 use App\Http\Controllers\CargoController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\EjecutorController;
@@ -24,7 +25,6 @@ use App\Http\Controllers\ReglamentoController;
 use App\Http\Controllers\ReglamentoEstController;
 use App\Http\Controllers\SecretariaController;
 use App\Http\Controllers\SettingController;
-use App\Http\Controllers\GeneralDocumentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +52,7 @@ Route::get('profile', [AccountController::class, 'profile'] )->name('profile');
 Route::put('password', [AccountController::class, 'changePassword'] )->name('password');
 Route::put('password/{user}/restore', [AccountController::class, 'restorePassword'] )->name('restore');
 
+Route::resource('chat', ChatController::class)->only(['index', 'store', 'destroy'])->names('chats')->middleware('auth');
 
 
 Route::resource('asesors', AsesorController::class)->names('asesors')->middleware('auth.responsable');
@@ -77,7 +78,7 @@ Route::post('setstudents', [EstudianteController::class, 'store'])->name('setstu
 
 Route::resource('redaccion', RedaccionController::class)->names('redaccion')->middleware('auth.responsable');;
 Route::resource('settings', SettingController::class)->names('settings')->middleware('auth.responsable');;
-Route::resource('generaldocuments', GeneralDocumentController::class)->only(['index', 'create', 'store', 'destroy'])->names('generaldocuments')->middleware('auth');
+// Route::resource('generaldocuments', GeneralDocumentController::class)->only(['index', 'create', 'store', 'destroy'])->names('generaldocuments')->middleware('auth');
 
 
 
