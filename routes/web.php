@@ -58,7 +58,7 @@ Route::resource('chat', ChatController::class)->only(['index', 'store', 'destroy
 Route::resource('asesors', AsesorController::class)->names('asesors')->middleware('auth.responsable');
 Route::resource('secretarias', SecretariaController::class)->names('secretarias')->middleware('auth.responsable');
 Route::resource('modalidads', ModalidadController::class)->names('modalidads')->middleware('auth.responsable');
-Route::resource('proyectos', ProyectoController::class)->names('proyectos')->middleware('auth.responsable');
+Route::resource('proyectos', ProyectoController::class)->names('proyectos')->middleware('proyectoCanAccess');
 
 Route::put('proyectos/{proyecto}/set_resolution', [ProyectoController::class, 'update_resolucion'])->name('proyecto.set_resolution')->middleware('auth.responsable');
 
@@ -72,7 +72,7 @@ Route::get('calendario/show', [CalendarioController::class, 'show'])->name('cale
 Route::get('informesdinamicos', [InformeDinamicoController::class, 'index'])->name('informesdinamicos')->middleware('auth.responsable');
 Route::post('informesdinamicos', [InformeDinamicoController::class, 'filtrar'])->name('informesdinamicos.filtrar')->middleware('auth.responsable');
 Route::get('informesdinamicos/export', [ProyectoController::class, 'export'])->name('informesdinamicos.export')->middleware('auth.responsable');
-Route::resource('documentos', DocumentoController::class)->only(['store', 'destroy'])->names('responsable.documentos')->middleware('auth.responsable');
+Route::resource('documentos', DocumentoController::class)->only(['store', 'destroy'])->names('responsable.documentos')->middleware('proyectoCanAccess');
 Route::get('participacion', [EstudianteController::class, 'participacion'])->name('indiceparticipacion')->middleware('auth.responsable');
 Route::post('setstudents', [EstudianteController::class, 'store'])->name('setstudents')->middleware('auth.responsable');
 

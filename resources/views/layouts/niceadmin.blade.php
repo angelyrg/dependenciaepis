@@ -222,6 +222,13 @@
             <span>Documentos de la Depedencia</span>
           </a>
         </li><!-- End Reglamento Page Nav -->
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{route('chats.index')}}">
+            <i class="bi bi-chat-right-dots"></i>
+            <span>Chat</span>
+          </a>
+        </li><!-- End Reglamento Nav -->
       
 
       @elseif (Auth::user()->rol == "Asesor")
@@ -307,17 +314,18 @@
       @elseif (Auth::user()->rol == "Secretaria")
 
         <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-layout-text-window-reverse"></i><span>Gestión de Documentos</span><i class="bi bi-chevron-down ms-auto"></i>
+          <a class="nav-link collapsed" href="{{route('proyectos.index')}}">
+            <i class="bi bi-layout-text-window-reverse"></i>
+            <span>Proyectos</span>
           </a>
-          <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <li>
-              <a href="#">
-                <i class="bi bi-circle"></i><span>Something</span>
-              </a>
-            </li>
-          </ul>
-        </li><!-- End Proyectos Nav -->
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{route('chats.index')}}">
+            <i class="bi bi-chat-right-dots"></i>
+            <span>Chat</span>
+          </a>
+        </li><!-- End Reglamento Nav -->
 
       @endif
       

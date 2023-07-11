@@ -89,10 +89,12 @@
                       <a href="{{asset('files/documentos/'.$documento->archivo)}}" target="_blank" >{{$documento->nombre_documento}}</a>
                     </td>
                     <td>
-                      
-                      <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete-document-{{$documento->id}}">
-                          Eliminar 
-                      </button>
+                      @if ( $documento->user_id == Auth::user()->id )
+                        <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete-document-{{$documento->id}}">
+                            Eliminar 
+                        </button>
+                      @endif
+
                       @include('responsable.proyectos.modal-delete-document')
                     </td>
                   </tr>
@@ -128,22 +130,16 @@
 
               <div class="d-flex justify-content-between align-items-center">
                 <h5 class="card-title">Ejecutores del proyecto</h5>
-                
-                @if ($proyecto->modalidad->id == 1 && count($proyecto->miembros) < 12 )
 
-                  <a href="{{route('ejecutores.create', ["p_id" => $proyecto->id] )}}" class="btn btn-sm btn-primary"><i class=" bi bi-person-plus-fill"></i> Agregar</a>
-
-                @elseif ($proyecto->modalidad->id == 2 && count($proyecto->miembros) < 40 )
-
-                  <a href="{{route('ejecutores.create', ["p_id" => $proyecto->id] )}}" class="btn btn-sm btn-primary"><i class=" bi bi-person-plus-fill"></i> Agregar</a>
-
-                @elseif ($proyecto->modalidad->id == 3 )
-                  
-                  <a href="{{route('ejecutores.create', ["p_id" => $proyecto->id] )}}" class="btn btn-sm btn-primary"><i class=" bi bi-person-plus-fill"></i> Agregar</a>
-
+                @if (Auth::user()->rol == "Responsable")
+                  @if ($proyecto->modalidad->id == 1 && count($proyecto->miembros) < 12 )  
+                    <a href="{{route('ejecutores.create', ["p_id" => $proyecto->id] )}}" class="btn btn-sm btn-primary"><i class=" bi bi-person-plus-fill"></i> Agregar</a>  
+                  @elseif ($proyecto->modalidad->id == 2 && count($proyecto->miembros) < 40 )  
+                    <a href="{{route('ejecutores.create', ["p_id" => $proyecto->id] )}}" class="btn btn-sm btn-primary"><i class=" bi bi-person-plus-fill"></i> Agregar</a>  
+                  @elseif ($proyecto->modalidad->id == 3 )                    
+                    <a href="{{route('ejecutores.create', ["p_id" => $proyecto->id] )}}" class="btn btn-sm btn-primary"><i class=" bi bi-person-plus-fill"></i> Agregar</a>  
+                  @endif
                 @endif
-
-
 
               </div>
 
@@ -163,7 +159,9 @@
                         <th scope="col">Ciclo</th>
                       @endif
                       <th scope="col">Cargo</th>
-                      <th>Opt</th>
+                      @if (Auth::user()->rol == "Responsable")
+                        <th>Opt</th>
+                      @endif
                     </tr>
                   </thead>
                   <tbody>
@@ -185,11 +183,14 @@
                         @else
                           <td></td>                            
                         @endif
-                        <td>
-                          <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$ejecutor->id}}">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
+
+                        @if (Auth::user()->rol == "Responsable")
+                          <td>
+                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$ejecutor->id}}">
+                              <i class="bi bi-trash"></i>
+                            </button>
+                          </td>
+                        @endif
                       </tr>
                       @include('responsable.proyectos.modal-delete-student')
                           

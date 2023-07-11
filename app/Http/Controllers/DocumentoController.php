@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DocumentoRequest;
 use App\Models\Documento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class DocumentoController extends Controller
 {
-    public function __construct(){
-        $this->middleware(['auth', 'auth.responsable']);
-    }
+    // public function __construct(){
+    //     $this->middleware(['auth', 'auth.responsable']);
+    // }
    
     public function store(DocumentoRequest $request)
     {
@@ -26,9 +27,11 @@ class DocumentoController extends Controller
         $documento->nombre_documento = $request->nombre_documento;
         $documento->proyecto_id = $request->proyecto_id;
         $documento->archivo = $nombre_archivo;
+        $documento->user_id = Auth::user()->id;
         $documento->save();
 
-        return redirect()->route('proyectos.show', $request->proyecto_id)->with('success', 'Documento cargado correctamente');
+        // return redirect()->route('proyectos.show', $request->proyecto_id)->with('success', 'Documento cargado correctamente');
+        return back();
 
     }
 

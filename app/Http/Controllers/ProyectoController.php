@@ -19,9 +19,9 @@ class ProyectoController extends Controller
     use UserTrait;
     use ProyectoTrait;
 
-    public function __construct(){
-        $this->middleware(['auth', 'auth.responsable']);
-    }
+    // public function __construct(){
+    //     $this->middleware(['auth', 'auth.responsable']);
+    // }
 
     public function index(){
         $proyectos = Proyecto::all();

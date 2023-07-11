@@ -17,6 +17,7 @@ class CreateDocumentosTable extends Migration
             $table->id();
             $table->string('nombre_documento');
             $table->string('archivo');
+            $table->integer('user_id')->nullable();
 
             $table->unsignedBigInteger('proyecto_id');
             $table->foreign('proyecto_id')->references('id')->on('proyectos')->cascadeOnDelete();

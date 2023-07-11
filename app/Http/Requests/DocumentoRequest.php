@@ -29,7 +29,7 @@ class DocumentoRequest extends FormRequest
             'proyecto_id' => 'required|exists:proyectos,id'];
 
         if ( $this->hasFile('archivo') ){
-            $rules['archivo'] = ['mimes:pdf'];
+            $rules['archivo'] = ['mimes:ppt,pptx,doc,docx,pdf,xls,xlsx'];
         }
 
         return $rules;

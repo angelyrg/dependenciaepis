@@ -18,7 +18,7 @@ class ChatController extends Controller
     public function index()
     {
 
-        $chats = Chat::join("users","users.id", "=", "chats.id")->get();
+        $chats = Chat::join("users","users.id", "=", "chats.user_id")->get();
         // return $chats;
 
         return view('chat.index', compact('chats'));
@@ -50,6 +50,7 @@ class ChatController extends Controller
         if ( $request->hasFile('archivo') ){
             $file = $request->file('archivo');
             $nombre_archivo = time().$file->getClientOriginalName();
+            (!file_exists("/files/chats/")) ? mkdir("/files/chats/", 0777, true) : '';
             $file->move(public_path()."/files/chats/", $nombre_archivo);      
             $chat->archivo = $nombre_archivo;      
         }

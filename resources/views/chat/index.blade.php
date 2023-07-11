@@ -7,14 +7,7 @@
 <div class="pagetitle">
   <div class="row d-flex justify-content-between">
     <div class="col">
-      <h1>Documentos</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-          <li class="breadcrumb-item">Informe</li>
-          <li class="breadcrumb-item active">Detalles del informe</li>
-        </ol>
-      </nav>
+      <h1>Chat de la dependencia.</h1>
     </div>
   </div>
 
@@ -24,12 +17,12 @@
 
   <div class="row">
     
-    <div class="col-lg-7">
+    <div class="col-lg-8 mx-auto">
 
       <div class="card">
 
         <div class="card-body pb-0">
-          <h5 class="card-title">Mensajes enviados <span>| Recibidos</span></h5>
+          <h5 class="card-title">Mensajes <span>Enviados & Recibidos</span></h5>
 
           <div class="news">
 
@@ -40,12 +33,12 @@
                 </div>
                 <div class="col-10 ">
                   <small>
-                    <b>{{$chat->name}} <span class="badge bg-success ">{{$chat->rol}}</span> </b> <span class="text-muted">| {{$chat->created_at->diffForHumans()}}</span> <br>
+                    <b>{{$chat->name}} <span class="badge @if($chat->rol=="Responsable"){{'bg-success'}}@elseif($chat->rol=="Secretaria"){{'bg-info'}} @endif">{{$chat->rol}}</span> </b> <span class="text-muted">| {{$chat->created_at->diffForHumans()}}</span> <br>
                   </small>
                   <small class="py-5">{{$chat->mensaje}}</small><br>
                   @if ($chat->archivo != null)
                     <div class="text-end ">
-                      <a href="{{asset('files/informes/'.$chat->archivo)}}" class="btn btn-sm btn-outline-success "><i class="bi bi-folder-symlink "></i> Archivo adjunto</a>
+                      <a href="{{asset('files/chats/'.$chat->archivo)}}" target="_blank" class="btn btn-sm btn-outline-success "><i class="bi bi-folder-symlink "></i> Archivo adjunto</a>
                     </div>
                   @endif
                 </div>
@@ -73,7 +66,7 @@
             </div>
           </div>        
           
-          <form action="{{route('chats.store')}}" method="post"  class="row g-3 needs-validation mt-2 " novalidate>
+          <form action="{{route('chats.store')}}" method="post" enctype="multipart/form-data"  class="row g-3 needs-validation mt-2 " novalidate>
             @csrf
 
             <div class="row">                

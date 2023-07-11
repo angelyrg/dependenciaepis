@@ -25,8 +25,10 @@
       <div class="card">
         <div class="card-body">
           <div class="d-flex justify-content-between  align-items-center">
-            <h5 class="card-title">Proyectos</h5>            
+            <h5 class="card-title">Proyectos</h5>
+            @if (Auth::user()->rol == "Responsable")
               <a href="{{route('proyectos.create')}}" class="btn btn-outline-primary " ><i class="bi bi-person-plus-fill me-1"></i> Nuevo proyecto</a>
+            @endif
           </div>
 
           <?php $active = "active"; ?>
@@ -54,15 +56,15 @@
                   <table class="table datatable mt-2">
                     <thead>
                       <tr>
-                        {{-- <th scope="col">ID</th> --}}
-                        {{-- <th scope="col">Modalidad</th> --}}
                         <th scope="col">Grupo</th>
                         <th scope="col">Nombre del proyecto</th>
                         <th scope="col">Inicio</th>
                         <th scope="col">Finalización</th>
                         <th scope="col">N° Resolución</th>
                         <th scope="col">Estado</th>
-                        <th scope="col">Opciones</th>
+                        @if (Auth::user()->rol == "Responsable")
+                          <th scope="col">Opciones</th>
+                        @endif
                       </tr>
                     </thead>
                     <tbody>
@@ -73,9 +75,6 @@
   
                         @if ($proyecto->modalidad_id == $modalidad->id)
                           <tr>
-                            {{-- <th >{{$proyecto->id}}</th> --}}
-                            {{-- <td>{{$proyecto->modalidad_grupo}}</td> --}}
-                            
                             <td>
                               <a href="{{route('proyectos.show', $proyecto->id)}}" class="fw-bold">{{$proyecto->nombre_grupo}}</a>
                             </td>
@@ -100,6 +99,7 @@
                               </span>
                             </td>
                             
+                            @if (Auth::user()->rol == "Responsable")
                             <td>
 
                               <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modal-update-resolucion-{{$proyecto->id}}">
@@ -112,6 +112,7 @@
                                 <i class="bi bi-trash"></i>
                               </button>
                           </td>
+                            @endif
                           @include('responsable.proyectos.modal')
                           @include('responsable.proyectos.modal-update_resolucion')
                           </tr>

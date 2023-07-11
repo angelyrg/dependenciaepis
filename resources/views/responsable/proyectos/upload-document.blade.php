@@ -20,17 +20,17 @@
               
               <input type="text" class="form-control" name="nombre_documento" id="validationCustom01" required >
               <div class="invalid-feedback">
-                Por favor escribar un nombre del documento.
+                Por favor escriba el nombre del documento.
               </div>
             </div>
           </div> <!--End Input Nombre-->
 
 
           <div class="col-md-12">
-            <label for="validationCustom01" class="form-label">Documento  <span class="badge border-light border-1 text-danger">* .pdf</span></label>
+            <label for="" class="form-label">Documento</label>
             <div class="input-group has-validation">
               
-              <input type="file" class="form-control" name="archivo" id="validationCustom01" required >
+              <input type="file" class="form-control" name="archivo" id="" accept=".pdf, .ppt, .pptx, .doc, .docx, .xls, .xlsx" required >
               <div class="invalid-feedback">
                 Por favor carga el archivo.
               </div>
@@ -45,7 +45,7 @@
           <div class="col-12 d-flex justify-content-center mt-4">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
 
-            <button class="btn btn-primary mx-1" type="submit">Subir informe</button>
+            <button class="btn btn-primary mx-1" type="submit">Subir documento</button>
           </div>
           
         </form><!-- End Form -->
