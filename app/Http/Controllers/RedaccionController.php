@@ -60,14 +60,14 @@ class RedaccionController extends Controller
             $proyecto_id = $request->proyecto_id;
     
             $proyecto = Proyecto::findOrFail($proyecto_id);
-            if ( $proyecto->resolucion_aprobacion == null ) {
-                return redirect()->back()->with("danger", "El proyecto debe tener el número de resolución de aprobación.");
-            }
+            // if ( $proyecto->resolucion_aprobacion == null ) {
+            //     return redirect()->back()->with("danger", "El proyecto debe tener el número de resolución de aprobación.");
+            // }
             $modalidad_proyecto = $proyecto->modalidad->nombre;
             $nombre_proyecto = $proyecto->nombre_proyecto;
             $modalidad_grupo = $proyecto->modalidad_grupo;
             $nombre_grupo = $proyecto->nombre_grupo;
-            $numero_resolucion = $proyecto->resolucion_aprobacion;
+            // $numero_resolucion = $proyecto->resolucion_aprobacion;
             $asesor1 = $proyecto->asesores->first();
             $asesor2 = (count($proyecto->asesores) > 1) ? $proyecto->asesores->last() : "";
             $tipo_documento = $proyecto->modalidad->sigla;
@@ -84,7 +84,7 @@ class RedaccionController extends Controller
                 'nombre_proyecto' => $nombre_proyecto,
                 'modalidad_grupo' => $modalidad_grupo,
                 'nombre_grupo' => $nombre_grupo,
-                'numero_resolucion' => $numero_resolucion,
+                // 'numero_resolucion' => $numero_resolucion,
                 'asesores' => $asesores,
             ];
 
@@ -106,6 +106,13 @@ class RedaccionController extends Controller
         $fecha_actual = date('d/m/Y');
         $nombre_responsable = $responsable->name;
 
+        $reglamento_nombre = $configuracion->reglamento_nombre;
+        $reglamento_nro_resolucion = $configuracion->reglamento_nro_resolucion;
+        $anexo_informe_aprobacion = $configuracion->anexo_informe_aprobacion;
+        $anexo_informe_parcial = $configuracion->anexo_informe_parcial;
+        $anexo_informe_final = $configuracion->anexo_informe_final;
+        $anexo_informe_especial = $configuracion->anexo_informe_especial;
+
         $fecha_recepcion_solicitud = isset($request->fecha_recepcion_solicitud) ? $request->fecha_recepcion_solicitud : "";
         $asunto_solicitud = isset($request->asunto_solicitud) ? $request->asunto_solicitud : "";
 
@@ -117,8 +124,6 @@ class RedaccionController extends Controller
             'ESPECIAL' => 'INFORME_ESPECIAL.docx',
         ];
 
-        // TODO:
-        //001-2023-EC
         $numero_informe_con_ceros = str_pad($numero_de_informe, 3, "0", STR_PAD_LEFT); 
 
         if (isset($request->proyecto_id)) {
@@ -137,19 +142,24 @@ class RedaccionController extends Controller
             'fecha_actual' => $fecha_actual,
             'nombre_responsable' => $nombre_responsable,
             'fecha_recepcion_solicitud' => $fecha_recepcion_solicitud,
-            'asunto_solicitud' => $asunto_solicitud
+            'asunto_solicitud' => $asunto_solicitud,
+            'reglamento_nombre' => $reglamento_nombre,
+            'reglamento_nro_resolucion' => $reglamento_nro_resolucion,
+            'anexo_informe_aprobacion' => $anexo_informe_aprobacion,
+            'anexo_informe_parcial' => $anexo_informe_parcial,
+            'anexo_informe_final' => $anexo_informe_final,
+            'anexo_informe_especial' => $anexo_informe_especial
         ];
 
         $contenido_informe = array_merge($contenido_informe, $contenido_general);
 
-        //Script phpWORD
-        // Creating the new document...
-        $phpWord = new \PhpOffice\PhpWord\TemplateProcessor($pantilla[$request->tipo_informe]);
-        $phpWord->setValues($contenido_informe);
-
+        // Crea la carpeta de informes si es que no existe
         $carpetaRedaccion = 'files/redaccion/';
         (!file_exists($carpetaRedaccion)) ? mkdir($carpetaRedaccion, 0777, true) : '';
 
+        //Script phpWORD
+        $phpWord = new \PhpOffice\PhpWord\TemplateProcessor($pantilla[$request->tipo_informe]);
+        $phpWord->setValues($contenido_informe);
         $phpWord->saveAs($carpetaRedaccion."/".$nombre_archivo.'.docx');
 
         $nuevo = new Redaccion();

@@ -41,16 +41,27 @@ class SettingController extends Controller
     {
         $request->validate([
             "year_settings" => "required",
-            "nombre_director" => "required"
+            "nombre_director" => "required",
+
+            "reglamento_nombre" => "required",
+            "reglamento_nro_resolucion" => "required",
+            "anexo_informe_aprobacion" => "required",
+            "anexo_informe_parcial" => "required",
+            "anexo_informe_final" => "required",
+            "anexo_informe_especial" => "required"
         ]);
 
         $setting = new Setting();
         $setting->year = $request->year_settings;
         $setting->nombre_director = $request->nombre_director;
         
-        $setting->reglamento_anexo = $request->reglamento_anexo;
         $setting->reglamento_nombre = $request->reglamento_nombre;
         $setting->reglamento_nro_resolucion = $request->reglamento_nro_resolucion;
+        
+        $setting->anexo_informe_aprobacion = $request->anexo_informe_aprobacion;
+        $setting->anexo_informe_parcial = $request->anexo_informe_parcial;
+        $setting->anexo_informe_final = $request->anexo_informe_final;
+        $setting->anexo_informe_especial = $request->anexo_informe_especial;
 
         $setting->save();
         return redirect()->route('settings.index')->with('success', 'Configuración creada.');
@@ -93,12 +104,26 @@ class SettingController extends Controller
             "year_settings" => "required",
             "nombre_director" => "required",
             "responsable_id" => "required",
-            "nombre_responsable" => "required"
+            "nombre_responsable" => "required",
+
+            "reglamento_nombre" => "required",
+            "reglamento_nro_resolucion" => "required",
+            "anexo_informe_aprobacion" => "required",
+            "anexo_informe_parcial" => "required",
+            "anexo_informe_final" => "required",
+            "anexo_informe_especial" => "required"
         ]);
         
         
         $setting->year = $request->year_settings;
         $setting->nombre_director = $request->nombre_director;
+
+        $setting->reglamento_nombre = $request->reglamento_nombre;
+        $setting->reglamento_nro_resolucion = $request->reglamento_nro_resolucion;        
+        $setting->anexo_informe_aprobacion = $request->anexo_informe_aprobacion;
+        $setting->anexo_informe_parcial = $request->anexo_informe_parcial;
+        $setting->anexo_informe_final = $request->anexo_informe_final;
+        $setting->anexo_informe_especial = $request->anexo_informe_especial;
         $setting->save();
 
         $responsable = User::findOrFail($request->responsable_id);

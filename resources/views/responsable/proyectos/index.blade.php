@@ -102,9 +102,9 @@
                             @if (Auth::user()->rol == "Responsable")
                             <td>
 
-                              <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modal-update-resolucion-{{$proyecto->id}}">
+                              {{-- <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modal-update-resolucion-{{$proyecto->id}}">
                                 Resolución
-                              </button>
+                              </button> --}}
 
                               <a href="{{route('proyectos.edit', $proyecto->id)}}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                               
@@ -114,7 +114,7 @@
                           </td>
                             @endif
                           @include('responsable.proyectos.modal')
-                          @include('responsable.proyectos.modal-update_resolucion')
+                          {{-- @include('responsable.proyectos.modal-update_resolucion') --}}
                           </tr>
                         @endif
   

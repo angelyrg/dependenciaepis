@@ -88,17 +88,6 @@
               <div class="col-6">
 
                 <div class="form-group mb-3">
-                  <label class="form-label">Anexo del reglamento de UNH</label>
-                  <div class="input-group has-validation">
-                    <span class="input-group-text" ><i class="bi bi-person-bounding-box"></i></span>
-                    <input type="text" maxlength="4" minlength="4" class="form-control" name="reglamento_anexo" value="@if(!old('reglamento_anexo')){{$setting->reglamento_anexo}}@else{{old('reglamento_anexo')}}@endif" placeholder="ANEXO 06 (FICHA DE VALORACION DE INFORMES" required>
-                    <div class="invalid-feedback">
-                      Por favor ingrese el anexo.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group mb-3">
                   <label class="form-label">Nombre del reglamento</label>
                   <div class="input-group has-validation">
                     <span class="input-group-text" ><i class="bi bi-person-lines-fill"></i></span>
@@ -116,6 +105,58 @@
                     <input type="text" class="form-control" name="reglamento_nro_resolucion" value="@if(!old('reglamento_nro_resolucion')){{$setting->reglamento_nro_resolucion}}@else{{old('reglamento_nro_resolucion')}}@endif" placeholder="0222-2022-CU-UNH" required >
                     <div class="invalid-feedback">
                       Por favor ingrese el número de resolución.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label class="form-label">Anexo que hace referencia al INFORME DE APROBACIÓN</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" ><i class="bi bi-person-bounding-box"></i></span>
+                    <textarea class="form-control" name="anexo_informe_aprobacion" cols="30" rows="3" placeholder="ANEXO 05 (FICHA DE VALORACION DE PROYECTOS DE SERVICIO SOCIAL, EXTENSIÓN CULTURAL Y PROYECCIÓN SOCIAL)" required>
+                      @if(!old('anexo_informe_aprobacion')){{$setting->anexo_informe_aprobacion}}@else{{old('anexo_informe_aprobacion')}}@endif
+                    </textarea>
+                    <div class="invalid-feedback">
+                      Por favor ingrese el anexo.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label class="form-label">Anexo que hace referencia al INFORME PARCIAL</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" ><i class="bi bi-person-bounding-box"></i></span>
+                    <textarea class="form-control" name="anexo_informe_parcial" cols="30" rows="3" placeholder="ANEXO 06 (FICHA DE VALORACION DE INFORMES DE SERVICIO SOCIAL UNIVERSITARIO, EXTENSIÓN CULTURAL Y PROYECCIÓN SOCIAL)" required>
+                      @if(!old('anexo_informe_parcial')){{$setting->anexo_informe_parcial}}@else{{old('anexo_informe_parcial')}}@endif
+                    </textarea>
+                    <div class="invalid-feedback">
+                      Por favor ingrese el anexo.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label class="form-label">Anexo que hace referencia al INFORME FINAL</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" ><i class="bi bi-person-bounding-box"></i></span>
+                    <textarea class="form-control" name="anexo_informe_final" cols="30" rows="3" placeholder="ANEXO 06 (FICHA DE VALORACION DE INFORMES FINALES DE SERVICIO SOCIAL UNIVERSITARIO, EXTENSIÓN CULTURAL Y PROYECCIÓN SOCIAL)" required>
+                      @if(!old('anexo_informe_final')){{$setting->anexo_informe_final}}@else{{old('anexo_informe_final')}}@endif
+                    </textarea>
+                    <div class="invalid-feedback">
+                      Por favor ingrese el anexo.
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group mb-3">
+                  <label class="form-label">Anexo que que se mencionará en el INFORME ESPECIAL:</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" ><i class="bi bi-person-bounding-box"></i></span>
+                    <textarea class="form-control" name="anexo_informe_especial" cols="30" rows="4" placeholder="CAPTITULO X (DISPOSICIONES FINALES), numeral tercero el cual a la letra dice: Los casos no previstos en el presente Reglamento, serán resueltos por la Dirección de Proyección Social y Extensión Cultural." required>
+                      @if(!old('anexo_informe_especial')){{$setting->anexo_informe_especial}}@else{{old('anexo_informe_especial')}}@endif
+                    </textarea>
+                    <div class="invalid-feedback">
+                      Por favor ingrese el anexo.
                     </div>
                   </div>
                 </div>

@@ -18,9 +18,13 @@ return new class extends Migration
             $table->string("year", 4);
             $table->string("nombre_director", 100);
 
-            $table->text("reglamento_anexo");
             $table->string("reglamento_nombre");
             $table->string("reglamento_nro_resolucion", 50);
+
+            $table->text("anexo_informe_aprobacion");
+            $table->text("anexo_informe_parcial");
+            $table->text("anexo_informe_final");
+            $table->text("anexo_informe_especial");
             
             $table->timestamps();
         });
