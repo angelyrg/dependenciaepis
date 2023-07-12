@@ -89,7 +89,7 @@
                         Por favor seleccion un grupo.
                       </div>
                     </div>
-                    <p class="text-success mt-2"><small>Se muestran grupos que han sido <b>"Aprobados"</b></small></p>
+                    <p class="text-success mt-2"><small>Se muestran grupos que están en estado <b>"Inicio"</b></small></p>
                   </div>
                 </div>
       

@@ -16,7 +16,7 @@
 
 <section class="section profile">
 
-    <div class="col-xl-8">
+    <div class="col-xl-10">
       <div class="card">
         <div class="card-body pt-3">
           <ul class="nav nav-tabs nav-tabs-bordered">
@@ -27,7 +27,7 @@
 
           @if ($setting)
           <div class="row">
-            <div class="col-6 pt-3">
+            <div class="col-4 pt-3">
               <b>Año</b>
               <p>{{$setting->year}}</p>
               <b>Nombre del director</b>
@@ -36,13 +36,21 @@
               <p>{{$responsable->name}}</p>
             </div>
 
-            <div class="col-6 pt-3">
-              <b>Anexo del reglamento de UNH</b>
-              <p>{{$setting->reglamento_anexo}}</p>
-              <b>Nombre del reglamento</b>
-              <p>{{$setting->reglamento_nombre}}</p>
-              <b>Reglamento aprobado con Resolución</b>
+            <div class="col-8 pt-3">
+              <b>Reglamento aprobado con Resolución:</b>
               <p>{{$setting->reglamento_nro_resolucion}}</p>
+              <b>Nombre del reglamento:</b>
+              <p>{{$setting->reglamento_nombre}}</p>
+              
+              <b>Anexo: Informe aprobación:</b>
+              <p>{{$setting->anexo_informe_aprobacion}}</p>
+              <b>Anexo: Informe parcial:</b>
+              <p>{{$setting->anexo_informe_parcial}}</p>
+              <b>Anexo: Informe final:</b>
+              <p>{{$setting->anexo_informe_final}}</p>
+              <b>Casos especiales:</b>
+              <p>{{$setting->anexo_informe_especial}}</p>
+
             </div>
             
             <p class="my-2">
