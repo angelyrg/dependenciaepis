@@ -89,6 +89,11 @@ class RedaccionController extends Controller
             ];
 
             $contenido_informe = array_merge($contenido_informe, $proyecto_contenido);
+
+            if ( $request->tipo_informe == "APROBACION" ){
+                $proyecto->estado = "Inicio";
+                $proyecto->save();
+            }
         }
 
 
