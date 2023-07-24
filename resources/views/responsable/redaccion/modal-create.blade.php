@@ -77,11 +77,11 @@
                       <select class="form-select" name="proyecto_id" id="proyecto_id" required>
                           <option selected disabled value="">Seleccione...</option>  
 
-                          @if($grupos_inicio->isEmpty())
+                          @if($grupos_parcial->isEmpty())
                             <option disabled value="">No hay grupos. </option>
                           @endif 
                           
-                          @foreach ($grupos_inicio as $grupo)
+                          @foreach ($grupos_parcial as $grupo)
                             <option value={{$grupo->id}} >{{$grupo->nombre_grupo}}</option>
                           @endforeach
                       </select>
@@ -128,10 +128,10 @@
                     <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-toggle-on"></i></span>
                     <select class="form-select" name="proyecto_id" id="proyecto_id" required>
                         <option selected disabled value="">Seleccione...</option>
-                        @if($grupos_parcial->isEmpty())
+                        @if($grupos_completado ->isEmpty())
                           <option disabled value="">No hay grupos en estado "Parcial" </option>
                         @endif
-                        @foreach ($grupos_parcial as $grupo)
+                        @foreach ($grupos_completado as $grupo)
                           <option value={{$grupo->id}} >{{$grupo->nombre_grupo}}</option>
                         @endforeach
                     </select>

@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('year_documento', 4);
             $table->string('nombre_documento');
             $table->string('tipo_documento')->nullable();
+
+            $table->unsignedBigInteger('proyecto_id');
+            $table->foreign('proyecto_id')->references('id')->on('proyectos')->cascadeOnDelete();
+
             $table->timestamps();
         });
     }

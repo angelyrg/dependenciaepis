@@ -31,4 +31,8 @@ class Proyecto extends Model
         return $this->hasMany(Documento::class);
     }
 
+    public function redacciones(){
+        return $this->hasMany(Redaccion::class);
+    }
+
 }
