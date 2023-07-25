@@ -235,6 +235,37 @@
         </div>
       </div>
     </div>
+
+    @if ($proyecto->estado == "Completado") 
+      <div class="col-lg-7">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              @if (!isset($proyecto->proyecto_photo))    
+              <div class="card-header">
+                <form action="{{route('proyecto.upload_photo', $proyecto->id)}}" method="post">
+                  @csrf
+                  @method('PUT')
+                  <input type="file" name="proyecto_photo" id="proyecto_photo" required>
+                  <button type="submit" class="btn btn-sm btn-outline-success">Subir foto</button>
+                </form>
+              </div>
+              @else
+              <div class="card-body">                
+                <p class="card-title mt-3">Foto del proyecto</p>
+                <img src="{{asset('assets/img/'.$proyecto->proyecto_photo)}}" class="img-fluid" alt="">
+                <form action="{{route('proyecto.delete_photo', $proyecto->id)}}" method="post">
+                  @csrf
+                  @method('PUT')
+                  <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar foto</button>
+                </form>
+              </div>
+              @endif
+            </div>          
+          </div>
+        </div>
+      </div>
+    @endif
     @endif
 
   </div>

@@ -144,4 +144,26 @@ class ProyectoController extends Controller
         return redirect()->route('proyectos.index')->with('success', 'Proyecto '.$request->codigo.' actualizado correctamente.');
 
     }
+
+    public function upload_photo(Request $request, Proyecto $proyecto){
+
+        $file = $request->file('proyecto_photo');
+        $nombre_archivo = time().$file->getClientOriginalName();
+
+        if ($file->move(public_path()."assets/img/", $nombre_archivo)){
+            $proyecto->proyecto_photo = $nombre_archivo;
+            $proyecto->save();
+            return redirect()->back()->with('success', 'Foto publicado');
+        }
+        return redirect()->back()->with('danger', 'No se pudo subir el archivo');
+
+    }
+
+    public function delete_photo(Proyecto $proyecto){        
+        $proyecto->proyecto_photo = null;
+        $proyecto->save();
+
+        return redirect()->back()->with('success', 'Foto eliminado correctamente');
+    }
+    
 }

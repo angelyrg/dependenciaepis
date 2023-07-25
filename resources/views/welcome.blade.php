@@ -165,7 +165,7 @@
                   <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
                 </div>
                 <div class="carousel-inner">
-                  <div class="carousel-item active">
+                  {{-- <div class="carousel-item active">
                     <img src="{{ asset('assets/img/hatariy3.png') }}" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                       <h5 class="shadow-lg fw-bold">GRUPO MONOVALENTE DE EXTENSIÓN CULTURAL: "HATARIY"</h5>
@@ -199,7 +199,16 @@
                       <h5 class="shadow-lg fw-bold">GRUPO MONOVALENTE: NEXUS</h5>
                       <p class="shadow-lg fw-bold">SUMINISTRO DE IMPRESIÓN A LAS DIFERENTES ÁREAS ADMINISTRATIVAS UTILIZANDO LA INFRAESTRUCTURA DE LA RED DE DATOS DE LA ESCUELA PROFESIONAL DE INGENEIRÍA DE SISTEMAS</p>                      
                     </div>
-                  </div>
+                  </div> --}}
+                  @foreach ($proyectos_completados as $proyecto)
+                    <div class="carousel-item">
+                      <img src="{{ asset('assets/img/'.$proyecto->proyecto_photo) }}" class="d-block w-100" alt="...">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h5 class="shadow-lg fw-bold">GRUPO {{$proyecto->modalidad_grupo . ": " . $proyecto->nombre_grupo}} </h5>
+                        <p class="shadow-lg fw-bold">{{$proyecto->nombre_proyecto}}</p>
+                      </div>
+                    </div>
+                  @endforeach
                 </div>
     
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">

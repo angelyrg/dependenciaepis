@@ -29,6 +29,8 @@ class CreateProyectosTable extends Migration
             $table->boolean('presidente')->nullable();
             $table->boolean('tesorero')->nullable();
             $table->boolean('secretario')->nullable();
+
+            $table->string('proyecto_photo')->nullable();
             
             $table->foreign('modalidad_id')->references('id')->on('modalidads')->cascadeOnUpdate()->nullOnDelete();;
             

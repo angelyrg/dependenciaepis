@@ -66,6 +66,8 @@ Route::put('proyectos/{proyecto}/set_resolution', [ProyectoController::class, 'u
 
 Route::resource('ejecutores', EjecutorController::class)->names('ejecutores')->middleware('auth.responsable');
 Route::put('proyectos/{proyecto}/add_ejecutor', [EjecutorController::class, 'add'])->name('ejecutores.add')->middleware('auth.responsable');
+Route::put('proyectos/{proyecto}/upload_photo', [ProyectoController::class, 'upload_photo'])->name('proyecto.upload_photo')->middleware('auth.responsable');
+Route::put('proyectos/{proyecto}/delete_photo', [ProyectoController::class, 'delete_photo'])->name('proyecto.delete_photo')->middleware('auth.responsable');
 Route::resource('reglamentos', ReglamentoController::class)->names('reglamentos')->middleware('auth.responsable');
 Route::resource('cargos', CargoController::class)->names('cargos')->middleware('auth.responsable');
 Route::resource('responsable/informes', InformeRespController::class)->names('responsable.informes')->middleware('auth.responsable');
