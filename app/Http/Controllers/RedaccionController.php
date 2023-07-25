@@ -170,8 +170,10 @@ class RedaccionController extends Controller
         $nuevo = new Redaccion();
         $nuevo->numero_documento = $numero_de_informe;
         $nuevo->year_documento = $configuracion->year;
+        $nuevo->proyecto_id = $proyecto_id;
         $nuevo->nombre_documento = $nombre_archivo.".docx";
         $nuevo->tipo_documento = $tipo_documento;
+        $nuevo->tipo_informe = $request->tipo_informe;
         $nuevo->save();
 
         return redirect()->route('redaccion.index');

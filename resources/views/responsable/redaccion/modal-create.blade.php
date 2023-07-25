@@ -89,7 +89,7 @@
                         Por favor seleccion un grupo.
                       </div>
                     </div>
-                    <p class="text-success mt-2"><small>Se muestran grupos que están en estado <b>"Inicio"</b></small></p>
+                    <p class="text-success mt-2"><small>Se muestran grupos que están en estado <b>"Parcial"</b></small></p>
                   </div>
                 </div>
       
@@ -129,7 +129,7 @@
                     <select class="form-select" name="proyecto_id" id="proyecto_id" required>
                         <option selected disabled value="">Seleccione...</option>
                         @if($grupos_completado ->isEmpty())
-                          <option disabled value="">No hay grupos en estado "Parcial" </option>
+                          <option disabled value="">No hay grupos </option>
                         @endif
                         @foreach ($grupos_completado as $grupo)
                           <option value={{$grupo->id}} >{{$grupo->nombre_grupo}}</option>
@@ -139,7 +139,7 @@
                       Por favor seleccion un grupo.
                     </div>
                   </div>
-                  <p class="text-success mt-2"><small>Se muestran grupos que han aprobado su informe <b>"Parcial"</b></small></p>
+                  <p class="text-success mt-2"><small>Se muestran grupos que han aprobado su informe <b>"Completado"</b></small></p>
                 </div>
               </div>
 

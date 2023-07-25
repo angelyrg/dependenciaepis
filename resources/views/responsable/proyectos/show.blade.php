@@ -31,7 +31,7 @@
 
   <div class="row">
 
-    <div class="col-lg-4">
+    <div class="col-lg-5">
       <div class="row">
         <div class="col-lg-12">
           <div class="info-box card">
@@ -120,7 +120,7 @@
       </div>
     </div>
 
-    <div class="col-lg-8">
+    <div class="col-lg-7">
 
       <div class="col-lg-12">
 
@@ -212,6 +212,30 @@
       </div>
 
     </div>
+
+    @if (Auth::user()->rol == "Responsable")   
+    <div class="col-lg-5">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <p class="card-title mt-3">Informes redactados</p>
+              <table class="table table-sm table-hover">
+                @foreach ($proyecto->redacciones as $redaccion)                  
+                  <tr>
+                    <td class="d-flex justify-content-between">
+                      Informe {{$redaccion->tipo_informe}}
+                      <a class="btn btn-sm btn-outline-dark" href="{{asset('files/redaccion/'.$redaccion->nombre_documento)}}" target="_blank" ><i class="bi bi-file-earmark-arrow-down"></i></a>
+                    </td>
+                  </tr>
+                @endforeach
+              </table>
+            </div>
+          </div>          
+        </div>
+      </div>
+    </div>
+    @endif
 
   </div>
   
