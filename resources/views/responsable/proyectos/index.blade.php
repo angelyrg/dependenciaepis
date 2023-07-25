@@ -60,7 +60,6 @@
                         <th scope="col">Nombre del proyecto</th>
                         <th scope="col">Inicio</th>
                         <th scope="col">Finalización</th>
-                        {{-- <th scope="col">N° Resolución</th> --}}
                         <th scope="col">Estado</th>
                         @if (Auth::user()->rol == "Responsable")
                           <th scope="col">Opciones</th>
@@ -84,14 +83,6 @@
                             <td>{{$meses[date('m', strtotime($proyecto->fecha_inicio))-1]." ".date('Y', strtotime($proyecto->fecha_inicio))}}</td>
                             <td>{{$meses[date('m', strtotime($proyecto->fecha_fin))-1]." ".date('Y', strtotime($proyecto->fecha_fin))}}</td>
                             
-                            {{-- <td>
-                              @if (!isset($proyecto->resolucion_aprobacion))
-                              <i>Pendiente</i>                                
-                              @else
-                              {{$proyecto->resolucion_aprobacion}}                                  
-                              @endif
-                            </td> --}}
-
                             <td>
                               <span class="badge bg-@if($proyecto->estado=="Inscrito"){{'secondary'}}@elseif($proyecto->estado=="Inicio"){{'dark'}}@elseif($proyecto->estado=="Parcial"){{'warning'}}@elseif($proyecto->estado=="Completado"){{'success'}}@endif">
                                 <i class="bi bi-journal-code"></i> 
@@ -102,10 +93,6 @@
                             @if (Auth::user()->rol == "Responsable")
                             <td>
 
-                              {{-- <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modal-update-resolucion-{{$proyecto->id}}">
-                                Resolución
-                              </button> --}}
-
                               <a href="{{route('proyectos.edit', $proyecto->id)}}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i></a>
                               
                               <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-{{$proyecto->id}}">
@@ -114,7 +101,6 @@
                           </td>
                             @endif
                           @include('responsable.proyectos.modal')
-                          {{-- @include('responsable.proyectos.modal-update_resolucion') --}}
                           </tr>
                         @endif
   

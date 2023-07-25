@@ -123,10 +123,12 @@ class ProyectoController extends Controller
  
         $fecha_desde = $request->get('fecha_desde');
         $fecha_hasta = $request->get('fecha_hasta');
+        $estado = $request->get('estado');
+        $modalidad_id = $request->get('modalidad_id');
 
         //return $fecha_desde;
 
-        return Excel::download(new ProyectosExport($fecha_desde, $fecha_hasta), 'proyectos.xlsx'); 
+        return Excel::download(new ProyectosExport($fecha_desde, $fecha_hasta, $estado, $modalidad_id), 'proyectos.xlsx'); 
 
     }
 

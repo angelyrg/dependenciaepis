@@ -43,8 +43,7 @@
               </div>
 
               <div class="row mb-3 ">
-                <label for="inputEmail3" class="col-sm-6 col-form-label  px-0 d-flex justify-content-end">Año inicio hasta:</label>
-                
+                <label for="inputEmail3" class="col-sm-6 col-form-label  px-0 d-flex justify-content-end">Año inicio hasta:</label>                
                 <div class="col-sm-6">
                   <select class="form-select" name="fecha_hasta" required>
                     <option selected disabled value="">Año fin...</option>
@@ -55,9 +54,34 @@
                 </div>
               </div>
 
+              <div class="row mb-3 ">
+                <label for="selectModalidad" class="col-sm-6 col-form-label  px-0 d-flex justify-content-end">Modalidad</label>                
+                <div class="col-sm-6">
+                  <select class="form-select" name="modalidad">
+                    <option selected disabled value="">Seleccione</option>
+                    @foreach ( $modalidades as $modalidad)
+                      <option value="{{$modalidad->id}}" >{{$modalidad->nombre}}</option>
+                    @endforeach                  
+                  </select>
+                </div>
+              </div>
+
+              <div class="row mb-3 ">
+                <label for="selectEstado" class="col-sm-6 col-form-label  px-0 d-flex justify-content-end">Estado</label>                
+                <div class="col-sm-6">
+                  <select class="form-select" name="estado_proyecto">
+                    <option selected disabled value="">Seleccione</option>
+                    <option>Inscrito</option>
+                    <option>Inicio</option>
+                    <option>Parcial</option>
+                    <option>Completado</option>
+                  </select>
+                </div>
+              </div>
+
               <div class="row mb-3 mx-2">
                 <div class="col-sm-12 mx-12">
-                  <button type="submit" class="btn btn-primary "> <i class="bi bi-funnel"></i> Filtrar</button>
+                  <button type="submit" class="btn btn-primary "> <i class="bi bi-funnel"></i> Filtrar </button>
                 </div>
               </div>
 
@@ -69,6 +93,9 @@
                 
               <input type="hidden"  name="fecha_desde" value="{{$fecha_desde}}" >
               <input type="hidden"  name="fecha_hasta" value="{{$fecha_hasta}}" >
+
+              <input type="hidden"  name="estado" value="{{$estado}}" >
+              <input type="hidden"  name="modalidad_id" value="{{$modalidad_id}}" >
 
               <button type="submit" class="btn btn-success btn-sm">
                 <i class="bi bi-file-earmark-spreadsheet"></i> Descargar

@@ -13,6 +13,8 @@ class ProyectosExport implements FromView {
     
     protected $fecha_inicio;
     protected $fecha_fin;
+    protected $estado;
+    protected $modalidad_id;
     protected $proyectos;
 
 	public function __construct($fecha_desde, $fecha_hasta)
@@ -24,6 +26,8 @@ class ProyectosExport implements FromView {
 
             $this->proyectos = Proyecto::where('fecha_inicio', '>=', $this->fecha_inicio)
                                 ->where('fecha_inicio', '<=', $this->fecha_fin)
+                                ->where('estado', '==', $this->estado)
+                                ->where('modalidad_id', '==', $this->modalidad_id)
                                 ->get();
         }else{
             $this->proyectos = Proyecto::all();
