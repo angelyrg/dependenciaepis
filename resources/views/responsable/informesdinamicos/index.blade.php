@@ -54,7 +54,7 @@
                 </div>
               </div>
 
-              <div class="row mb-3 ">
+              {{-- <div class="row mb-3 ">
                 <label for="selectModalidad" class="col-sm-6 col-form-label  px-0 d-flex justify-content-end">Modalidad</label>                
                 <div class="col-sm-6">
                   <select class="form-select" name="modalidad">
@@ -64,9 +64,9 @@
                     @endforeach                  
                   </select>
                 </div>
-              </div>
+              </div> --}}
 
-              <div class="row mb-3 ">
+              {{-- <div class="row mb-3 ">
                 <label for="selectEstado" class="col-sm-6 col-form-label  px-0 d-flex justify-content-end">Estado</label>                
                 <div class="col-sm-6">
                   <select class="form-select" name="estado_proyecto">
@@ -77,7 +77,7 @@
                     <option>Completado</option>
                   </select>
                 </div>
-              </div>
+              </div> --}}
 
               <div class="row mb-3 mx-2">
                 <div class="col-sm-12 mx-12">
@@ -94,8 +94,8 @@
               <input type="hidden"  name="fecha_desde" value="{{$fecha_desde}}" >
               <input type="hidden"  name="fecha_hasta" value="{{$fecha_hasta}}" >
 
-              <input type="hidden"  name="estado" value="{{$estado}}" >
-              <input type="hidden"  name="modalidad_id" value="{{$modalidad_id}}" >
+              {{-- <input type="hidden"  name="estado" value="{{$estado}}" > --}}
+              {{-- <input type="hidden"  name="modalidad_id" value="{{$modalidad_id}}" > --}}
 
               <button type="submit" class="btn btn-success btn-sm">
                 <i class="bi bi-file-earmark-spreadsheet"></i> Descargar

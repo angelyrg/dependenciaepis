@@ -243,17 +243,28 @@
             <div class="card">
               @if (!isset($proyecto->proyecto_photo))    
               <div class="card-header">
-                <form action="{{route('proyecto.upload_photo', $proyecto->id)}}" method="post">
+                <p class="card-title">Subir foto del proyecto</p>
+                <form action="{{route('proyecto.upload_photo', $proyecto->id)}}" enctype="multipart/form-data" method="post">
                   @csrf
                   @method('PUT')
-                  <input type="file" name="proyecto_photo" id="proyecto_photo" required>
+                  <input type="file" name="proyecto_photo" id="proyecto_photo" accept="image/*" required>
                   <button type="submit" class="btn btn-sm btn-outline-success">Subir foto</button>
                 </form>
+                @if ($errors->any())
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <ul>
+                      @foreach ($errors->all() as $error)
+                        <li> {{ $error }}</li>
+                      @endforeach
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                @endif
               </div>
               @else
               <div class="card-body">                
                 <p class="card-title mt-3">Foto del proyecto</p>
-                <img src="{{asset('assets/img/'.$proyecto->proyecto_photo)}}" class="img-fluid" alt="">
+                <img src="{{asset('assets/img/'.$proyecto->proyecto_photo)}}" class="img-fluid mb-2" alt="">
                 <form action="{{route('proyecto.delete_photo', $proyecto->id)}}" method="post">
                   @csrf
                   @method('PUT')

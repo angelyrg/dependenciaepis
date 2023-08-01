@@ -40,8 +40,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::view('/', 'welcome')->name('welcome');
-// Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+// Route::view('/', 'welcome')->name('welcome');
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
 Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('notifications', [HomeController::class, 'getNotifications'])->name('notifications')->middleware('auth');

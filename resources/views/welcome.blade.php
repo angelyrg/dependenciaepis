@@ -89,11 +89,11 @@
               <div class="accordion" id="accordionExample">
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                       1. Sobre la dependencia
                     </button>
                   </h2>
-                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                       <p>Esta dependencia y este software web está basado en la <b>Resolución N° 0623-2021-CU-UNH</b>.</p>
                       <p>En esta resolución se establece el Reglamento de Servicio Social Universitario, Proyección Social y Extensicón Cultural de la Universidad Nacional de Huancavelica.</p>
@@ -159,49 +159,14 @@
               <!-- Slides with captions -->
               <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                  @foreach ($proyectos_completados as $proyecto)
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{$proyecto->id}}" aria-label="Slide {{$proyecto->id}}"></button>
+                  @endforeach
                 </div>
                 <div class="carousel-inner">
-                  {{-- <div class="carousel-item active">
-                    <img src="{{ asset('assets/img/hatariy3.png') }}" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                      <h5 class="shadow-lg fw-bold">GRUPO MONOVALENTE DE EXTENSIÓN CULTURAL: "HATARIY"</h5>
-                      <p class="shadow-lg fw-bold">TALLER DE DANZA</p>
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{{ asset('assets/img/aromas03.png') }}" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                      <h5 class="shadow-lg fw-bold">GRUPO MONOVALENTE DE EXTENSIÓN CULTURAL: AGRUPACIÓN AROMAS</h5>
-                      <p class="shadow-lg fw-bold">TALLER DE CANTO Y MÚSICA</p>
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{{ asset('assets/img/webvirtual2018_01.png') }}" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                      <h5 class="shadow-lg fw-bold">GRUPO MONOVALENTE: WEB VIRTUAL 2018</h5>
-                      <p class="shadow-lg fw-bold">DISEÑO DE UNA PÁGINA WEB Y AULA VIRTUAL PARA LA INSTITUCIÓN EDUCATIVA DE MUJERES NUESTRA SEÑORA DE LOURDES.</p>                      
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{{ asset('assets/img/navi01.png') }}" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                      <h5 class="shadow-lg fw-bold">GRUPO MONOVALENTE: NATUS VINCERE</h5>
-                      <p class="shadow-lg fw-bold">SUMINISTRO DE IMPRESIÓN A LAS DIFERENTES ÁREAS ADMINISTRATIVAS UTILIZANDO LA INFRAESTRUCTURA DE LA RED DE DATOS DE LA ESCUELA PROFESIONAL DE INGENEIRÍA DE SISTEMAS</p>                      
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{{ asset('assets/img/navi01.png') }}" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                      <h5 class="shadow-lg fw-bold">GRUPO MONOVALENTE: NEXUS</h5>
-                      <p class="shadow-lg fw-bold">SUMINISTRO DE IMPRESIÓN A LAS DIFERENTES ÁREAS ADMINISTRATIVAS UTILIZANDO LA INFRAESTRUCTURA DE LA RED DE DATOS DE LA ESCUELA PROFESIONAL DE INGENEIRÍA DE SISTEMAS</p>                      
-                    </div>
-                  </div> --}}
+                  
                   @foreach ($proyectos_completados as $proyecto)
-                    <div class="carousel-item">
+                    <div class="carousel-item active">
                       <img src="{{ asset('assets/img/'.$proyecto->proyecto_photo) }}" class="d-block w-100" alt="...">
                       <div class="carousel-caption d-none d-md-block">
                         <h5 class="shadow-lg fw-bold">GRUPO {{$proyecto->modalidad_grupo . ": " . $proyecto->nombre_grupo}} </h5>

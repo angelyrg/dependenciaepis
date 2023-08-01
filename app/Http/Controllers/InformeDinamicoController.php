@@ -20,8 +20,8 @@ class InformeDinamicoController extends Controller
         if (isset($fecha_desde) && isset($fecha_desde)){
             $proyectos = Proyecto::where('fecha_inicio', '>=', $fecha_desde."-01-01")
                         ->where('fecha_inicio', '<=', $fecha_hasta."-12-31")
-                        ->where('estado', '==', $estado)
-                        ->where('modalidad_id', '==', $modalidad_id)
+                        // ->where('estado', '==', $estado)
+                        // ->where('modalidad_id', '==', $modalidad_id)
                         ->get();
         }else{
             $proyectos = Proyecto::all();

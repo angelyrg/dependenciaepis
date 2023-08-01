@@ -10,6 +10,8 @@ class WelcomeController extends Controller
     public function index()
     {
         $proyectos_completados = Proyecto::whereNotNull('proyecto_photo')->take(5)->get();
+        // return $proyectos_completados;
+
         return view('welcome', compact('proyectos_completados'));
 
     }

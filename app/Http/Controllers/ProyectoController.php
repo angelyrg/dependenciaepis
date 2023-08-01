@@ -123,12 +123,12 @@ class ProyectoController extends Controller
  
         $fecha_desde = $request->get('fecha_desde');
         $fecha_hasta = $request->get('fecha_hasta');
-        $estado = $request->get('estado');
-        $modalidad_id = $request->get('modalidad_id');
+        // $estado = $request->get('estado');
+        // $modalidad_id = $request->get('modalidad_id');
 
         //return $fecha_desde;
 
-        return Excel::download(new ProyectosExport($fecha_desde, $fecha_hasta, $estado, $modalidad_id), 'proyectos.xlsx'); 
+        return Excel::download(new ProyectosExport($fecha_desde, $fecha_hasta), 'proyectos.xlsx'); 
 
     }
 
@@ -150,7 +150,7 @@ class ProyectoController extends Controller
         $file = $request->file('proyecto_photo');
         $nombre_archivo = time().$file->getClientOriginalName();
 
-        if ($file->move(public_path()."assets/img/", $nombre_archivo)){
+        if ($file->move(public_path()."/assets/img/", $nombre_archivo)){
             $proyecto->proyecto_photo = $nombre_archivo;
             $proyecto->save();
             return redirect()->back()->with('success', 'Foto publicado');
